@@ -24,6 +24,11 @@ website:
             href: server_accounts.qmd
           - text: "Server access"
             href: server_access.qmd
+      - section: "NGS"
+        contents:
+        - text: "The data"
+          href: NGS_data.qmd
+
 
 format:
   html:
