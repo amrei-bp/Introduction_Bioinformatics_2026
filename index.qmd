@@ -1,0 +1,21 @@
+---
+title: "Introduction to Bioinformatics"
+---
+
+Welcome! This page collects the material for my parts of the course BK0004, Introduction to Bioinformatics. Check on the courses Canvas page for the other material. 
+
+::: {.callout-important}
+## Before the course starts
+We will work on a computer cluster, Kebnekaise at HPC2N. Setting up your accounts takes several days, so **start now**:
+
+1. [Create your user accounts](server_accounts.qmd)
+2. [Connect to the server](server_access.qmd) once your HPC2N account is ready
+
+**Open the links on this site in a new tab. Many of them do not open properly inside Canvas.**
+:::
+
+More material will appear here before each session.
+
+## Questions?
+
+Contact me via Canvas.

@@ -1,0 +1,6 @@
+# Change these once per course round. Pages use them as {{< var hpc2n.project >}}.
+hpc2n:
+  project: "hpc2ncourses2026-XXX"
+  login: "kebnekaise.hpc2n.umu.se"
+  storage: "/proj/nobackup/hpc2nstor2026-XXX"
+teacher: "Amrei Binzer-Panchal"

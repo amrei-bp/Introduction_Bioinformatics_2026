@@ -1,0 +1,38 @@
+project:
+  type: website
+  render:
+    - "*.qmd"
+    - "!README.md"
+
+website:
+  title: "Introduction to Bioinformatics"
+  navbar:
+    background: primary
+    left:
+      - href: index.qmd
+        text: Home
+  sidebar:
+    style: "docked"
+    background: "#94d6ea" # info at 65% 
+    logo: figures/logo/SLUBI_logo.png
+    contents:
+      - text: "Home"
+        href: index.qmd
+      - section: "Before the course"
+        contents:
+          - text: "Server accounts"
+            href: server_accounts.qmd
+          - text: "Server access"
+            href: server_access.qmd
+
+format:
+  html:
+    theme: [yeti, theme_colors.scss]
+    css: styles.css
+    toc: true
+    code-copy: true
+    highlight-style: github
+    code-overflow: wrap
+
+execute:
+  freeze: auto

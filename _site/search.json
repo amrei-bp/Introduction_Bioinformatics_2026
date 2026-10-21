@@ -1,0 +1,118 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Introduction to Bioinformatics",
+    "section": "",
+    "text": "Welcome! This page collects the material for my parts of the course BK0004, Introduction to Bioinformatics. Check on the courses Canvas page for the other material.\nMore material will appear here before each session.",
+    "crumbs": [
+      "Home"
+    ]
+  },
+  {
+    "objectID": "index.html#questions",
+    "href": "index.html#questions",
+    "title": "Introduction to Bioinformatics",
+    "section": "Questions?",
+    "text": "Questions?\nContact me via Canvas.",
+    "crumbs": [
+      "Home"
+    ]
+  },
+  {
+    "objectID": "server_accounts.html",
+    "href": "server_accounts.html",
+    "title": "Create user accounts for the course server",
+    "section": "",
+    "text": "During some modules of this course we will be working on a High Performance Computing cluster, HPC2N. The cluster is a local resource in Umeå, and to use it you need a user account both at the National Academic Infrastructure for Super­computing in Sweden (NAISS), and at HPC2N.\nThe following procedure takes a few days to get through because of clearance delays, so please start straight away.",
+    "crumbs": [
+      "Home",
+      "Before the course",
+      "Server accounts"
+    ]
+  },
+  {
+    "objectID": "server_accounts.html#create-a-user-account-at-suprnaiss",
+    "href": "server_accounts.html#create-a-user-account-at-suprnaiss",
+    "title": "Create user accounts for the course server",
+    "section": "Create a user account at SUPR/NAISS",
+    "text": "Create a user account at SUPR/NAISS\n\n\n\n\n\n\nImportantTo do for you\n\n\n\nFill out & submit the account request form. Open this and all the following links in a different tab, they do NOT properly open in Canvas. \nRead carefully and follow the provided instructions.\n\n\n\n\n\n\n\n\nTip\n\n\n\n\nUse “Register with Federated Identity” if you are enrolled in a Swedish university.\nIf you are not enrolled in a Swedish university or if the previous option doesn’t work for you, use instead “Register without Federated Identity”.\n\n\n\n\nAccept NAISS user agreement\nJust after creating the SUPR account, on the page you are taken to, there will be a section titled “User Agreement” at the very top. Just under it is the button named “Accept NAISS User Agreement”.\n\n\n\n\n\n\nImportantTo do for you\n\n\n\nClick it.\n\n\nAlternately, if you do this at a later point. Login to SUPR. At the very top it will say “NAISS User Agreement Pending”.\n\n\n\n\n\n\nTip\n\n\n\n\nUse With SWAMID if you are enrolled in a Swedish university - this option is much faster!\nIf you are not enrolled in a Swedish university use instead Alternative: Offline via Paper Form. Here you will have to print out, sign and send in the form. This may take up to a week. Contact me if you are applying from outside of Sweden. \n\n\n\nWhen you have a SUPR account you can join our course project on HPC2N:",
+    "crumbs": [
+      "Home",
+      "Before the course",
+      "Server accounts"
+    ]
+  },
+  {
+    "objectID": "server_accounts.html#join-the-course-project-at-hpc2n",
+    "href": "server_accounts.html#join-the-course-project-at-hpc2n",
+    "title": "Create user accounts for the course server",
+    "section": "Join the course project at HPC2N",
+    "text": "Join the course project at HPC2N\n\n\n\n\n\n\nImportantTo do for you\n\n\n\nLog in to SUPR.\n\nClick “Projects” in the left side column.\nUnder “Requesting Membership in Projects”, put in the course project ID. You find it in Canvas. Click “Search for Project”.\nClick “Request” on the project.\nWe will then get an e-mail notification about your request. Once we have accepted your membership, you in turn will get an e-mail, telling you that the membership has been accepted. Then, go to SUPR again to apply for an account at HPC2N.",
+    "crumbs": [
+      "Home",
+      "Before the course",
+      "Server accounts"
+    ]
+  },
+  {
+    "objectID": "server_accounts.html#create-a-user-account-at-hpc2n",
+    "href": "server_accounts.html#create-a-user-account-at-hpc2n",
+    "title": "Create user accounts for the course server",
+    "section": "Create a user account at HPC2N",
+    "text": "Create a user account at HPC2N\nNote: you must be a member of a project before you do this!\n\n\n\n\n\n\nImportantTo do for you\n\n\n\n\nLogin to SUPR.\nClick “Accounts” in the left side column.\nYou can request an account at HPC2N now. Look under the heading “Account Requests”.\nClick “Request account”.\nYour information will then be sent to HPC2N, and you will be taken back to a webpage where you can choose your username.\nUser accounts are usually created once a week. You will get an email from HPC2N when your account has been created.",
+    "crumbs": [
+      "Home",
+      "Before the course",
+      "Server accounts"
+    ]
+  },
+  {
+    "objectID": "server_accounts.html#questions",
+    "href": "server_accounts.html#questions",
+    "title": "Create user accounts for the course server",
+    "section": "Questions?",
+    "text": "Questions?\nContact me via canvas!",
+    "crumbs": [
+      "Home",
+      "Before the course",
+      "Server accounts"
+    ]
+  },
+  {
+    "objectID": "server_access.html",
+    "href": "server_access.html",
+    "title": "Connect to the course server",
+    "section": "",
+    "text": "For this course, we will be working on a remote server, HPC2N. You should already have applied for a user account there. If you haven’t, do it now.\nHere, you will access the server for the first time.\nYou will need:",
+    "crumbs": [
+      "Home",
+      "Before the course",
+      "Server access"
+    ]
+  },
+  {
+    "objectID": "server_access.html#access-server-via-the-terminal",
+    "href": "server_access.html#access-server-via-the-terminal",
+    "title": "Connect to the course server",
+    "section": "Access server via the Terminal",
+    "text": "Access server via the Terminal\n\nOpen the Terminal on your computer.\nType ssh username@kebnekaise.hpc2n.umu.se, where you substitute “username” with your HPC2N user name.\ntype in your temporary password.\n\n\n\n\n\n\n\nCautionAfter the first log-in: reset password\n\n\n\nIn the welcome mail you got when your HPC2N account was created there was a link to create a first, temporary password. When you have logged in using that, you need to change your password.\nFrom the HPC2N documentation:\nThis is done using the passwd command:\npasswd\nUse a good password that combines letters of different case. Do not use dictionary words. Avoid using the same password that you also use in other places.\n\nIt will first ask for your current password. The first time you login, that will be the temporary password you created with the HPC2N password reset service.\nType in that and press enter.\nThen type in the new password you want, enter, and repeat.\nYou have changed the password.\n\n\n\nYou are now on connected to the login node of the cluster.\n\n\n\n\n\n\nImportantTo do for you\n\n\n\nRead here more about HPC cluster architecture. Read until the header MPI.\n\n\nThis location is the home folder of your account.\n\n\n\n\n\n\nTip\n\n\n\nYou can check the path to your working directory with:\npwd\nand the content with:\nls",
+    "crumbs": [
+      "Home",
+      "Before the course",
+      "Server access"
+    ]
+  },
+  {
+    "objectID": "server_access.html#server-access-on-demand",
+    "href": "server_access.html#server-access-on-demand",
+    "title": "Connect to the course server",
+    "section": "Server access: on demand",
+    "text": "Server access: on demand\nHPC2N offers a on demand log-in, where you can start a visual interface to interact with the server.\nYou can access the on-demand log-in here.\n\n\n\n\n\n\nImportantTo do for you\n\n\n\n\nClick on “Login to HPC2N OnDemand”.\nSign in to your account with your HPC2N user name and password.\nOn the top, select “Interactive Apps” and “VScode”.\n\n\n\nNow you can set up the interactive session.\n\n\n\n\n\n\nImportantTo do for you\n\n\n\n\nSelect our compute project in the drop-down menu under “Compute Project”.\nSelect the appropriate number of hours.\nType in the path to the course directory in “Working Directory” :\n\n/proj/nobackup/hpc2nstor2026-XXX\n\nClick Launch.\n\n\n\n\nYour session will start, once it is running you can click the blue “Connect to VS Code” button in the bottom. The VS Code interface will open up in your browser.\n\n\n\n\n\n\nImportantTo do for you\n\n\n\n\nLook around the storage project:\n\nls\n\nCreate a directory with your name (replace &lt;your-name&gt; below with your actual name):\n\nmkdir &lt;your-name&gt;\n\nCheck that the directory was created successfully:\n\nls",
+    "crumbs": [
+      "Home",
+      "Before the course",
+      "Server access"
+    ]
+  }
+]

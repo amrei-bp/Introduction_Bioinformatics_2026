@@ -1,0 +1,12 @@
+/*-- scss:defaults --*/
+// Yeti colours: primary #008cba, info #5bc0de
+
+/*-- scss:rules --*/
+// depth: lift the navbar off the page
+.navbar { box-shadow: 0 2px 6px rgba(0,0,0,.12); }
+
+// sidebar text: dark on the light-blue info background
+.sidebar-navigation .sidebar-item-text,
+.sidebar-navigation .sidebar-link { color: #0b3a4a; }
+.sidebar-navigation .active,
+.sidebar-navigation .sidebar-link.active .menu-text { color: #000; font-weight: 600; }
