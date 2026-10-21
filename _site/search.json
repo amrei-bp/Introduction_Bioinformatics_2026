@@ -1,25 +1,5 @@
 [
   {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Introduction to Bioinformatics",
-    "section": "",
-    "text": "Welcome! This page collects the material for my parts of the course BK0004, Introduction to Bioinformatics. Check on the courses Canvas page for the other material.\nMore material will appear here before each session.",
-    "crumbs": [
-      "Home"
-    ]
-  },
-  {
-    "objectID": "index.html#questions",
-    "href": "index.html#questions",
-    "title": "Introduction to Bioinformatics",
-    "section": "Questions?",
-    "text": "Questions?\nContact me via Canvas.",
-    "crumbs": [
-      "Home"
-    ]
-  },
-  {
     "objectID": "server_accounts.html",
     "href": "server_accounts.html",
     "title": "Create user accounts for the course server",
@@ -80,6 +60,26 @@
     ]
   },
   {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Introduction to Bioinformatics 2026",
+    "section": "",
+    "text": "Welcome! This page collects the material for my parts of the course BK0004, Introduction to Bioinformatics. Check on the courses Canvas page for the other material.\nMore material will appear here before each session.",
+    "crumbs": [
+      "Home"
+    ]
+  },
+  {
+    "objectID": "index.html#questions",
+    "href": "index.html#questions",
+    "title": "Introduction to Bioinformatics 2026",
+    "section": "Questions?",
+    "text": "Questions?\nContact me via Canvas.",
+    "crumbs": [
+      "Home"
+    ]
+  },
+  {
     "objectID": "server_access.html",
     "href": "server_access.html",
     "title": "Connect to the course server",
@@ -108,7 +108,7 @@
     "href": "server_access.html#server-access-on-demand",
     "title": "Connect to the course server",
     "section": "Server access: on demand",
-    "text": "Server access: on demand\nHPC2N offers a on demand log-in, where you can start a visual interface to interact with the server.\nYou can access the on-demand log-in here.\n\n\n\n\n\n\nImportantTo do for you\n\n\n\n\nClick on “Login to HPC2N OnDemand”.\nSign in to your account with your HPC2N user name and password.\nOn the top, select “Interactive Apps” and “VScode”.\n\n\n\nNow you can set up the interactive session.\n\n\n\n\n\n\nImportantTo do for you\n\n\n\n\nSelect our compute project in the drop-down menu under “Compute Project”.\nSelect the appropriate number of hours.\nType in the path to the course directory in “Working Directory” :\n\n/proj/nobackup/hpc2nstor2026-XXX\n\nClick Launch.\n\n\n\n\nYour session will start, once it is running you can click the blue “Connect to VS Code” button in the bottom. The VS Code interface will open up in your browser.\n\n\n\n\n\n\nImportantTo do for you\n\n\n\n\nLook around the storage project:\n\nls\n\nCreate a directory with your name (replace &lt;your-name&gt; below with your actual name):\n\nmkdir &lt;your-name&gt;\n\nCheck that the directory was created successfully:\n\nls",
+    "text": "Server access: on demand\nHPC2N offers a on demand log-in, where you can start a visual interface to interact with the server.\nYou can access the on-demand log-in here.\n\n\n\n\n\n\nImportantTo do for you\n\n\n\n\nClick on “Login to HPC2N OnDemand”.\nSign in to your account with your HPC2N user name and password.\nOn the top, select “Interactive Apps” and “VScode”.\n\n\n\nNow you can set up the interactive session.\n\n\n\n\n\n\nImportantTo do for you\n\n\n\n\nSelect our compute project in the drop-down menu under “Compute Project”.\nSelect the appropriate number of hours.\nType in the path to the course directory in “Working Directory”. You find it in Canvas. It looks like this:\n\n/proj/nobackup/&lt;course-storage-project&gt;\n\nClick Launch.\n\n\n\n\nYour session will start, once it is running you can click the blue “Connect to VS Code” button in the bottom. The VS Code interface will open up in your browser.\n\n\n\n\n\n\nImportantTo do for you\n\n\n\n\nLook around the storage project:\n\nls\n\nCreate a directory with your name (replace &lt;your-name&gt; below with your actual name):\n\nmkdir &lt;your-name&gt;\n\nCheck that the directory was created successfully:\n\nls",
     "crumbs": [
       "Home",
       "Before the course",
