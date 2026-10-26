@@ -2,6 +2,7 @@ project:
   type: website
   render:
     - "*.qmd"
+    - "ngs/*.qmd"
     - "!README.md"
 
 website:
@@ -24,11 +25,20 @@ website:
             href: server_accounts.qmd
           - text: "Server access"
             href: server_access.qmd
-      - section: "NGS"
+      - section: "Introduction to NGS"
         contents:
-        - text: "The data"
-          href: NGS_data.qmd
-
+          - text: "Introduction to NGS"
+            href: ngs/ngs_intro.qmd
+          - text: "The data"
+            href: ngs/NGS_data.qmd
+          - text: "Day 1: Quality control"
+            href: ngs/day1.qmd
+          - text: "Day 1: QC exercises"
+            href: ngs/qc_exercises.qmd
+          - text: "Day 2: Mapping"
+            href: ngs/day2.qmd
+          - text: "Day 2: Mapping exercises"
+            href: ngs/mapping_exercises.qmd
 
 format:
   html:

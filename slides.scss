@@ -1,0 +1,18 @@
+/*-- scss:defaults --*/
+// Yeti colours, to match the course site
+$link-color: #008cba;
+$presentation-heading-color: #00698c;
+$code-color: #00698c;
+$presentation-font-size-root: 34px;
+
+/*-- scss:rules --*/
+.reveal .slide-logo { max-height: 2.2rem !important; }
+.reveal table { font-size: 0.75em; }
+.reveal .small { font-size: 0.7em; }
+.reveal .callout { font-size: 0.8em; }
+.reveal .big pre code { font-size: 1.4em; line-height: 1.4; }
+.reveal table.big-table { font-size: 1em; }
+.reveal table.big-table td, .reveal table.big-table th { padding: 0.45em 0.7em; }
+.reveal table thead th { background: #008cba; color: #fff; border-bottom: none; }
+.reveal table tbody tr:nth-child(even) { background: #eaf6fb; }
+.reveal table tbody tr td { border-bottom: none; }
