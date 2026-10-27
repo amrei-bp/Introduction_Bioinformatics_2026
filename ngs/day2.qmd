@@ -1,0 +1,41 @@
+---
+title: "NGS day 2: Mapping"
+---
+
+Today you map the reads you checked on day 1 to the cassava reference: the DNA reads with Bowtie 2 and the RNA reads with STAR.
+
+## 1. Lecture
+
+Before class, watch the recorded lecture in Canvas. The slides:
+
+- [Mapping sequencing reads](mapping_lecture.qmd){target="_blank"}
+
+**Learning outcomes.** After today you can:
+
+- explain what a mapper does, and why it needs an index
+- tell local and end-to-end alignment apart
+- explain why RNA-seq reads need a splice-aware mapper
+- read the main columns of a SAM file
+- judge a mapping from its log file
+
+## 2. Lecture quiz
+
+In Canvas, before class.
+
+## 3. Discussion
+
+We will talk about these questions in class. Think about them before you come.
+
+1. Why do we build an index before mapping, and why can't Bowtie 2 and STAR share one?
+2. When would you map to the genome, and when to the transcriptome?
+3. What could a low mapping rate mean? What rate do you expect when you map to one chromosome out of 18?
+4. Should you map trimmed or raw reads? What would you check to decide?
+
+## 4. Exercises
+
+1. [The NGS data](NGS_data.qmd): a reminder of the files and your folder layout from day 1
+2. [Mapping sequencing reads](mapping_exercises.qmd)
+
+## 5. Lab quiz
+
+In Canvas, after the exercises.
