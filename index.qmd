@@ -14,8 +14,6 @@ We will work on a computer cluster, Kebnekaise at HPC2N. Setting up your account
 **Open the links on this site in a new tab. Many of them do not open properly inside Canvas.**
 :::
 
-More material will appear here before each session.
-
 ## Questions?
 
 Contact me via Canvas.
