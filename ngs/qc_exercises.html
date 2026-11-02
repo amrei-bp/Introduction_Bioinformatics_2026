@@ -1,0 +1,1398 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.11.9">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Quality control of sequencing data – Introduction to Bioinformatics</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/scrollable-regions/scrollable-regions.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-5de16f5e46225c21e2daa90d340bf64f.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-d6ceaddc912e0296d71641d43b68d357.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-sidebar docked nav-fixed quarto-light"><a id="quarto-skip-link" class="visually-hidden-focusable" href="#quarto-document-content">Skip to main content</a>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark" aria-label="Site">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Introduction to Bioinformatics</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link active" href="../index.html" aria-current="page"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+            <div id="quarto-search" class="" title="Search"></div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav" aria-label="Toolbar">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="Breadcrumbs"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../ngs/ngs_intro.html">Introduction to NGS</a></li><li class="breadcrumb-item"><a href="../ngs/qc_exercises.html">Day 1: QC exercises</a></li></ol></nav>
+        <a class="flex-grow-1" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto" aria-label="Section">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+      <a href="../index.html" class="sidebar-logo-link">
+      <img src="../figures/logo/SLUBI_logo.png" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none">
+      <img src="../figures/logo/SLUBI_logo.png" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
+      </a>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Home</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-controls="quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text" id="quarto-sidebar-section-1-label">Before the course</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+      </div>
+      <ul id="quarto-sidebar-section-1" aria-labelledby="quarto-sidebar-section-1-label" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../server_accounts.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Server accounts</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../server_access.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Server access</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-controls="quarto-sidebar-section-2" aria-expanded="true">
+ <span class="menu-text" id="quarto-sidebar-section-2-label">Introduction to NGS</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+      </div>
+      <ul id="quarto-sidebar-section-2" aria-labelledby="quarto-sidebar-section-2-label" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../ngs/ngs_intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction to NGS</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../ngs/NGS_data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">The data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../ngs/day1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Day 1: Quality control</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../ngs/qc_exercises.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Day 1: QC exercises</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../ngs/day2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Day 2: Mapping</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../ngs/mapping_exercises.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Day 2: Mapping exercises</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" aria-labelledby="toc-title" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#quality-control-tutorial" id="toc-quality-control-tutorial" class="nav-link active" data-scroll-target="#quality-control-tutorial">Quality Control Tutorial</a></li>
+  <li><a href="#the-reasoning-behind-the-tutorial" id="toc-the-reasoning-behind-the-tutorial" class="nav-link" data-scroll-target="#the-reasoning-behind-the-tutorial">The reasoning behind the tutorial</a></li>
+  <li><a href="#preparations" id="toc-preparations" class="nav-link" data-scroll-target="#preparations">Preparations</a>
+  <ul class="collapse">
+  <li><a href="#connect-to-hpc2n" id="toc-connect-to-hpc2n" class="nav-link" data-scroll-target="#connect-to-hpc2n">Connect to HPC2N</a></li>
+  <li><a href="#create-your-own-folder" id="toc-create-your-own-folder" class="nav-link" data-scroll-target="#create-your-own-folder">Create your own folder</a></li>
+  <li><a href="#start-a-screen-session" id="toc-start-a-screen-session" class="nav-link" data-scroll-target="#start-a-screen-session">Start a screen session</a></li>
+  <li><a href="#create-a-directory-to-work-in" id="toc-create-a-directory-to-work-in" class="nav-link" data-scroll-target="#create-a-directory-to-work-in">Create a directory to work in</a></li>
+  <li><a href="#create-symbolic-link-to-the-data" id="toc-create-symbolic-link-to-the-data" class="nav-link" data-scroll-target="#create-symbolic-link-to-the-data">Create symbolic link to the data</a></li>
+  </ul></li>
+  <li><a href="#data-format" id="toc-data-format" class="nav-link" data-scroll-target="#data-format">Data format</a></li>
+  <li><a href="#fastqc-intro" id="toc-fastqc-intro" class="nav-link" data-scroll-target="#fastqc-intro">FastQC Intro</a></li>
+  <li><a href="#containers" id="toc-containers" class="nav-link" data-scroll-target="#containers">Containers</a>
+  <ul class="collapse">
+  <li><a href="#what-are-containers" id="toc-what-are-containers" class="nav-link" data-scroll-target="#what-are-containers">What are containers?</a></li>
+  <li><a href="#running-containers" id="toc-running-containers" class="nav-link" data-scroll-target="#running-containers">Running Containers</a></li>
+  <li><a href="#getting-apptainer-image" id="toc-getting-apptainer-image" class="nav-link" data-scroll-target="#getting-apptainer-image">Getting apptainer image</a></li>
+  <li><a href="#download-container-images" id="toc-download-container-images" class="nav-link" data-scroll-target="#download-container-images">Download container images</a>
+  <ul class="collapse">
+  <li><a href="#running-containers-1" id="toc-running-containers-1" class="nav-link" data-scroll-target="#running-containers-1">Running Containers</a></li>
+  </ul></li>
+  <li><a href="#slurm" id="toc-slurm" class="nav-link" data-scroll-target="#slurm">SLURM</a></li>
+  <li><a href="#running-fastqc-with-sbatch" id="toc-running-fastqc-with-sbatch" class="nav-link" data-scroll-target="#running-fastqc-with-sbatch">Running fastqc with sbatch</a></li>
+  </ul></li>
+  <li><a href="#multiqc" id="toc-multiqc" class="nav-link" data-scroll-target="#multiqc">MultiQC</a>
+  <ul class="collapse">
+  <li><a href="#pull-the-apptainer-image" id="toc-pull-the-apptainer-image" class="nav-link" data-scroll-target="#pull-the-apptainer-image">Pull the apptainer image</a></li>
+  <li><a href="#download-container-image" id="toc-download-container-image" class="nav-link" data-scroll-target="#download-container-image">Download container image</a></li>
+  <li><a href="#running-multiqc-with-sbatch" id="toc-running-multiqc-with-sbatch" class="nav-link" data-scroll-target="#running-multiqc-with-sbatch">Running multiqc with sbatch</a></li>
+  </ul></li>
+  <li><a href="#fastp" id="toc-fastp" class="nav-link" data-scroll-target="#fastp">FastP</a></li>
+  <li><a href="#troubleshooting" id="toc-troubleshooting" class="nav-link" data-scroll-target="#troubleshooting">Troubleshooting</a>
+  <ul class="collapse">
+  <li><a href="#where-am-i" id="toc-where-am-i" class="nav-link" data-scroll-target="#where-am-i">Where am I?</a></li>
+  <li><a href="#common-errors" id="toc-common-errors" class="nav-link" data-scroll-target="#common-errors">Common errors</a></li>
+  <li><a href="#is-my-job-running" id="toc-is-my-job-running" class="nav-link" data-scroll-target="#is-my-job-running">Is my job running?</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content" tabindex="-1">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="Breadcrumbs"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../ngs/ngs_intro.html">Introduction to NGS</a></li><li class="breadcrumb-item"><a href="../ngs/qc_exercises.html">Day 1: QC exercises</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">Quality control of sequencing data</h1>
+<p class="subtitle lead">screen, slurm, Apptainer, FastQC, MultiQC</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p><br> Regardless of what type of bioinformatics project you are working on, you will have to assess whether the data you have is of good enough quality to proceed with - bad input data can seriously impair your ability to draw conclusions from the samples later on!</p>
+<p>Poor quality sequencing data can be caused by a variety of factors, such as sample contamination, improper sample handling, technical problems. Some of these problems will be checked for before and during the sequencing - it is always good to read all documentation coming from the sequencing facility.</p>
+<p>When it comes to sequencing data, FastQC is a well known and often used software to check raw reads for their quality.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Sample preparation includes fragmenting the genome into the <strong>sequencing library</strong>.</p>
+<p>A <strong>read</strong> is the inferred nucleotide base sequence of a genome fragment as determined by the sequencer.</p>
+</div>
+</div>
+<section id="quality-control-tutorial" class="level1">
+<h1>Quality Control Tutorial</h1>
+<p>Within this tutorial we will</p>
+<ul>
+<li>use the job scheduler <code>slurm</code></li>
+<li>learn about containers, and where to get them, and how to use them with <code>apptainer</code></li>
+<li>run <code>fastqc</code> on some raw sequencing files to practice and to understand the output</li>
+<li>run <code>multiqc</code> to summarize the FastQC output</li>
+<li>run <code>fastp</code> to do adapter trimming</li>
+</ul>
+</section>
+<section id="the-reasoning-behind-the-tutorial" class="level1">
+<h1>The reasoning behind the tutorial</h1>
+<p>You will run the three tools on the data today. The first time the instructions are detailed and you can mostly copy-paste the commands. However, for the next tool you will have to develop your own commands, based on the ones from the first tool.</p>
+<p>So, what I am trying to tell you: try to understand what you are doing the first time around already, it will greatly help you the second and third time around. (o:</p>
+</section>
+<section id="preparations" class="level1">
+<h1>Preparations</h1>
+<section id="connect-to-hpc2n" class="level2">
+<h2 class="anchored" data-anchor-id="connect-to-hpc2n">Connect to HPC2N</h2>
+<p>For this tutorial we will connect to the course server.</p>
+<p>To connect to the server, please follow the instructions <a href="../server_access.html">here</a>.</p>
+<p>Quick access link to the on-demand service of HPC2N:</p>
+<p><a href="https://portal.hpc2n.umu.se/public/landing_page.html">HPC2N on-demand link</a>.</p>
+</section>
+<section id="create-your-own-folder" class="level2">
+<h2 class="anchored" data-anchor-id="create-your-own-folder">Create your own folder</h2>
+<p>Go to the course directory (you find its path in Canvas), create a folder with your name, and move into it:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> <span class="op">&lt;</span>course directory<span class="op">&gt;</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="op">&lt;</span>your_name<span class="op">&gt;</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> <span class="op">&lt;</span>your_name<span class="op">&gt;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Replace <code>&lt;your_name&gt;</code> with your own name, without spaces, for example <code>anna_svensson</code>.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Do all of today’s work inside this folder, and come back to it on day 2. If you log out, start again with <code>cd &lt;course directory&gt;/&lt;your_name&gt;</code>.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Use the command line commands <code>ls</code> to list the contents of the directory you are currently in, <code>pwd</code> to print the path of the current working directory, and <code>cd</code> to navigate between directories.</p>
+</div>
+</div>
+</section>
+<section id="start-a-screen-session" class="level2">
+<h2 class="anchored" data-anchor-id="start-a-screen-session">Start a screen session</h2>
+<p><a href="https://www.gnu.org/software/screen/manual/screen.html">Screen</a> or GNU Screen is a terminal multiplexer. In other words, it means that you can start a screen session and then open any number of windows (virtual terminals) inside that session. Processes running in Screen will continue to run when their window is not visible even if you get disconnected.</p>
+<p>Start a <code>named session</code>, with the name <code>qc</code>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">screen</span> <span class="at">-S</span> qc</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>You can detach from the screen session. The process within the screen will continue to run.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Ctrl</span> + a d</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>You can always reattach to the session. If you have a number of screen running, or are unsure of the name or ID of the screen you want to reattach to you can list the currently running screens:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">screen</span> <span class="at">-ls</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>To <code>resume your screen session</code> use the following command:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">screen</span> <span class="at">-r</span> name</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="create-a-directory-to-work-in" class="level2">
+<h2 class="anchored" data-anchor-id="create-a-directory-to-work-in">Create a directory to work in</h2>
+<p>From within your folder <code>&lt;course directory&gt;/&lt;your_name&gt;</code>, start by creating a workspace for the raw data used in this exercise, and then move into it:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span>  NGS_course/raw</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> NGS_course/raw</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="create-symbolic-link-to-the-data" class="level2">
+<h2 class="anchored" data-anchor-id="create-symbolic-link-to-the-data">Create symbolic link to the data</h2>
+<p>The raw data files are located in the course directory, in <code>teachers/course_data/NGS/</code> (see <a href="../ngs/NGS_data.html">The NGS data</a>). Save the path in a variable (replace <code>&lt;course directory&gt;</code> with the path from Canvas):</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="va">DATA</span><span class="op">=&lt;</span>course <span class="ex">directory</span><span class="op">&gt;</span>/teachers/course_data/NGS</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="va">$DATA</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>You could copy the files into your workspace to access them. However, it is better to create symbolic links (also called soft links) to the data files. This saves disk space and still allows you to work with them as if they were in your own directory.</p>
+<p>Create symbolic links to the fastq files in your workspace:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ln</span> <span class="at">-s</span> <span class="va">$DATA</span>/<span class="pp">*</span>.fastq .</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>You now have four files in your directory: two for the TMEB117 cultivar containing the DNA sequences, and two for the TMEB419 cultivar, containing the RNA sequencing results.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>To do for you
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Leave the <code>/raw</code> directory and make sure that you are back in <code>&lt;your_name&gt;/NGS_course</code>.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="data-format" class="level1">
+<h1>Data format</h1>
+<p>You now have the raw sequencing data, in a very common data format, fastq. Let’s have a look at the data (change the name of the file accordingly):</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span> <span class="at">-n</span> 8 raw/TMEB117_R1_frac.fastq</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>For each read we see an entry consisting of four lines. Every new read starts with an <code>@</code>.</p>
+<table class="caption-top table">
+<caption>Fastq format</caption>
+<colgroup>
+<col style="width: 16%">
+<col style="width: 83%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Line</th>
+<th>Content</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>Information about the read, always starts with an <code>@</code></td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>nucleic sequence of the read</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>starts with `+`, can (but does not have to) contain data</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>characters representing the quality scores with the bases of the read sequence</td>
+</tr>
+</tbody>
+</table>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The quality score is encoded in ASCII, to represent scores from 0 (high probability of error in calling the base) to 42 (low probability of error in calling the base).</p>
+</div>
+</div>
+<p>We could now look through the fastq file and scan the quality scores for the reads in our sample one by one. Sounds kind of tedious, doesn’t it? Luckily, here comes FastQC (and other, similar tools).</p>
+</section>
+<section id="fastqc-intro" class="level1">
+<h1>FastQC Intro</h1>
+<p><a href="https://www.bioinformatics.babraham.ac.uk/projects/fastqc/"><code>Fastqc</code></a> is a simple tool to monitor the quality and the properties of a NGS sequencing file in fastq, SAM and BAM format.</p>
+<p>FastQC will give us an overview of the entire sample, so we won’t have to look at the quality score of every single read in the sample.</p>
+<p>In addition to the quality scores, FastQC also performs a series of quality control analyses, called modules. The output is a HTML report with one section for each module, and a summary evaluation of the results in the top. “Normal” results are marked with a green tick, slightly abnormal results raise warnings (orange exclamation mark), and very unusual results raise failures (red cross).</p>
+<p>Keep in mind that even though FastQC is giving out pass/fail results for your samples, these evaluations must be taken in the context of what you expect from your library. A ‘normal’ sample as far as FastQC is concerned is random and diverse. However, because of project design your samples might deviate from this expectation. The summary evaluations should be pointers to where you have to concentrate your attention and understand why your library may not look random and diverse.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>To do for you
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Let’s see which version is installed on the server:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">fastqc</span> <span class="at">--version</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<p>Oh no! FastQC is not installed on the server, what can we do?</p>
+</section>
+<section id="containers" class="level1">
+<h1>Containers</h1>
+<p>In this tutorial, we will be using <code>containers</code> to run tools and specific tool versions that may not be directly installed on the system we are working on.</p>
+<section id="what-are-containers" class="level2">
+<h2 class="anchored" data-anchor-id="what-are-containers">What are containers?</h2>
+<p>Containers are stand-alone pieces of software that require a container management tool to run. They are build and exchanged as container images that specify the contents of the container, such as the operating system, all dependencies, and software in an isolated environment. The container management tool then takes the images and build the container. These management tools can be run on all operating systems, and since the container has the operating system within it, it will run the same in all environments. Container images are easily portable and immutable, so they are stable over time.</p>
+</section>
+<section id="running-containers" class="level2">
+<h2 class="anchored" data-anchor-id="running-containers">Running Containers</h2>
+<p>There are several programs that can be used to build and run containers. <a href="https://www.docker.com">Docker</a>, <a href="https://apptainer.org">Apptainer</a>, and <a href="https://podman.io">Podman</a> are the most commonly used platforms to date. They all have their pros and cons. If you are using a Windows machine that only you are using, then Docker is likely the least complex tool to install. On multi-user systems like a server, Apptainer is the best tool for the job. For this tutorial and the rest of the course, we will use Apptainer commands.</p>
+</section>
+<section id="getting-apptainer-image" class="level2">
+<h2 class="anchored" data-anchor-id="getting-apptainer-image">Getting apptainer image</h2>
+<p>One good place to get quality controlled Apptainer/Singularity containers that contain the tools we want to use is <a href="https://seqera.io/containers/">seqera containers</a>.</p>
+<ul>
+<li><p>Open their homepage in a new tab.</p></li>
+<li><p>In the searchbar, type in the tool you want - fastqc</p></li>
+</ul>
+<p><img src="images/seqera_cont_one.png" class="img-fluid"></p>
+<p><br><br></p>
+<ul>
+<li><p>Add the tool you want to have in your container (in this case <code>fastqc</code> from Bioconda). Be aware, the screenshot in this material might show a different tool version than the one you will see.</p></li>
+<li><p>In the container settings underneath the search bar, select Singularity and linux/amd64</p></li>
+<li><p>Click “get container”.</p></li>
+</ul>
+<p><img src="images/seqera_cont_2.png" class="img-fluid"></p>
+<p><br><br></p>
+<ul>
+<li>Once the container is ready copy the path of the image.</li>
+</ul>
+<p><img src="images/seqera_cont_3.png" class="img-fluid"></p>
+</section>
+<section id="download-container-images" class="level2">
+<h2 class="anchored" data-anchor-id="download-container-images">Download container images</h2>
+<p>To have a nice and clean project directory we will make a new sub-directory that will contain all the singularity images we will use during this tutorial.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> singularity_images</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> singularity_images</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Now we can pull the container image from its location into our folder:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="ex">apptainer</span> pull <span class="at">--name</span> fastqc_0.13.0.sif oras://community.wave.seqera.io/library/fastqc:0.13.0--918df8ee88833f73</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>In this command we tell apptainer, the container system software, to pull a container with a name we can set ourselves, from a source <code>oras...</code>.</p>
+<p>Then we move out of the directory again:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> .. </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="running-containers-1" class="level3">
+<h3 class="anchored" data-anchor-id="running-containers-1">Running Containers</h3>
+<p>Once you have pulled the container image, you want to be able to use it. Apptainer can be used to build the container from the image.</p>
+<section id="running-from-the-outside" class="level4">
+<h4 class="anchored" data-anchor-id="running-from-the-outside">running “from the outside”</h4>
+<p>There are 2 different ways to use a container: <code>run</code> and <code>exec</code>. The <code>apptainer run</code> command launches the container and first runs the <code>%runscript</code> for the container if one is defined, and then runs your command (we will cover <code>%runscript</code> in the <code>Building Containers</code> section). The <code>apptainer exec</code> command will not run the <code>%runscript</code> even if one is defined. It is a small, fiddly detail that might be applicable if you use other people’s containers. After calling Apptainer and the <code>run</code> or <code>exec</code> commands, you can use your software as you usually would</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="ex">apptainer</span> exec singularity_images/fastqc_0.13.0.sif fastqc <span class="at">--version</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>This command runs your <code>fastqc_0.13.0.sif</code> container from the image, calls on the program <code>fastqc</code> that is within the container, and shows you the version. If you had installed FastQC locally, you would have just used</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="ex">fastqc</span> <span class="at">--version</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>FastQC is just an example. If you want to run any other tool everything after <code>apptainer run</code> or <code>apptainer exec</code> has to be substituted by the name of the specific container image and the run commands for that particular tool!</p>
+</div>
+</div>
+</section>
+<section id="running-interactively-from-the-inside" class="level4">
+<h4 class="anchored" data-anchor-id="running-interactively-from-the-inside">running interactively “from the inside”</h4>
+<p>You can also enter the container, and work interactively from within. For that you use the <code>apptainer shell</code> command:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="ex">apptainer</span> shell singularity_images/fastqc_0.13.0.sif</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Inside the container, your prompt will change to <code>Singularity</code> (remember, that is the legacy name for Apptainer). Now you can use the tools inside the container.</p>
+<p>To exit the container, simply type and enter <code>exit</code>.</p>
+<p>Great, now we have FastQC ready and can use it. How can we submit the job to the server?</p>
+</section>
+</section>
+</section>
+<section id="slurm" class="level2">
+<h2 class="anchored" data-anchor-id="slurm">SLURM</h2>
+<p>HPC2N is running SLURM (Simple Linux Utility for Resource Management) as its job scheduling system. When you submit a job on the cluster log-in node, SLURM will start, execute and monitor your jobs on the working nodes. It allocates access to the cluster resources, and manages the queue of pending jobs. <a href="https://docs.hpc2n.umu.se/documentation/batchsystem/intro/">Here</a> is a more thorough documentation of SLURM on Kebnekaise.</p>
+<p>To be able to do so, SLURM needs a bit of information from us when we submit a job:</p>
+<ul>
+<li>-A: project_ID (to deduct the used computing time from the correct project)</li>
+<li>-t allocated time dd-hh:mm:ss (to optimize the job queue)</li>
+<li>-n number of cores (default is one)</li>
+</ul>
+</section>
+<section id="running-fastqc-with-sbatch" class="level2">
+<h2 class="anchored" data-anchor-id="running-fastqc-with-sbatch">Running fastqc with sbatch</h2>
+<p>We will now write a script that runs fastqc on our samples - using the container we pulled. We will add the slurm flags from above and then submit to the server queue with the SLURM command <code>sbatch</code>.</p>
+<p>Again, we want to maintain a clean and orderly project directory:</p>
+<p>In your NGS_course folder, create a directory for the FastQC output and a new directory called scripts. Within the scripts directory create a file called fastqc.sh.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> fastqc</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> scripts</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> scripts</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="fu">touch</span> fastqc.sh</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Touch
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Touch makes a new file with the given name. You can then open it in the file explorer (left side of VS-Code).</p>
+</div>
+</div>
+<p>Copy the following into the file, and save the contents. Read through the file and try to understand what the different lines are doing.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb18"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co">#! /bin/bash -l</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="co"># The name of the compute account you are running in, mandatory.</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH -A &lt;course project ID&gt;</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Request runtime for the job (HHH:MM:SS) where 168 hours is the maximum. Here asking for 15 min. </span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH -t 15:00</span></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Request resources - here for four cpus</span></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH -n 4</span></span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a><span class="co"># FastQC needs the output folder to exist</span></span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> fastqc</span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a><span class="ex">apptainer</span> exec singularity_images/fastqc_0.13.0.sif <span class="dt">\</span></span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a>    fastqc <span class="at">-t</span> 4 <span class="at">--outdir</span> fastqc/ raw/<span class="pp">*</span>.fastq</span>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"complete"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The slurm options used here:</p>
+<ul>
+<li>A: project ID (you find it in Canvas)</li>
+<li>t allocated time dd-hh:mm:ss</li>
+<li>n number of cpus</li>
+</ul>
+<p>FastQC’s <code>-t 4</code> tells it to use the four cpus we asked for.</p>
+<p>Move back into the NGS_course directory and submit the script to slurm:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ..</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="ex">sbatch</span> scripts/fastqc.sh</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>After running a bash script you will get a slurm output. Look at that output. See if you understand what that output contains.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">less</span> slurm-XXXXX.out</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Locate the output of FastQC.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Which output directory did you specify in the batch file?</p>
+</div>
+</div>
+<p>For each fastq file you will get two output files:</p>
+<blockquote class="blockquote">
+<p>TMEB117_R1_frac_fastq.zip (report, data files and graphs)</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>TMEB117_R1_frac_fastq.html (report in html)</p>
+</blockquote>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>To do for you
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Now you can download the .html report from the server and look at them:</p>
+<p>In VScode: right click on the file in the file explorer –&gt; download</p>
+<p>From another terminal: open a local different terminal and navigate to where you want the files on your computer. Then copy the files with rsync (modify as needed).</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rsync</span> <span class="at">-ah</span> <span class="op">&lt;</span>user_name<span class="op">&gt;</span>@kebnekaise.hpc2n.umu.se:<span class="op">&lt;</span>course directory<span class="op">&gt;</span>/<span class="op">&lt;</span>your_name<span class="op">&gt;</span>/NGS_course/fastqc .</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li>What is the quality of your sample?</li>
+<li>Look at online resources to see if what you see is a problem, or expected because of the type of data you work with. A nice resource here is for example the <a href="https://rtsf.natsci.msu.edu/genomics/technical-documents/fastqc-tutorial-and-faq.aspx">FastQC tutorial from the Michigan State University</a>.</li>
+</ul>
+</div>
+</div>
+<p>You see that it is getting kind of tedious to look through all the different files one by one. Okay with only a few files, but imagine having to sift through a few dozen, or even hundreds of reports.</p>
+</section>
+</section>
+<section id="multiqc" class="level1">
+<h1>MultiQC</h1>
+<p><a href="https://seqera.io/multiqc/">MultiQC</a> searches a given directory for analysis logs and compiles a HTML report. It’s a general use tool, perfect for summarising the output from numerous bioinformatics tools. It aggregates results from bioinformatics analyses across many samples into a single report.</p>
+<section id="pull-the-apptainer-image" class="level3">
+<h3 class="anchored" data-anchor-id="pull-the-apptainer-image">Pull the apptainer image</h3>
+<p>On the seqera container page choose <code>bioconda::multiqc</code> for your container image. Proceed to pull the container image, following the steps we did for <code>fastqc</code>. Name the image after the version you get, for example <code>multiqc_1.32.sif</code>, and use the same name in the script below.</p>
+</section>
+<section id="download-container-image" class="level3">
+<h3 class="anchored" data-anchor-id="download-container-image">Download container image</h3>
+<p>Download the container image with <code>apptainer pull</code>. The <code>--name</code> flag lets you re-name the image to a more intuitive name.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Good practice is to name it after the tool and its version number.</p>
+</div>
+</div>
+<p>Copy the image into your singularity_images folder, if it isn’t there yet.</p>
+</section>
+<section id="running-multiqc-with-sbatch" class="level3">
+<h3 class="anchored" data-anchor-id="running-multiqc-with-sbatch">Running multiqc with sbatch</h3>
+<p>Within your scripts directory, make a new file, multiqc.sh, and add the following:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co">#! /bin/bash -l</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH -A &lt;course project ID&gt;</span></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH -t 15:00</span></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH -n 1</span></span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a><span class="ex">apptainer</span> exec singularity_images/multiqc_<span class="op">&lt;</span>version<span class="op">&gt;</span>.sif <span class="dt">\</span></span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>    multiqc <span class="at">-f</span> <span class="at">-o</span> multiqc .</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Navigate out of the scripts directory back into the NGS_course directory.</p>
+<p>Run the bash script with</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="ex">sbatch</span> scripts/multiqc.sh </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The command output (in the slurm.out file) looks something like:</p>
+<blockquote class="blockquote">
+<p>/// MultiQC 🔍 v1.32</p>
+<p>file_search | Search path: <course directory="">/<your_name>/NGS_course/fastqc</your_name></course></p>
+<p>fastqc | Found 4 reports</p>
+<p>write_results | Data : multiqc/multiqc_data (overwritten) write_results | Report : multiqc/multiqc_report.html (overwritten) multiqc | MultiQC complete</p>
+</blockquote>
+<p>Download the report and look at it.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>To do for you
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Understand what is going on. Read the documentation.</p>
+<p>Do we need to adapter trim any samples?</p>
+</div>
+</div>
+</section>
+</section>
+<section id="fastp" class="level1">
+<h1>FastP</h1>
+<p><a href="https://github.com/OpenGene/fastp">FastP</a> is a FASTQ data pre-processing tool. The algorithm has functions for quality control, trimming of adapters, filtering by quality, and read pruning.</p>
+<p>Dependent on what analysis you need to do with the NGS data it is wise to process the data according to the quality control and remove low score sequences and/or low score 5’ and 3’ fragments. It makes sense to trim adapters for downstream analyses, but quality filtering can remove information that modern downstream tools can still utilize.</p>
+<p>Let’s get the output into a different directory:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> fastp</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Find and retreive the container image from seqera containers.</p>
+<p>Make sure the image is in the <code>singularity_images</code> folder with the other images. Move it if necessary.</p>
+<p>Save the following script as <code>scripts/fastp.sh</code> and submit it from your NGS_course folder with <code>sbatch scripts/fastp.sh</code>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co">#! /bin/bash -l</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH -A &lt;course project ID&gt;     # Project allocation</span></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH -t 15:00             # Time limit</span></span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH -n 4                 # Number of cores</span></span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Get CPUs allocated to the script</span></span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a><span class="va">CPUS</span><span class="op">=</span><span class="va">$SLURM_NPROCS</span></span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Define input files</span></span>
+<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a><span class="va">DATA_DIR</span><span class="op">=</span>raw/</span>
+<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a><span class="va">OUT_DIR</span><span class="op">=</span>fastp/</span>
+<span id="cb25-13"><a href="#cb25-13" aria-hidden="true" tabindex="-1"></a><span class="va">FILES</span><span class="op">=</span><span class="va">(</span> <span class="va">$DATA_DIR</span>/<span class="pp">*</span>_R1<span class="pp">*</span>.fastq <span class="va">)</span></span>
+<span id="cb25-14"><a href="#cb25-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-15"><a href="#cb25-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Function to run fastp</span></span>
+<span id="cb25-16"><a href="#cb25-16" aria-hidden="true" tabindex="-1"></a><span class="fu">apply_fastp()</span> <span class="kw">{</span></span>
+<span id="cb25-17"><a href="#cb25-17" aria-hidden="true" tabindex="-1"></a>    <span class="va">READ1</span><span class="op">=</span><span class="st">"</span><span class="va">$1</span><span class="st">"</span>      <span class="co"># Read 1 of the pair</span></span>
+<span id="cb25-18"><a href="#cb25-18" aria-hidden="true" tabindex="-1"></a>    <span class="va">READ2</span><span class="op">=</span><span class="st">"</span><span class="va">$2</span><span class="st">"</span>      <span class="co"># Read 2 of the pair</span></span>
+<span id="cb25-19"><a href="#cb25-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-20"><a href="#cb25-20" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Ensure READ1 and READ2 are distinct</span></span>
+<span id="cb25-21"><a href="#cb25-21" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="bu">[</span> <span class="st">"</span><span class="va">$READ1</span><span class="st">"</span> <span class="ot">==</span> <span class="st">"</span><span class="va">$READ2</span><span class="st">"</span> <span class="bu">]</span><span class="kw">;</span> <span class="cf">then</span></span>
+<span id="cb25-22"><a href="#cb25-22" aria-hidden="true" tabindex="-1"></a>        <span class="op">&gt;&amp;</span><span class="dv">2</span> <span class="bu">echo</span> <span class="st">"Error: READ1 and READ2 are the same file. Check string substitution."</span></span>
+<span id="cb25-23"><a href="#cb25-23" aria-hidden="true" tabindex="-1"></a>        <span class="bu">exit</span> 1</span>
+<span id="cb25-24"><a href="#cb25-24" aria-hidden="true" tabindex="-1"></a>    <span class="cf">fi</span></span>
+<span id="cb25-25"><a href="#cb25-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-26"><a href="#cb25-26" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Extract prefix from READ1</span></span>
+<span id="cb25-27"><a href="#cb25-27" aria-hidden="true" tabindex="-1"></a>    <span class="va">PREFIX</span><span class="op">=</span><span class="va">$(</span><span class="fu">basename</span> <span class="st">"</span><span class="va">${READ1</span><span class="op">%</span>_R1<span class="pp">*</span><span class="va">}</span><span class="st">"</span><span class="va">)</span></span>
+<span id="cb25-28"><a href="#cb25-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-29"><a href="#cb25-29" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Run fastp within the Singularity container</span></span>
+<span id="cb25-30"><a href="#cb25-30" aria-hidden="true" tabindex="-1"></a>    <span class="ex">apptainer</span> exec singularity_images/<span class="op">&lt;</span>the name you gave the image<span class="op">&gt;</span>.sif <span class="dt">\</span></span>
+<span id="cb25-31"><a href="#cb25-31" aria-hidden="true" tabindex="-1"></a>        fastp <span class="at">-w</span> <span class="va">$CPUS</span> <span class="dt">\</span></span>
+<span id="cb25-32"><a href="#cb25-32" aria-hidden="true" tabindex="-1"></a>        <span class="at">-i</span> <span class="st">"</span><span class="va">$READ1</span><span class="st">"</span> <span class="dt">\</span></span>
+<span id="cb25-33"><a href="#cb25-33" aria-hidden="true" tabindex="-1"></a>        <span class="at">-I</span> <span class="st">"</span><span class="va">$READ2</span><span class="st">"</span> <span class="dt">\</span></span>
+<span id="cb25-34"><a href="#cb25-34" aria-hidden="true" tabindex="-1"></a>        <span class="at">-o</span> <span class="st">"</span><span class="va">${OUT_DIR}${PREFIX}</span><span class="st">_fastp-trimmed_R1.fastq"</span> <span class="dt">\</span></span>
+<span id="cb25-35"><a href="#cb25-35" aria-hidden="true" tabindex="-1"></a>        <span class="at">-O</span> <span class="st">"</span><span class="va">${OUT_DIR}${PREFIX}</span><span class="st">_fastp-trimmed_R2.fastq"</span> <span class="dt">\</span></span>
+<span id="cb25-36"><a href="#cb25-36" aria-hidden="true" tabindex="-1"></a>        <span class="at">--json</span> <span class="st">"</span><span class="va">${OUT_DIR}${PREFIX}</span><span class="st">_fastp.json"</span> <span class="dt">\</span></span>
+<span id="cb25-37"><a href="#cb25-37" aria-hidden="true" tabindex="-1"></a>        <span class="at">--html</span> <span class="st">"</span><span class="va">${OUT_DIR}${PREFIX}</span><span class="st">_fastp.html"</span></span>
+<span id="cb25-38"><a href="#cb25-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-39"><a href="#cb25-39" aria-hidden="true" tabindex="-1"></a>    <span class="bu">echo</span> <span class="st">"Processed </span><span class="va">${PREFIX}</span><span class="st">"</span></span>
+<span id="cb25-40"><a href="#cb25-40" aria-hidden="true" tabindex="-1"></a><span class="kw">}</span></span>
+<span id="cb25-41"><a href="#cb25-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-42"><a href="#cb25-42" aria-hidden="true" tabindex="-1"></a><span class="co"># Main script execution</span></span>
+<span id="cb25-43"><a href="#cb25-43" aria-hidden="true" tabindex="-1"></a><span class="co"># Process files as pairs</span></span>
+<span id="cb25-44"><a href="#cb25-44" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> <span class="kw">((</span><span class="va">i</span> <span class="op">=</span> <span class="dv">0</span><span class="kw">;</span> <span class="va">i</span> <span class="op">&lt;</span> <span class="va">${</span><span class="op">#</span><span class="va">FILES</span><span class="op">[@]</span><span class="va">}</span><span class="kw">;</span> <span class="va">i</span><span class="op">+=</span><span class="dv">1</span><span class="kw">));</span> <span class="cf">do</span> </span>
+<span id="cb25-45"><a href="#cb25-45" aria-hidden="true" tabindex="-1"></a>    <span class="va">FASTQ</span><span class="op">=</span><span class="st">"</span><span class="va">${FILES</span><span class="op">[</span>i<span class="op">]</span><span class="va">}</span><span class="st">"</span></span>
+<span id="cb25-46"><a href="#cb25-46" aria-hidden="true" tabindex="-1"></a>    <span class="ex">apply_fastp</span> <span class="st">"</span><span class="va">$FASTQ</span><span class="st">"</span> <span class="st">"</span><span class="va">${FASTQ</span><span class="op">/</span><span class="ss">_R1</span><span class="op">/</span>_R2<span class="va">}</span><span class="st">"</span></span>
+<span id="cb25-47"><a href="#cb25-47" aria-hidden="true" tabindex="-1"></a><span class="cf">done</span></span>
+<span id="cb25-48"><a href="#cb25-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-49"><a href="#cb25-49" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"complete"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>To do for you
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Do you understand the bash script? Discuss with your neighbour and check out the manual for fastp.</p>
+</div>
+</div>
+<p>Run the script.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>To do for you
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Once you get the cleaned sequences run multiqc again to check the result.</p>
+</div>
+</div>
+<p>When you are done, take the lab quiz for today in Canvas.</p>
+</section>
+<section id="troubleshooting" class="level1">
+<h1>Troubleshooting</h1>
+<section id="where-am-i" class="level2">
+<h2 class="anchored" data-anchor-id="where-am-i">Where am I?</h2>
+<p>Most “file not found” errors come from running a command in the wrong folder. Run <code>pwd</code> to print the folder you are in, <code>ls</code> to list what is in it, and <code>cd</code> to move.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Step</th>
+<th>Run it in</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Link the data</td>
+<td><code>&lt;your_name&gt;/NGS_course/raw</code></td>
+</tr>
+<tr class="even">
+<td>Pull container images</td>
+<td><code>&lt;your_name&gt;/NGS_course/singularity_images</code></td>
+</tr>
+<tr class="odd">
+<td>Write scripts</td>
+<td><code>&lt;your_name&gt;/NGS_course/scripts</code></td>
+</tr>
+<tr class="even">
+<td>Submit jobs with <code>sbatch</code></td>
+<td><code>&lt;your_name&gt;/NGS_course</code></td>
+</tr>
+</tbody>
+</table>
+<p>The paths in the scripts are relative to <code>NGS_course</code>, so jobs have to be submitted from there. After logging in again, start with <code>cd &lt;course directory&gt;/&lt;your_name&gt;/NGS_course</code>.</p>
+</section>
+<section id="common-errors" class="level2">
+<h2 class="anchored" data-anchor-id="common-errors">Common errors</h2>
+<p>The messages may look slightly different from the ones here.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 37%">
+<col style="width: 62%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Message</th>
+<th>What it means</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>command not found: apptainer</code></td>
+<td>You are in a terminal on your own computer, not on Kebnekaise. Log in first.</td>
+</tr>
+<tr class="even">
+<td><code>FATAL: could not open image</code></td>
+<td>The image name in the script doesn’t match the file in <code>singularity_images</code>. Compare with <code>ls singularity_images</code>.</td>
+</tr>
+<tr class="odd">
+<td><code>unrecognized arguments: -o</code> (FastQC)</td>
+<td>Newer FastQC versions only accept <code>--outdir</code>.</td>
+</tr>
+<tr class="even">
+<td>FastQC: output directory does not exist</td>
+<td>Create it first with <code>mkdir -p fastqc</code>.</td>
+</tr>
+<tr class="odd">
+<td><code>No analysis results found</code> (MultiQC)</td>
+<td>The FastQC job wasn’t finished, or the job was submitted from the wrong folder. Check with <code>squeue -u $USER</code> and <code>ls fastqc</code>.</td>
+</tr>
+<tr class="even">
+<td><code>Invalid account</code></td>
+<td>Check the project ID after <code>#SBATCH -A</code>. You find it in Canvas.</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="is-my-job-running" class="level2">
+<h2 class="anchored" data-anchor-id="is-my-job-running">Is my job running?</h2>
+<ul>
+<li><code>squeue -u $USER</code> lists your jobs that are waiting or running. A finished job disappears from the list.</li>
+<li><code>sbatch</code> prints a job ID. The job’s output and errors are in <code>slurm-&lt;job ID&gt;.out</code>, in the folder you submitted from. Read it with <code>cat slurm-&lt;job ID&gt;.out</code>.</li>
+</ul>
+<p>When you are done, take the lab quiz for today in Canvas.</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/amrei-bp\.github\.io\/Introduction_Bioinformatics_2026\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+      window.quartoDecorateExternalLinks = function (root) {
+     var links = (root || window.document).querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+          if (!link.classList.contains('no-external-icon')) {
+          }
+        }
+      }
+      };
+      window.quartoDecorateExternalLinks(window.document);
+    // Esc closes the popup (WCAG 1.4.13) and focus leaving both trigger and
+    // popup closes it (WCAG 2.4.11); tippy handles neither for interactive popups.
+    const hideOnEscAndFocusOut = {
+      name: 'hideOnEscAndFocusOut',
+      defaultValue: true,
+      fn(instance) {
+        const dismiss = () => {
+          // A show scheduled by the trigger delay would otherwise reopen it
+          instance.clearDelayTimeouts();
+          instance.hide();
+        };
+        const onKeyDown = (event) => {
+          if (event.key !== 'Escape') {
+            return;
+          }
+          // Keep Esc from also reaching page handlers (e.g. reveal.js overview),
+          // except an open reveal.js slide menu, which Esc should close too.
+          // The menu handles keys only when its keyboard option is on.
+          const menuHandlesEsc = window.Reveal?.getPlugin?.('menu')?.isOpen() &&
+            window.Reveal.getConfig().menu?.keyboard !== false;
+          if (!menuHandlesEsc) {
+            event.stopPropagation();
+          }
+          if (instance.popper.contains(window.document.activeElement)) {
+            // Disabled while refocusing so the focus trigger does not reopen it
+            instance.disable();
+            instance.reference.focus();
+            instance.enable();
+          }
+          dismiss();
+        };
+        const onFocusOut = (event) => {
+          const target = event.relatedTarget;
+          if (target && !instance.reference.contains(target) &&
+              !instance.popper.contains(target)) {
+            dismiss();
+          }
+        };
+        // On the trigger too: a click trigger (code-annotations: select) has no
+        // blur handling. Attached for the instance's lifetime so leaving the
+        // trigger also cancels a show still pending on the trigger delay.
+        instance.reference.addEventListener('focusout', onFocusOut);
+        return {
+          onShow() {
+            window.document.addEventListener('keydown', onKeyDown, true);
+            instance.popper.addEventListener('focusout', onFocusOut);
+          },
+          onHide() {
+            window.document.removeEventListener('keydown', onKeyDown, true);
+            instance.popper.removeEventListener('focusout', onFocusOut);
+          },
+          onDestroy() {
+            instance.reference.removeEventListener('focusout', onFocusOut);
+          },
+        };
+      },
+    };
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+        plugins: [hideOnEscAndFocusOut],
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          // Each band is positioned against its own containing block, which is
+          // not the offsetParent of the lines, so place it from client rects.
+          const placeBand = (band, firstEl, lastEl, codeBlock) => {
+            const container = band.offsetParent;
+            if (container === null) {
+              return;
+            }
+            const containerRect = container.getBoundingClientRect();
+            // Reveal.js scales slides with a transform, so convert client
+            // pixels back to the CSS pixels of the container.
+            const scale = containerRect.height / container.offsetHeight || 1;
+            const firstRect = firstEl.getBoundingClientRect();
+            const lastRect = lastEl.getBoundingClientRect();
+            const top = (firstRect.top - containerRect.top) / scale - container.clientTop + container.scrollTop;
+            const height = (lastRect.bottom - firstRect.top) / scale;
+            band.style.top = top - 2 + "px";
+            band.style.height = height + 4 + "px";
+            if (codeBlock) {
+              // Without the copy button wrapper, the containing block is wider
+              // than the code block, so span the code block explicitly.
+              const blockRect = codeBlock.getBoundingClientRect();
+              band.style.left = (blockRect.left - containerRect.left) / scale - container.clientLeft + container.scrollLeft + "px";
+              band.style.width = blockRect.width / scale + "px";
+            }
+          };
+          if (lineIds.length > 0) {
+            const el = window.document.getElementById(lineIds[0]);
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const parent = el.parentElement.parentElement;
+            // cook up a div (if necessary) and position it
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            placeBand(div, el, lastEl, parent.closest("div.sourceCode") || parent);
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            placeBand(gutterDiv, el, lastEl);
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+  <script type="application/javascript">
+  window.quartoScrollableRegionsLabels = {"code":"Scrollable code","output":"Scrollable output"};
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

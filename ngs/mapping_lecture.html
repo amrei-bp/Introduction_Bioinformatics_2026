@@ -1,0 +1,1280 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-html/tabby.min.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-63b5708e65d6cd79cd7618c58d0c21e7.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.11.9">
+
+  <meta name="author" content="Amrei Binzer-Panchal">
+  <title>Introduction to Bioinformatics – Mapping sequencing reads</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/reveal.css">
+  <style>
+    /* Default styles provided by pandoc.
+    ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+    */
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: 1.5em;}
+    div.column{flex: auto;}
+    @media screen {
+    div.columns{gap: min(4vw, 1.5em);}
+    div.column{overflow-x: auto;}
+    }
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+      vertical-align: middle;
+    }
+    /* CSS for syntax highlighting */
+    html { -webkit-text-size-adjust: 100%; }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      { color: #003b4f; background-color: #f1f3f5; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #003b4f; } /* Normal */
+    code span.al { color: #ad0000; } /* Alert */
+    code span.an { color: #5e5e5e; } /* Annotation */
+    code span.at { color: #657422; } /* Attribute */
+    code span.bn { color: #ad0000; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #003b4f; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #20794d; } /* Char */
+    code span.cn { color: #8f5902; } /* Constant */
+    code span.co { color: #5e5e5e; } /* Comment */
+    code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+    code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+    code span.dt { color: #ad0000; } /* DataType */
+    code span.dv { color: #ad0000; } /* DecVal */
+    code span.er { color: #ad0000; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #ad0000; } /* Float */
+    code span.fu { color: #4758ab; } /* Function */
+    code span.im { color: #00769e; } /* Import */
+    code span.in { color: #5e5e5e; } /* Information */
+    code span.kw { color: #003b4f; font-weight: bold; } /* Keyword */
+    code span.op { color: #5e5e5e; } /* Operator */
+    code span.ot { color: #003b4f; } /* Other */
+    code span.pp { color: #ad0000; } /* Preprocessor */
+    code span.sc { color: #5e5e5e; } /* SpecialChar */
+    code span.ss { color: #20794d; } /* SpecialString */
+    code span.st { color: #20794d; } /* String */
+    code span.va { color: #111111; } /* Variable */
+    code span.vs { color: #20794d; } /* VerbatimString */
+    code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-da6fb885bc4c4f9b7b67ccdf2389de38.css">
+  <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
+    .reveal div.sourceCode {
+      margin: 0;
+      overflow: auto;
+    }
+    .reveal div.hanging-indent {
+      margin-left: 1em;
+      text-indent: -1em;
+    }
+    .reveal .slide:not(.center) {
+      height: 100%;
+    }
+    .reveal .slide.scrollable {
+      overflow-y: auto;
+    }
+    .reveal .footnotes {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide .absolute {
+      position: absolute;
+      display: block;
+    }
+    .reveal .footnotes ol {
+      counter-reset: ol;
+      list-style-type: none; 
+      margin-left: 0;
+    }
+    .reveal .footnotes ol li:before {
+      counter-increment: ol;
+      content: counter(ol) ". "; 
+    }
+    .reveal .footnotes ol li > p:first-child {
+      display: inline-block;
+    }
+    .reveal .slide ul,
+    .reveal .slide ol {
+      margin-bottom: 0.5em;
+    }
+    .reveal .slide ul li,
+    .reveal .slide ol li {
+      margin-top: 0.4em;
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide ul[role="tablist"] li {
+      margin-bottom: 0;
+    }
+    .reveal .slide ul li > *:first-child,
+    .reveal .slide ol li > *:first-child {
+      margin-block-start: 0;
+    }
+    .reveal .slide ul li > *:last-child,
+    .reveal .slide ol li > *:last-child {
+      margin-block-end: 0;
+    }
+    .reveal .slide .columns:nth-child(3) {
+      margin-block-start: 0.8em;
+    }
+    .reveal blockquote {
+      box-shadow: none;
+    }
+    .reveal .tippy-content>* {
+      margin-top: 0.2em;
+      margin-bottom: 0.7em;
+    }
+    .reveal .tippy-content>*:last-child {
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide > img.stretch.quarto-figure-center,
+    .reveal .slide > img.r-stretch.quarto-figure-center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-left,
+    .reveal .slide > img.r-stretch.quarto-figure-left  {
+      display: block;
+      margin-left: 0;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-right,
+    .reveal .slide > img.r-stretch.quarto-figure-right  {
+      display: block;
+      margin-left: auto;
+      margin-right: 0; 
+    }
+  </style>
+</head>
+<body class="quarto-light">
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide" class="quarto-title-block center">
+  <h1 class="title">Mapping sequencing reads</h1>
+  <p class="subtitle">Introduction to Bioinformatics · NGS day 2</p>
+
+<div class="quarto-title-authors">
+<div class="quarto-title-author">
+<div class="quarto-title-author-name">
+Amrei Binzer-Panchal
+</div>
+</div>
+</div>
+
+</section>
+<section id="this-lecture" class="slide level2">
+<h2>This lecture</h2>
+<ol type="1">
+<li>Mapping and BLAST: what they do, and how they differ</li>
+<li>Alignments: mismatches, gaps, pairs and repeats</li>
+<li>RNA: reads across splice junctions</li>
+<li>SAM files and mapping statistics</li>
+<li>The exercises</li>
+</ol>
+</section>
+<section id="where-we-are-in-the-workflow" class="slide level2">
+<h2>Where we are in the workflow</h2>
+
+<img data-src="images/ngs_pipeline.svg" class="r-stretch"></section>
+<section>
+<section id="what-is-mapping" class="title-slide slide level1 center">
+<h1>What is mapping?</h1>
+
+</section>
+<section id="from-reads-to-positions" class="slide level2">
+<h2>From reads to positions</h2>
+<p><span style="display:block; height:1.5em"></span></p>
+<p>After sequencing we have millions of short reads, and we don’t know where any of them came from.</p>
+<p><strong>Mapping</strong> finds, for each read, the place in a <strong>reference</strong> where it fits best.</p>
+<ul>
+<li><strong>Reference genome:</strong> the assembled chromosomes of the species</li>
+<li><strong>Reference transcriptome:</strong> the sequences of all known transcripts</li>
+</ul>
+<div class="fragment">
+<p>Once reads have a position we can count them per gene, look for variants, or check coverage.</p>
+</div>
+</section>
+<section id="many-reads-one-reference" class="slide level2">
+<h2>Many reads, one reference</h2>
+<p><span style="display:block; height:1.5em"></span></p>
+
+<img data-src="images/mapping/reads_to_reference.svg" class="quarto-figure quarto-figure-center r-stretch"></section>
+<section id="mapping-in-a-picture" class="slide level2">
+<h2>Mapping in a picture</h2>
+<p><span style="display:block; height:1.5em"></span></p>
+
+<img data-src="images/mapping.png" class="quarto-figure quarto-figure-center r-stretch" style="width:80.0%"><div class="small">
+<p>Read 1: two mismatches. Read 2: local alignment, both ends clipped. Read 3: a 2-base insertion and a 1-base deletion. Figure: <a href="https://training.galaxyproject.org/training-material/topics/sequence-analysis/tutorials/mapping/tutorial.html">Galaxy Training Network</a></p>
+</div>
+</section></section>
+<section>
+<section id="blast-searching-for-similar-sequences" class="title-slide slide level1 center">
+<h1>BLAST: searching for similar sequences</h1>
+
+</section>
+<section id="blast" class="slide level2">
+<h2>BLAST</h2>
+<p><strong>B</strong>asic <strong>L</strong>ocal <strong>A</strong>lignment <strong>S</strong>earch <strong>T</strong>ool (Altschul et al., 1990)</p>
+<ul>
+<li>One sequence, the <strong>query</strong>, against a large <strong>database</strong> (for example NCBI nt, or all proteins)</li>
+<li>Finds <strong>similar</strong> sequences, not only identical ones, also in other species</li>
+<li>Answers: <em>what is this sequence?</em></li>
+</ul>
+<div class="fragment">
+<p><span style="display:block; height:1.5em"></span></p>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Program</th>
+<th>Query</th>
+<th>Database</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>blastn</td>
+<td>DNA</td>
+<td>DNA</td>
+</tr>
+<tr class="even">
+<td>blastp</td>
+<td>protein</td>
+<td>protein</td>
+</tr>
+<tr class="odd">
+<td>blastx</td>
+<td>DNA, translated</td>
+<td>protein</td>
+</tr>
+<tr class="even">
+<td>tblastn</td>
+<td>protein</td>
+<td>DNA, translated</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="how-blast-works" class="slide level2">
+<h2>How BLAST works</h2>
+
+<img data-src="images/mapping/blast.svg" class="quarto-figure quarto-figure-center r-stretch"><p><strong>Seed and extend</strong>: look for short exact matches first, then align only around them.</p>
+</section>
+<section id="reading-a-blast-hit" class="slide level2">
+<h2>Reading a BLAST hit</h2>
+<p><span style="display:block; height:1.5em"></span></p>
+<table class="caption-top">
+<colgroup>
+<col style="width: 47%">
+<col style="width: 52%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Column</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>% identity</td>
+<td>Share of identical positions in the alignment</td>
+</tr>
+<tr class="even">
+<td>Alignment length</td>
+<td>How much of the query is aligned</td>
+</tr>
+<tr class="odd">
+<td>Bit score</td>
+<td>Alignment score, independent of the database size</td>
+</tr>
+<tr class="even">
+<td><strong>E-value</strong></td>
+<td>Number of hits this good expected <strong>by chance</strong> in a database this size</td>
+</tr>
+</tbody>
+</table>
+<div class="fragment">
+<p><span style="display:block; height:1.5em"></span></p>
+<div class="callout callout-tip no-icon callout-style-simple">
+<div class="callout-body">
+<div class="callout-content">
+<p><strong>E-value:</strong> close to 0 (e.g.&nbsp;1e-50) means the hit is very unlikely to be chance. Around 1 or above means it could easily be chance.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="blast-or-a-mapper" class="slide level2">
+<h2>BLAST or a mapper?</h2>
+<p><span style="display:block; height:1.5em"></span></p>
+<table class="caption-top">
+<colgroup>
+<col style="width: 2%">
+<col style="width: 18%">
+<col style="width: 78%">
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th>BLAST</th>
+<th>Read mapper (Bowtie 2, STAR)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Question</td>
+<td>What is this sequence?</td>
+<td>Where in <strong>this</strong> genome does it come from?</td>
+</tr>
+<tr class="even">
+<td>Queries</td>
+<td>One or a few</td>
+<td>Millions of reads</td>
+</tr>
+<tr class="odd">
+<td>Database</td>
+<td>Many species</td>
+<td>One reference genome</td>
+</tr>
+<tr class="even">
+<td>Differences allowed</td>
+<td>Many: finds distant relatives</td>
+<td>Few: same or closely related species</td>
+</tr>
+<tr class="odd">
+<td>Speed per sequence</td>
+<td>Seconds</td>
+<td>Microseconds</td>
+</tr>
+</tbody>
+</table>
+<div class="fragment">
+<p><span style="display:block; height:1.5em"></span></p>
+<p>Both <strong>seed and extend</strong>. Mappers make it fast by indexing one reference <strong>once</strong>, and by expecting the read to be almost identical to it.</p>
+</div>
+</section></section>
+<section>
+<section id="finding-the-place-fast" class="title-slide slide level1 center">
+<h1>Finding the place fast</h1>
+
+</section>
+<section id="why-not-just-search" class="slide level2">
+<h2>Why not just search?</h2>
+<p><span style="display:block; height:1.5em"></span></p>
+<ul>
+<li>20 million read pairs × a genome of roughly 700 Mb (cassava)</li>
+<li>Comparing every read with every position: about 10<sup>16</sup> comparisons</li>
+<li>Searching with BLAST would take weeks</li>
+</ul>
+<div class="fragment">
+<p>Mappers first build an <strong>index</strong> of the reference, once. Then each read is looked up in the index, like a word in the index at the back of a book.</p>
+</div>
+</section>
+<section id="index-seed-extend" class="slide level2">
+<h2>Index, seed, extend</h2>
+<p><span style="display:block; height:1.5em"></span></p>
+
+<img data-src="images/mapping/seed_extend.svg" class="quarto-figure quarto-figure-center r-stretch"><p><span style="display:block; height:1.5em"></span></p>
+<p>Each mapper builds its <strong>own</strong> index format. A Bowtie 2 index cannot be used by STAR.</p>
+</section></section>
+<section>
+<section id="alignments" class="title-slide slide level1 center">
+<h1>Alignments</h1>
+
+</section>
+<section id="what-an-alignment-allows" class="slide level2">
+<h2>What an alignment allows</h2>
+<p><span style="display:block; height:1.5em"></span></p>
+<table class="caption-top">
+<colgroup>
+<col style="width: 40%">
+<col style="width: 59%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Difference</th>
+<th>Why it happens</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Mismatch</td>
+<td>Sequencing error, or a real variant (SNP)</td>
+</tr>
+<tr class="even">
+<td>Insertion / deletion</td>
+<td>Sequencing error (homopolymers), or a real indel</td>
+</tr>
+<tr class="odd">
+<td>Soft clipping</td>
+<td>Adapter left on the read, low-quality ends, structural variant</td>
+</tr>
+</tbody>
+</table>
+<p><span style="display:block; height:1.5em"></span></p>
+<p>Every difference costs points. The mapper reports the alignment with the best score.</p>
+</section>
+<section id="end-to-end-or-local" class="slide level2">
+<h2>End-to-end or local?</h2>
+<p><span style="display:block; height:1.5em"></span></p>
+<p><strong>End-to-end:</strong> the whole read must align. Unaligned ends are penalised as mismatches.</p>
+<p><strong>Local:</strong> the ends may be <strong>clipped</strong> if they don’t fit. Good when reads still carry adapter or low-quality ends.</p>
+<div class="fragment">
+<p><span style="display:block; height:1.5em"></span></p>
+<p>In Bowtie 2: <code>--very-sensitive</code> (end-to-end) vs <code>--very-sensitive-local</code> (local). You will try both.</p>
+</div>
+</section>
+<section id="paired-end-reads" class="slide level2">
+<h2>Paired-end reads</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="images/mapping/paired_end.svg" class="quarto-figure quarto-figure-center" height="440"></p>
+</figure>
+</div>
+<p>A pair that maps as expected is <strong>concordant</strong> (Bowtie 2) or <strong>properly paired</strong> (samtools).</p>
+</section>
+<section id="reads-that-fit-in-many-places" class="slide level2">
+<h2>Reads that fit in many places</h2>
+<p>Genomes are full of repeats: transposons, gene families, duplicated regions.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="images/mapping/multimap.svg" class="quarto-figure quarto-figure-center" height="300"></p>
+</figure>
+</div>
+<div class="small">
+<ul>
+<li>A read that fits equally well in several places is a <strong>multi-mapping</strong> read. The mapper picks one at random, or reports all of them.</li>
+<li><strong>MAPQ</strong> (mapping quality) says how sure the mapper is: 0 means it could be anywhere.</li>
+</ul>
+</div>
+</section>
+<section id="plant-genomes-are-special" class="slide level2">
+<h2>Plant genomes are special</h2>
+<p><span style="display:block; height:1.5em"></span></p>
+<ul>
+<li>Large and full of <strong>transposable elements</strong>: often more than half the genome</li>
+<li>Often <strong>polyploid</strong>: several copies of each chromosome, similar but not identical</li>
+<li>Often <strong>heterozygous</strong>: cassava is, so the two copies of a chromosome differ</li>
+</ul>
+<div class="fragment">
+<p>Your cultivar is not the reference cultivar. Differences between them will look like mismatches to the mapper.</p>
+</div>
+</section></section>
+<section>
+<section id="rna" class="title-slide slide level1 center">
+<h1>RNA</h1>
+
+</section>
+<section id="reads-across-exons" class="slide level2">
+<h2>Reads across exons</h2>
+<p><span style="display:block; height:1.5em"></span></p>
+<p>In RNA-seq, reads come from <strong>spliced</strong> transcripts. Many reads span an exon-exon junction.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="images/mapping/spliced_read.svg" class="quarto-figure quarto-figure-center" height="430"></p>
+</figure>
+</div>
+</section>
+<section id="splice-aware-mappers" class="slide level2">
+<h2>Splice-aware mappers</h2>
+<p><span style="display:block; height:1.5em"></span></p>
+<ul>
+<li><strong>STAR</strong>, <strong>HISAT2</strong>: allow a read to be split across an intron</li>
+<li>An annotation (<strong>GTF</strong>) tells them where known exons and junctions are</li>
+<li>They also find <strong>new</strong> junctions from the data</li>
+</ul>
+<div class="fragment">
+<p>That is why STAR needs the <code>.gtf</code> file when it builds its index, and Bowtie 2 doesn’t.</p>
+</div>
+</section>
+<section id="which-mapper-for-which-data" class="slide level2">
+<h2>Which mapper for which data?</h2>
+<p><span style="display:block; height:1.5em"></span></p>
+<table class="caption-top">
+<colgroup>
+<col style="width: 28%">
+<col style="width: 71%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Data</th>
+<th>Typical tools</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>DNA, short reads</td>
+<td>Bowtie 2, BWA-MEM2</td>
+</tr>
+<tr class="even">
+<td>RNA, short reads</td>
+<td>STAR, HISAT2</td>
+</tr>
+<tr class="odd">
+<td>Long reads (DNA or RNA)</td>
+<td>minimap2</td>
+</tr>
+<tr class="even">
+<td>RNA, counts only</td>
+<td>Salmon, kallisto (pseudo-alignment, no exact positions)</td>
+</tr>
+</tbody>
+</table>
+</section></section>
+<section>
+<section id="the-sam-format" class="title-slide slide level1 center">
+<h1>The SAM format</h1>
+
+</section>
+<section id="sam-one-line-per-alignment" class="slide level2">
+<h2>SAM: one line per alignment</h2>
+<p><span style="display:block; height:1.5em"></span></p>
+<p>A header (lines starting with <code>@</code>), then 11 tab-separated columns per read:</p>
+<table class="caption-top">
+<colgroup>
+<col style="width: 34%">
+<col style="width: 26%">
+<col style="width: 39%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Column</th>
+<th>Name</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>Read name</td>
+<td><code>read_123</code></td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>FLAG</td>
+<td><code>99</code></td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>Reference</td>
+<td><code>Chromosome01</code></td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>Position</td>
+<td><code>1048576</code></td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>MAPQ</td>
+<td><code>42</code></td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td>CIGAR</td>
+<td><code>5S70M</code></td>
+</tr>
+<tr class="odd">
+<td>7 to 9</td>
+<td>Mate: reference, position, fragment length</td>
+<td><code>=</code>, <code>1048790</code>, <code>289</code></td>
+</tr>
+<tr class="even">
+<td>10, 11</td>
+<td>Sequence, qualities</td>
+<td><code>ACGT…</code>, <code>FFF:…</code></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="cigar-read-alignment" class="slide level2">
+<h2>CIGAR: read alignment</h2>
+<p><span style="display:block; height:1.5em"></span></p>
+
+<img data-src="images/mapping/cigar.svg" class="quarto-figure quarto-figure-center r-stretch"><p>In RNA-seq you will also see <code>N</code>: a skipped region, the intron (e.g.&nbsp;<code>80M2000N70M</code>).</p>
+</section>
+<section id="flag-yesno-answers-in-one-number" class="slide level2">
+<h2>FLAG: yes/no answers in one number</h2>
+<p><span style="display:block; height:1.5em"></span></p>
+<p>FLAG is a sum. Each yes/no answer has its own value:</p>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th style="text-align: right;">Value</th>
+<th>Meaning</th>
+<th style="text-align: center;">In FLAG 99?</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">1</td>
+<td>Read is paired</td>
+<td style="text-align: center;">yes</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2</td>
+<td>Pair is properly paired</td>
+<td style="text-align: center;">yes</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">4</td>
+<td>Read is unmapped</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">16</td>
+<td>Read is on the reverse strand</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">32</td>
+<td>Mate is on the reverse strand</td>
+<td style="text-align: center;">yes</td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">64</td>
+<td>First read of the pair (R1)</td>
+<td style="text-align: center;">yes</td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">128</td>
+<td>Second read of the pair (R2)</td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">256</td>
+<td>Not the primary alignment</td>
+<td style="text-align: center;"></td>
+</tr>
+</tbody>
+</table>
+<p><span style="display:block; height:1.5em"></span></p>
+<p>99 = 1 + 2 + 32 + 64. Decode any FLAG at <a href="https://broadinstitute.github.io/picard/explain-flags.html">broadinstitute.github.io/picard/explain-flags.html</a>.</p>
+</section>
+<section id="sam-bam-and-samtools" class="slide level2">
+<h2>SAM, BAM and samtools</h2>
+<p><span style="display:block; height:1.5em"></span></p>
+<ul>
+<li><strong>SAM</strong> is text: readable, but large</li>
+<li><strong>BAM</strong> is the compressed binary version of the same data</li>
+<li><strong>samtools</strong> converts, sorts, indexes and summarises them</li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a aria-label="1"></a><span class="ex">samtools</span> view <span class="at">-b</span> sample.sam <span class="op">&gt;</span> sample.bam</span>
+<span id="cb1-2"><a aria-label="2"></a><span class="ex">samtools</span> sort <span class="at">-o</span> sample.sorted.bam sample.bam</span>
+<span id="cb1-3"><a aria-label="3"></a><span class="ex">samtools</span> index sample.sorted.bam</span>
+<span id="cb1-4"><a aria-label="4"></a><span class="ex">samtools</span> flagstat sample.sorted.bam</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section></section>
+<section>
+<section id="mapping-statistics" class="title-slide slide level1 center">
+<h1>Mapping statistics</h1>
+
+</section>
+<section id="what-does-a-good-mapping-look-like" class="slide level2">
+<h2>What does a good mapping look like?</h2>
+<p><span style="display:block; height:1.5em"></span></p>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th></th>
+<th>DNA, same species</th>
+<th>RNA-seq</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Overall alignment rate</td>
+<td>above 90 %</td>
+<td>70 to 90 % uniquely mapped</td>
+</tr>
+<tr class="even">
+<td>Properly paired</td>
+<td>most pairs</td>
+<td>most pairs</td>
+</tr>
+<tr class="odd">
+<td>Multi-mapping</td>
+<td>a few %</td>
+<td>a few % to 10 %</td>
+</tr>
+</tbody>
+</table>
+<p>These are rules of thumb for a <strong>whole</strong> reference genome.</p>
+</section>
+<section id="unmapped-reads" class="slide level2">
+<h2>Unmapped reads</h2>
+<p><span style="display:block; height:1.5em"></span></p>
+<ul>
+<li>Wrong or incomplete reference</li>
+<li>Contamination (bacteria, fungi, human)</li>
+<li>Adapters or poor quality left on the reads</li>
+<li>A divergent cultivar or species</li>
+<li>rRNA in RNA-seq</li>
+</ul>
+<div class="fragment">
+<div class="callout callout-important callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Important</strong></p>
+</div>
+<div class="callout-content">
+<p>In the exercise we map to <strong>chromosome 1 only</strong>. Cassava has 18 chromosomes. What mapping rate do you expect?</p>
+</div>
+</div>
+</div>
+</div>
+</section></section>
+<section>
+<section id="the-exercises" class="title-slide slide level1 center">
+<h1>The exercises</h1>
+
+</section>
+<section id="you-will" class="slide level2">
+<h2>You will</h2>
+<p><span style="display:block; height:1.5em"></span></p>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Sample</th>
+<th>Data</th>
+<th>Mapper</th>
+<th>Index needs</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>TMEB117</td>
+<td>DNA, paired-end</td>
+<td>Bowtie 2</td>
+<td>chromosome01.fasta</td>
+</tr>
+<tr class="even">
+<td>TMEB419</td>
+<td>RNA, paired-end</td>
+<td>STAR</td>
+<td>chromosome01.fasta + .gtf</td>
+</tr>
+</tbody>
+</table>
+<p><span style="display:block; height:1.5em"></span></p>
+<ul>
+<li>Build both indexes, map, read the logs</li>
+<li>Compare raw and trimmed reads, local and end-to-end</li>
+<li>Look inside the SAM file with samtools</li>
+</ul>
+</section>
+<section id="summary" class="slide level2">
+<h2>Summary</h2>
+<p><span style="display:block; height:1.5em"></span></p>
+<ul>
+<li>Mapping places each read on a reference, using an index to be fast</li>
+<li>BLAST finds similar sequences across species; mappers place millions of reads in one genome</li>
+<li>Alignments allow mismatches, gaps and clipping, each at a cost</li>
+<li>Pairs and MAPQ help with repeats; plant genomes have many</li>
+<li>RNA needs a splice-aware mapper such as STAR</li>
+<li>SAM/BAM stores the result; the log tells you if it worked</li>
+</ul>
+
+
+</section></section>
+    </div>
+  <div class="quarto-auto-generated-content" style="display: none;">
+<p><img src="../figures/logo/SLUBI_logo.png" class="slide-logo"></p>
+<div class="footer footer-default">
+<p>Mapping · Introduction to Bioinformatics</p>
+</div>
+</div></div>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="../site_libs/revealjs/dist/reveal.js"></script>
+  <!-- reveal.js plugins -->
+  <script src="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="../site_libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="../site_libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="../site_libs/revealjs/plugin/quarto-support/support.js"></script>
+  
+
+  <script src="../site_libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="../site_libs/revealjs/plugin/search/search.js"></script>
+  <script src="../site_libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="../site_libs/revealjs/plugin/math/math.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+'controlsAuto': true,
+'previewLinksAuto': false,
+'pdfSeparateFragments': false,
+'autoAnimateEasing': "ease",
+'autoAnimateDuration': 1,
+'autoAnimateUnmatched': true,
+'jumpToSlide': true,
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"\u003ci class=\"fas fa-gear\">\u003c/i>","content":"\u003cul class=\"slide-menu-items\">\n\u003cli class=\"slide-tool-item active\" data-item=\"0\">\u003ca href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\">\u003ckbd>f\u003c/kbd> Fullscreen\u003c/a>\u003c/li>\n\u003cli class=\"slide-tool-item\" data-item=\"1\">\u003ca href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\">\u003ckbd>s\u003c/kbd> Speaker View\u003c/a>\u003c/li>\n\u003cli class=\"slide-tool-item\" data-item=\"2\">\u003ca href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\">\u003ckbd>o\u003c/kbd> Slide Overview\u003c/a>\u003c/li>\n\u003cli class=\"slide-tool-item\" data-item=\"3\">\u003ca href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\">\u003ckbd>e\u003c/kbd> PDF Export Mode\u003c/a>\u003c/li>\n\u003cli class=\"slide-tool-item\" data-item=\"4\">\u003ca href=\"#\" onclick=\"RevealMenuToolHandlers.toggleScrollView(event)\">\u003ckbd>r\u003c/kbd> Scroll View Mode\u003c/a>\u003c/li>\n\u003cli class=\"slide-tool-item\" data-item=\"5\">\u003ca href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\">\u003ckbd>?\u003c/kbd> Keyboard Help\u003c/a>\u003c/li>\n\u003c/ul>"}],"openButton":true,"openButtonLabel":"Slide menu"},
+'smaller': false,
+ 
+        // Display controls in the bottom right corner
+        controls: false,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: false,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'edges',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: 'c/t',
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: false,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'linear',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: false,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'none',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'none',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1050,
+
+        height: 700,
+
+        // Factor of the display size that should remain empty around the content
+        margin: 0.1,
+
+        math: {
+          mathjax: 'https://cdn.jsdelivr.net/npm/mathjax@2.7.9/MathJax.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, QuartoSupport,
+
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    <script id="quarto-html-after-body" type="application/javascript">
+      window.document.addEventListener("DOMContentLoaded", function (event) {
+        const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+        tabsets.forEach(function(tabset) {
+          const tabby = new Tabby('#' + tabset.id);
+        });
+        const isCodeAnnotation = (el) => {
+          for (const clz of el.classList) {
+            if (clz.startsWith('code-annotation-')) {                     
+              return true;
+            }
+          }
+          return false;
+        }
+        const onCopySuccess = function(e) {
+          // button target
+          const button = e.trigger;
+          // don't keep focus
+          button.blur();
+          // flash "checked"
+          button.classList.add('code-copy-button-checked');
+          var currentTitle = button.getAttribute("title");
+          button.setAttribute("title", "Copied!");
+          let tooltip;
+          if (window.bootstrap) {
+            button.setAttribute("data-bs-toggle", "tooltip");
+            button.setAttribute("data-bs-placement", "left");
+            button.setAttribute("data-bs-title", "Copied!");
+            tooltip = new bootstrap.Tooltip(button, 
+              { trigger: "manual", 
+                customClass: "code-copy-button-tooltip",
+                offset: [0, -8]});
+            tooltip.show();    
+          }
+          setTimeout(function() {
+            if (tooltip) {
+              tooltip.hide();
+              button.removeAttribute("data-bs-title");
+              button.removeAttribute("data-bs-toggle");
+              button.removeAttribute("data-bs-placement");
+            }
+            button.setAttribute("title", currentTitle);
+            button.classList.remove('code-copy-button-checked');
+          }, 1000);
+          // clear code selection
+          e.clearSelection();
+        }
+        const getTextToCopy = function(trigger) {
+          const outerScaffold = trigger.parentElement.cloneNode(true);
+          const codeEl = outerScaffold.querySelector('code');
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
+            }
+          }
+          return codeEl.innerText;
+        }
+        const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+          text: getTextToCopy
+        });
+        clipboard.on('success', onCopySuccess);
+        if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+          const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+            text: getTextToCopy,
+            container: window.document.getElementById('quarto-embedded-source-code-modal')
+          });
+          clipboardModal.on('success', onCopySuccess);
+        }
+          var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+          var mailtoRegex = new RegExp(/^mailto:/);
+            var filterRegex = new RegExp("https:\/\/amrei-bp\.github\.io\/Introduction_Bioinformatics_2026\/");
+          var isInternal = (href) => {
+              return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+          }
+          // Inspect non-navigation links and adorn them if external
+          window.quartoDecorateExternalLinks = function (root) {
+         var links = (root || window.document).querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+          for (var i=0; i<links.length; i++) {
+            const link = links[i];
+            if (!isInternal(link.href)) {
+              // undo the damage that might have been done by quarto-nav.js in the case of
+              // links that we want to consider external
+              if (link.dataset.originalHref !== undefined) {
+                link.href = link.dataset.originalHref;
+              }
+              if (!link.classList.contains('no-external-icon')) {
+              }
+            }
+          }
+          };
+          window.quartoDecorateExternalLinks(window.document);
+        // Esc closes the popup (WCAG 1.4.13) and focus leaving both trigger and
+        // popup closes it (WCAG 2.4.11); tippy handles neither for interactive popups.
+        const hideOnEscAndFocusOut = {
+          name: 'hideOnEscAndFocusOut',
+          defaultValue: true,
+          fn(instance) {
+            const dismiss = () => {
+              // A show scheduled by the trigger delay would otherwise reopen it
+              instance.clearDelayTimeouts();
+              instance.hide();
+            };
+            const onKeyDown = (event) => {
+              if (event.key !== 'Escape') {
+                return;
+              }
+              // Keep Esc from also reaching page handlers (e.g. reveal.js overview),
+              // except an open reveal.js slide menu, which Esc should close too.
+              // The menu handles keys only when its keyboard option is on.
+              const menuHandlesEsc = window.Reveal?.getPlugin?.('menu')?.isOpen() &&
+                window.Reveal.getConfig().menu?.keyboard !== false;
+              if (!menuHandlesEsc) {
+                event.stopPropagation();
+              }
+              if (instance.popper.contains(window.document.activeElement)) {
+                // Disabled while refocusing so the focus trigger does not reopen it
+                instance.disable();
+                instance.reference.focus();
+                instance.enable();
+              }
+              dismiss();
+            };
+            const onFocusOut = (event) => {
+              const target = event.relatedTarget;
+              if (target && !instance.reference.contains(target) &&
+                  !instance.popper.contains(target)) {
+                dismiss();
+              }
+            };
+            // On the trigger too: a click trigger (code-annotations: select) has no
+            // blur handling. Attached for the instance's lifetime so leaving the
+            // trigger also cancels a show still pending on the trigger delay.
+            instance.reference.addEventListener('focusout', onFocusOut);
+            return {
+              onShow() {
+                window.document.addEventListener('keydown', onKeyDown, true);
+                instance.popper.addEventListener('focusout', onFocusOut);
+              },
+              onHide() {
+                window.document.removeEventListener('keydown', onKeyDown, true);
+                instance.popper.removeEventListener('focusout', onFocusOut);
+              },
+              onDestroy() {
+                instance.reference.removeEventListener('focusout', onFocusOut);
+              },
+            };
+          },
+        };
+        function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+          const config = {
+            allowHTML: true,
+            maxWidth: 500,
+            delay: 100,
+            arrow: false,
+            appendTo: function(el) {
+                return el.closest('section.slide') || el.parentElement;
+            },
+            interactive: true,
+            interactiveBorder: 10,
+            theme: 'light-border',
+            placement: 'bottom-start',
+            plugins: [hideOnEscAndFocusOut],
+          };
+          if (contentFn) {
+            config.content = contentFn;
+          }
+          if (onTriggerFn) {
+            config.onTrigger = onTriggerFn;
+          }
+          if (onUntriggerFn) {
+            config.onUntrigger = onUntriggerFn;
+          }
+            config['offset'] = [0,0];
+            config['maxWidth'] = 700;
+          window.tippy(el, config); 
+        }
+        const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+        for (var i=0; i<noterefs.length; i++) {
+          const ref = noterefs[i];
+          tippyHover(ref, function() {
+            // use id or data attribute instead here
+            let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+            try { href = new URL(href).hash; } catch {}
+            const id = href.replace(/^#\/?/, "");
+            const note = window.document.getElementById(id);
+            if (note) {
+              return note.innerHTML;
+            } else {
+              return "";
+            }
+          });
+        }
+        const findCites = (el) => {
+          const parentEl = el.parentElement;
+          if (parentEl) {
+            const cites = parentEl.dataset.cites;
+            if (cites) {
+              return {
+                el,
+                cites: cites.split(' ')
+              };
+            } else {
+              return findCites(el.parentElement)
+            }
+          } else {
+            return undefined;
+          }
+        };
+        var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+        for (var i=0; i<bibliorefs.length; i++) {
+          const ref = bibliorefs[i];
+          const citeInfo = findCites(ref);
+          if (citeInfo) {
+            tippyHover(citeInfo.el, function() {
+              var popup = window.document.createElement('div');
+              citeInfo.cites.forEach(function(cite) {
+                var citeDiv = window.document.createElement('div');
+                citeDiv.classList.add('hanging-indent');
+                citeDiv.classList.add('csl-entry');
+                var biblioDiv = window.document.getElementById('ref-' + cite);
+                if (biblioDiv) {
+                  citeDiv.innerHTML = biblioDiv.innerHTML;
+                }
+                popup.appendChild(citeDiv);
+              });
+              return popup.innerHTML;
+            });
+          }
+        }
+      });
+      </script>
+    
+
+</body></html>

@@ -60,11 +60,695 @@
     ]
   },
   {
+    "objectID": "ngs/sequencing_lecture.html#welcome",
+    "href": "ngs/sequencing_lecture.html#welcome",
+    "title": "High-Throughput Sequencing",
+    "section": "Welcome",
+    "text": "Welcome\nHigh-throughput sequencing: from the molecule to the reads.\n\nWith slides based on presentations of Nicolas Delhomme and Prof. Nathaniel Street\n\n\nWelcome. This lecture covers how DNA and RNA are turned into sequence data: where the technology came from, how libraries are made, how the main short- and long-read platforms work, and what kinds of errors each one makes. That last part leads straight into the quality control lecture and today’s exercises."
+  },
+  {
+    "objectID": "ngs/sequencing_lecture.html#deciphering-the-blueprint-of-an-organism",
+    "href": "ngs/sequencing_lecture.html#deciphering-the-blueprint-of-an-organism",
+    "title": "High-Throughput Sequencing",
+    "section": "Deciphering the blueprint of an organism",
+    "text": "Deciphering the blueprint of an organism\n\n1977: Sanger’s chain-termination method, one fragment per reaction\n2001: first draft human genome (Human Genome Project and Celera). Full project ran 1990–2003: ~13 years, ~$2.7 billion\n2022: first complete human genome (T2T-CHM13, gapless except chrY), made with long reads\nToday: a few hundred dollars in reagents and a 1–2 day run\n\n\nLander et al. 2001 Nature 409:860; Venter et al. 2001 Science 291:1304; Nurk et al. 2022 Science 376:44; genome.gov HGP cost fact sheet; Shendure et al. 2017 Nature 550:345\n\n\nDNA sequencing is not new: Sanger published chain termination in 1977. It went big with the Human Genome Project and Celera, whose drafts appeared together in February 2001 on the covers of Nature and Science. The whole public project, from 1990 to 2003, took about 13 years and about 2.7 billion dollars; the 2001 draft alone cost roughly 300 million. The first complete human genome, gapless except for the Y chromosome, only came in 2022 from the Telomere-to-Telomere consortium, using long reads and a haploid cell line. Today the reagents for a human genome cost a few hundred dollars, and the sequencing run takes one to two days."
+  },
+  {
+    "objectID": "ngs/sequencing_lecture.html#this-lecture",
+    "href": "ngs/sequencing_lecture.html#this-lecture",
+    "title": "High-Throughput Sequencing",
+    "section": "This lecture",
+    "text": "This lecture\n\nSanger sequencing: the beginning\nLibrary preparation: DNA and RNA\nShort reads: Illumina and competitors\nLong reads: PacBio and Oxford Nanopore\nChoosing a platform: errors, what’s new, NGI\n\n\nHere is the plan. Many of the following slides are adapted from material by Nathaniel Street at Umeå University, updated for 2026. We start with Sanger sequencing, then how DNA and RNA are prepared, then short-read and long-read platforms, and we finish with how to choose a platform and what errors to expect."
+  },
+  {
+    "objectID": "ngs/sequencing_lecture.html#sanger-sequencing-how-it-started",
+    "href": "ngs/sequencing_lecture.html#sanger-sequencing-how-it-started",
+    "title": "High-Throughput Sequencing",
+    "section": "Sanger sequencing: how it started",
+    "text": "Sanger sequencing: how it started\n\n\n\n\n\nOne reaction per DNA fragment\nGenomes needed clone libraries: lots of lab work, lots of chances for mistakes\nLow throughput: one read (700–1000 bases) per capillary, 96 capillaries per run\nStill used today to check single loci, clones and PCR products\n\n\n\nIn the Sanger era every read needed its own reaction. To sequence a genome, DNA was fragmented, cloned into vectors, grown in bacteria, purified and sequenced clone by clone, then assembled. That is a lot of lab work and a lot of chances to make mistakes. A capillary instrument such as the ABI 3730xl reads 96 samples per run, so throughput was low."
+  },
+  {
+    "objectID": "ngs/sequencing_lecture.html#chain-termination",
+    "href": "ngs/sequencing_lecture.html#chain-termination",
+    "title": "High-Throughput Sequencing",
+    "section": "Chain termination",
+    "text": "Chain termination\n\n\nThe reaction contains normal nucleotides plus a small amount of dye-labelled dideoxynucleotides. A ddNTP has no 3’ hydroxyl group, so when the polymerase adds one, the strand stops. Each copy stops at a random position, and its last base carries a colour. Separating the copies by size in a capillary and reading the colours in order gives the sequence."
+  },
+  {
+    "objectID": "ngs/sequencing_lecture.html#reading-a-sanger-trace",
+    "href": "ngs/sequencing_lecture.html#reading-a-sanger-trace",
+    "title": "High-Throughput Sequencing",
+    "section": "Reading a Sanger trace",
+    "text": "Reading a Sanger trace\n\n\n\nThen: radioactive slab gels, one lane per base, read by eye\nNow: four dyes in one capillary, read by a laser\nTwo overlapping peaks of about half height = a heterozygous position\n\n\n\nEarly Sanger sequencing used radioactive slab gels with four lanes, one per base, read by eye from an autoradiograph. Capillary instruments with four dyes replaced them. In a chromatogram, a heterozygous position shows a second peak under the main one. In a clean heterozygote the two peaks are about half height each; uneven peaks need a second look. Sanger still serves as the check for single variants found by NGS."
+  },
+  {
+    "objectID": "ngs/sequencing_lecture.html#next-2nd-generation-sequencing",
+    "href": "ngs/sequencing_lecture.html#next-2nd-generation-sequencing",
+    "title": "High-Throughput Sequencing",
+    "section": "“Next” (2nd) generation sequencing",
+    "text": "“Next” (2nd) generation sequencing\n\n\n\nSequencing-by-synthesis: massively parallel sequencing\nMillions to billions of fragments sequenced at once\nIllumina still dominates, but there is real competition again: Element AVITI, Ultima UG 100/200, MGI / Complete Genomics DNBSEQ, Roche SBX\nGone: Roche 454, SOLiD, Helicos. Ion Torrent: clinical niche\n\n\n\n\n\nSecond-generation sequencing reads millions to billions of DNA fragments at the same time, using sequencing by synthesis. For about ten years Illumina dominated short-read sequencing. That is changing: Element Biosciences, Ultima Genomics, MGI and Complete Genomics, and since June 2026 Roche, whose SBX instrument reads an expanded copy of the DNA through a nanopore, are competing. 454, SOLiD and Helicos are gone; Ion Torrent survives in clinical panels. The timeline also shows the long-read platforms, which we cover later."
+  },
+  {
+    "objectID": "ngs/sequencing_lecture.html#the-1000-genome",
+    "href": "ngs/sequencing_lecture.html#the-1000-genome",
+    "title": "High-Throughput Sequencing",
+    "section": "The $1000 genome",
+    "text": "The $1000 genome\n\n\nData: NHGRI via Our World in Data (CC BY 4.0). 2024–2026: manufacturer claims. Figure: own work, CC BY 4.0\n\n\nThis is the NHGRI cost per human genome, on a log scale. Until 2007 cost fell roughly with Moore’s law, which NHGRI takes as a halving every two years; the Stephens figure on the next slide uses 18 months. When second-generation instruments arrived around 2008, it dropped far faster. The latest NHGRI data point is from 2022, at about 500 dollars. The shaded box shows what manufacturers claim today, 80 to 500 dollars per genome; these are claims, not independent data, and they leave out labour and analysis."
+  },
+  {
+    "objectID": "ngs/sequencing_lecture.html#sequencing-capacity-grows-faster-than-moores-law",
+    "href": "ngs/sequencing_lecture.html#sequencing-capacity-grows-faster-than-moores-law",
+    "title": "High-Throughput Sequencing",
+    "section": "Sequencing capacity grows faster than Moore’s law",
+    "text": "Sequencing capacity grows faster than Moore’s law\n\n\n\n\n\n\nComputing power per dollar has kept roughly doubling every two years\nSequencing got cheaper, but computers do not keep up: storing and analysing the data becomes as hard as producing it\n2015 projection: 100 million to 2 billion genomes by 2025. Reality: a few million\n\nFirst human genome: 13 years. SciLifeLab 2016: 1 h\n\n\n\nStephens ZD et al. (2015) Big Data: Astronomical or Genomical? PLoS Biol 13:e1002195 (CC BY 4.0)\n\n\nStephens and colleagues compared genomics with other big-data fields in 2015. Their 2015 projection was that between 100 million and 2 billion human genomes could be sequenced by 2025; that year has now passed, and the real number is not known precisely. They argued that storing and analysing the data would become as big a challenge as producing it, which is why the bioinformatics part of this course matters."
+  },
+  {
+    "objectID": "ngs/sequencing_lecture.html#what-can-we-do-with-it",
+    "href": "ngs/sequencing_lecture.html#what-can-we-do-with-it",
+    "title": "High-Throughput Sequencing",
+    "section": "What can we do with it?",
+    "text": "What can we do with it?\n\n\n\n\n\nNon-invasive prenatal testing: fetal DNA in the mother’s blood is sequenced\nThe film Gattaca (1997) imagined genetic profiling at birth, less than 30 years ago\n\n\n\nNIPT panel: Shendure et al. (2017) DNA sequencing at 40, Nature 550:345 (© Springer Nature)\n\n\nSequencing has moved into the clinic. In non-invasive prenatal testing, the small amount of cell-free fetal DNA in the mother’s blood, which mostly comes from the placenta, is sequenced to screen for chromosomal conditions; a positive screen is confirmed with an invasive test. Gattaca, from 1997, imagined a society that sorts people by their genome at birth. That was less than 30 years ago. It is worth discussing where the line should be."
+  },
+  {
+    "objectID": "ngs/sequencing_lecture.html#from-sample-to-library",
+    "href": "ngs/sequencing_lecture.html#from-sample-to-library",
+    "title": "High-Throughput Sequencing",
+    "section": "From sample to library",
+    "text": "From sample to library\n\n\nThe extraction method decides what is possible later: purity, fragment length, RNA integrity\nLong reads need high-molecular-weight DNA: no vortexing, no PCR; HiFi sheared to 15–20 kb, ultra-long not sheared\n\n\nLibrary preparation turns your sample into molecules the sequencer can read. Extraction quality matters: fragment length and purity limit what you can do later, especially for long reads. The DNA is fragmented to the size the platform reads, adapters are added, usually with sample barcodes called indexes, and often a short PCR follows. For long reads we avoid PCR, and shear only gently: PacBio HiFi libraries are sheared to 15 to 20 kb, while ONT ultra-long protocols skip shearing altogether."
+  },
+  {
+    "objectID": "ngs/sequencing_lecture.html#fragmenting-dna",
+    "href": "ngs/sequencing_lecture.html#fragmenting-dna",
+    "title": "High-Throughput Sequencing",
+    "section": "Fragmenting DNA",
+    "text": "Fragmenting DNA\n\n\nThere are three common ways to fragment DNA. Mechanical shearing with sonication or focused acoustic energy, for example Covaris, gives random breaks but needs an instrument. Enzymatic fragmentation uses an endonuclease mix: fast and cheap, with a small sequence bias. Tagmentation, next slide, fragments the DNA and adds adapters in one step."
+  },
+  {
+    "objectID": "ngs/sequencing_lecture.html#tagmentation",
+    "href": "ngs/sequencing_lecture.html#tagmentation",
+    "title": "High-Throughput Sequencing",
+    "section": "Tagmentation",
+    "text": "Tagmentation\n\n\nTagmentation uses a modified Tn5 transposase loaded with two adapter sequences. It cuts the DNA and pastes the adapters onto the ends in one step. A short PCR then adds the sample indexes and the flow-cell binding sequences. It replaces four steps of classic library prep. Illumina’s version is now called Illumina DNA Prep, formerly Nextera DNA Flex; there the transposomes sit on beads, which makes fragment size less sensitive to how much DNA you put in. Because each fragment gets a random pair of the two adapters, some fragments end up with the same adapter at both ends; those do not amplify properly and are lost."
+  },
+  {
+    "objectID": "ngs/sequencing_lecture.html#from-rna-to-a-library",
+    "href": "ngs/sequencing_lecture.html#from-rna-to-a-library",
+    "title": "High-Throughput Sequencing",
+    "section": "From RNA to a library",
+    "text": "From RNA to a library\n\n\nFor RNA-seq, the first choice is which RNA to keep, because 80 to 90 percent of total RNA is ribosomal. Poly-A selection catches mRNA by its tail with oligo-dT beads; it needs intact RNA. rRNA depletion removes ribosomal RNA with probes; it keeps non-polyadenylated RNA and works on degraded samples such as FFPE. The RNA is fragmented and copied to cDNA. In a stranded library the second strand is made with dUTP and destroyed, so each read tells which strand the gene was transcribed from. After that, adapters, indexes and PCR are as for DNA."
+  },
+  {
+    "objectID": "ngs/sequencing_lecture.html#read-types",
+    "href": "ngs/sequencing_lecture.html#read-types",
+    "title": "High-Throughput Sequencing",
+    "section": "Read types",
+    "text": "Read types\n\n\nSingle-end sequencing reads one end of each fragment. Paired-end reads both ends, so we know the two reads are a fixed distance apart, which helps mapping and finding structural variants. Long reads cover a whole molecule in one go. Unique molecular identifiers are random tags added before PCR; reads with the same UMI come from the same original molecule, so PCR copies can be collapsed, which matters for quantification. Mate-pair libraries and 10x Genomics linked reads, discontinued in 2020, have been replaced by long reads and Hi-C."
+  },
+  {
+    "objectID": "ngs/sequencing_lecture.html#illumina-sequencing-by-synthesis",
+    "href": "ngs/sequencing_lecture.html#illumina-sequencing-by-synthesis",
+    "title": "High-Throughput Sequencing",
+    "section": "Illumina: sequencing by synthesis",
+    "text": "Illumina: sequencing by synthesis\n\n\nThe library molecule has flow-cell binding sites, P5 and P7, and sample indexes. On the flow cell each molecule is copied about a thousand times in place, forming a cluster in a nanowell. Then each cycle adds all four nucleotides, each with a removable block so the polymerase adds exactly one base, and labelled so that each base gives its own signal; in two-colour chemistry G carries no dye at all. The instrument images the flow cell, the colour of each cluster gives its base, the dye and block are cleaved, and the cycle repeats, for example 2 times 150 cycles."
+  },
+  {
+    "objectID": "ngs/sequencing_lecture.html#illumina-sequencing-by-synthesis-1",
+    "href": "ngs/sequencing_lecture.html#illumina-sequencing-by-synthesis-1",
+    "title": "High-Throughput Sequencing",
+    "section": "Illumina sequencing by synthesis",
+    "text": "Illumina sequencing by synthesis\nWatch the following video to understand Illumina’s sequencing by synthesis:\n▶ Overview of Illumina Sequencing by Synthesis Workflow\nIllumina, on YouTube\n\nVideo: © Illumina, Inc.\n\n\nClick the link to open Illumina’s own animation on YouTube. It shows standard SBS chemistry: cluster generation by bridge amplification, then cycles of nucleotide addition, imaging and cleavage. The NovaSeq X works the same way in principle but uses patterned flow cells with exclusion amplification and the newer XLEAP chemistry. Opens in the browser."
+  },
+  {
+    "objectID": "ngs/sequencing_lecture.html#this-is-how-it-looks",
+    "href": "ngs/sequencing_lecture.html#this-is-how-it-looks",
+    "title": "High-Throughput Sequencing",
+    "section": "This is how it looks",
+    "text": "This is how it looks\n\n\n\nLanes are imaged tile by tile\nEach spot is one cluster; colour = base in this cycle\nEarly flow cells: clusters at random positions. Today: patterned nanowells, billions of clusters\n\n\n\nA flow cell is a glass slide with lanes. The camera images it tile by tile, and each tile shows thousands of clusters as coloured spots. On early, non-patterned flow cells, clusters grow at random positions. Current patterned flow cells put the clusters into a regular grid of nanowells; a 25B flow cell holds billions of clusters. With exclusion amplification, free adapters left in the library can cause slightly more index hopping, between 0.1 and 2 percent of reads; unique dual indexes let you filter those reads out."
+  },
+  {
+    "objectID": "ngs/sequencing_lecture.html#improvements-two-colour-chemistry",
+    "href": "ngs/sequencing_lecture.html#improvements-two-colour-chemistry",
+    "title": "High-Throughput Sequencing",
+    "section": "Improvements: two-colour chemistry",
+    "text": "Improvements: two-colour chemistry\n\n\nFigure: own work, CC BY 4.0; colour encoding: Illumina Knowledge article 000008422\n\n\nMost current Illumina instruments use two images per cycle instead of four. In the original two-colour chemistry of the NextSeq 500 and NovaSeq 6000, A is bright in both channels. In XLEAP-SBS, used on the NovaSeq X, NextSeq 1000 and 2000 and MiSeq i100, C is the base seen in both channels, A only in blue, T only in green. In both, G is dark. That saves time, but a cluster that has stopped working is also dark and is called G. This is why reads from NextSeq and NovaSeq often end in long runs of G, which have to be trimmed. The older 4-channel and the iSeq’s 1-channel chemistry follow the same idea with different encodings."
+  },
+  {
+    "objectID": "ngs/sequencing_lecture.html#third-generation-single-molecules-long-reads",
+    "href": "ngs/sequencing_lecture.html#third-generation-single-molecules-long-reads",
+    "title": "High-Throughput Sequencing",
+    "section": "Third generation: single molecules, long reads",
+    "text": "Third generation: single molecules, long reads\n\n\n\n\n\n\n\n\n\nPacBio HiFi\nOxford Nanopore\n\n\n\n\nHow\nPolymerase copies a circular template, watched in real time\nStrand pulled through a protein pore, current is measured\n\n\nLength\n15–20 kb\nAs long as the molecule, up to &gt; 1 Mb\n\n\nAccuracy\nTypically Q30 (99.9%)\n~Q26 (99.75%) per read\n\n\n\nBoth: no PCR needed, and methylation is read directly from the native molecule.\n\n\n\n\n\n\nNote\n\n\n\nQ20 = 1 error in 100 bases\nQ30 = 1 in 1,000\nQ40 = 1 in 10,000.\n\nAccuracy: manufacturer specifications (PacBio 2024, Oxford Nanopore 2025)\n\n\n\n\nThird-generation platforms read single molecules without amplification. PacBio watches a polymerase copy a circular template many times, which gives HiFi reads that are both long and very accurate. Oxford Nanopore pulls a single DNA or RNA strand through a protein pore and reads the change in electric current. Note: ONT is strand sequencing; the older ‘sequencing by cleavage’ idea was abandoned. Both detect base modifications such as methylation directly."
+  },
+  {
+    "objectID": "ngs/sequencing_lecture.html#pacbio-single-molecule-real-time-sequencing",
+    "href": "ngs/sequencing_lecture.html#pacbio-single-molecule-real-time-sequencing",
+    "title": "High-Throughput Sequencing",
+    "section": "PacBio: single-molecule real-time sequencing",
+    "text": "PacBio: single-molecule real-time sequencing\n\n\n\nA polymerase sits at the bottom of a zero-mode waveguide\nDye on the phosphate: a flash per added base, then the dye is cut off\nRevio: 25 million wells per SMRT Cell\n\n\n\nThe key part is the zero-mode waveguide, a well so small that light only reaches its bottom, where a single polymerase sits. Each nucleotide carries its dye on the phosphate. When the polymerase incorporates a base, the dye flashes in the light, and it is cut off with the phosphate, leaving natural DNA. A Revio SMRT Cell has 25 million of these wells."
+  },
+  {
+    "objectID": "ngs/sequencing_lecture.html#pacbio-hifi-accuracy-from-repetition",
+    "href": "ngs/sequencing_lecture.html#pacbio-hifi-accuracy-from-repetition",
+    "title": "High-Throughput Sequencing",
+    "section": "PacBio HiFi: accuracy from repetition",
+    "text": "PacBio HiFi: accuracy from repetition\n\n\nFigure: own work, CC BY 4.0. Revio SPRQ-Nx: ~$345 list, &lt; $300 at scale per HiFi human genome (PacBio press release, 26 May 2026)\n\n\nThe template is a SMRTbell: double-stranded DNA closed by hairpin adapters into a loop. The polymerase goes round and round, so each molecule is read many times. Single passes have random errors, but because they are random they cancel out in the consensus, giving HiFi reads of 15 to 20 kb. HiFi is defined as at least 99 percent accurate, Q20, and most HiFi bases reach Q30. The Revio with the new SPRQ-Nx chemistry, shipping since May 2026, lists about 345 dollars per human HiFi genome and under 300 at scale; Vega is the benchtop version."
+  },
+  {
+    "objectID": "ngs/sequencing_lecture.html#oxford-nanopore",
+    "href": "ngs/sequencing_lecture.html#oxford-nanopore",
+    "title": "High-Throughput Sequencing",
+    "section": "Oxford Nanopore",
+    "text": "Oxford Nanopore\n\n\nFigure: own work, CC BY 4.0. Accuracy: nanoporetech.com/platform/accuracy (accessed Oct 2026)\n\n\nA motor protein unwinds the DNA and feeds one strand through a protein pore in a membrane, at about 400 bases per second. Ions flow through the pore, and each group of bases in the pore blocks the current in its own way. A neural-network basecaller, Dorado, turns this current trace, the squiggle, into bases. With R10.4.1 pores and Kit 14, ONT reports a modal single-read accuracy of 99.75 percent with its most accurate basecalling model; duplex mode reads both strands for higher accuracy. The same signal reveals methylation, and RNA can be read directly."
+  },
+  {
+    "objectID": "ngs/sequencing_lecture.html#long-reads-for-rna-whole-transcripts",
+    "href": "ngs/sequencing_lecture.html#long-reads-for-rna-whole-transcripts",
+    "title": "High-Throughput Sequencing",
+    "section": "Long reads for RNA: whole transcripts",
+    "text": "Long reads for RNA: whole transcripts\n\n\nMost genes make more than one transcript isoform. With short reads, a read inside a shared exon fits every isoform, so isoforms have to be inferred statistically; only reads in the parts that differ, an exon used by one isoform only or a junction that skips it, tell them apart. Long reads cover the whole transcript, so each read shows directly which isoform it came from. PacBio Kinnex and Iso-Seq sequence full-length cDNA; ONT can sequence cDNA or the native RNA itself, which also reveals RNA modifications such as m6A."
+  },
+  {
+    "objectID": "ngs/sequencing_lecture.html#short-fragments-can-take-over-a-long-read-run",
+    "href": "ngs/sequencing_lecture.html#short-fragments-can-take-over-a-long-read-run",
+    "title": "High-Throughput Sequencing",
+    "section": "Short fragments can take over a long-read run",
+    "text": "Short fragments can take over a long-read run\n\n\nFigure: own work, CC BY 4.0. Idea after a post on the Albertsen lab blog (Aalborg University; no longer online)\n\n\nThe same mass of DNA contains far fewer long molecules than short ones. One microgram of 350 bp fragments has about 2.6 times 10 to the 12 molecules; one microgram of 100 kb fragments only about 10 to the 10. So a small amount of short DNA by mass can dominate by molecule count. Example: if 1 percent of the mass is 1 kb fragments and 99 percent is 100 kb, about half of all molecules are short, and short molecules get sequenced too. Idea after the Albertsen lab blog."
+  },
+  {
+    "objectID": "ngs/sequencing_lecture.html#getting-long-dna-pulsed-field-gel-electrophoresis",
+    "href": "ngs/sequencing_lecture.html#getting-long-dna-pulsed-field-gel-electrophoresis",
+    "title": "High-Throughput Sequencing",
+    "section": "Getting long DNA: pulsed-field gel electrophoresis",
+    "text": "Getting long DNA: pulsed-field gel electrophoresis\n\n\n\n\n\nGentle extraction: high-molecular-weight DNA\nFragments &gt; 15–20 kb run together on a normal gel: use pulsed-field gels\nRemove short fragments: gel-based (BluePippin, cut-off ~10–15 kb) or bead-based kits\n\n\n\nLong reads need long DNA. Extraction has to be gentle: no vortexing, wide-bore tips. On a normal agarose gel, everything above 15 to 20 kb runs together, so pulsed-field gel electrophoresis, which switches the field direction, is used to check size. To get rid of short fragments, which would otherwise take a large share of the reads, you can size-select on a gel-based system such as BluePippin, or use bead-based short-read eliminator kits."
+  },
+  {
+    "objectID": "ngs/sequencing_lecture.html#read-length-distributions-and-n50",
+    "href": "ngs/sequencing_lecture.html#read-length-distributions-and-n50",
+    "title": "High-Throughput Sequencing",
+    "section": "Read-length distributions and N50",
+    "text": "Read-length distributions and N50\n\nN50: half of all bases are in reads at least this long.\n\nSimulated data. Figure: own work, CC BY 4.0\n\n\nLong-read runs are summarised with N50: half of all sequenced bases are in reads at least this long. Counted by reads, most reads are fairly short; counted by bases, most of the data sits in the long reads. Here the median read is 8 kb, but the N50 is almost 18 kb. Always check which of the two a report shows."
+  },
+  {
+    "objectID": "ngs/sequencing_lecture.html#which-platform-for-which-question",
+    "href": "ngs/sequencing_lecture.html#which-platform-for-which-question",
+    "title": "High-Throughput Sequencing",
+    "section": "Which platform for which question?",
+    "text": "Which platform for which question?\n\n\n\n\n\n\n\n\n\n\n\n\nIllumina NovaSeq X\nElement AVITI\nPacBio Revio (HiFi)\nOxford Nanopore\n\n\n\n\nRead length\n2 × 150 bp\n2 × 150 bp\n15–20 kb\nAs long as the molecule: ~100 bp to &gt; 1 Mb\n\n\nAccuracy\nQ30+\nQ30+ (Q40+ with UltraQ)\nQ20+, typically Q30\nQ20–Q26 per read (duplex Q30)\n\n\nBest for\nLarge cohorts, RNA-seq counts, lowest cost per base\nVery accurate short reads\nGenome assembly, phasing, full-length isoforms\nLongest reads, structural variants, direct RNA, field work\n\n\n\n\nShort reads are cheap and plentiful, long reads span repeats and whole transcripts.\n\nManufacturer specifications, 2024–2026\n\n\nA rough guide. Illumina is the default for counting: RNA-seq expression, large cohorts, and anything where cost per base matters. Element AVITI gives very accurate short reads. PacBio HiFi is the choice for genome assembly, phasing and full-length isoforms. Oxford Nanopore gives the longest reads, structural variants, direct RNA, and works in the field. Accuracy values are manufacturer specifications."
+  },
+  {
+    "objectID": "ngs/sequencing_lecture.html#typical-errors-and-where-they-come-from",
+    "href": "ngs/sequencing_lecture.html#typical-errors-and-where-they-come-from",
+    "title": "High-Throughput Sequencing",
+    "section": "Typical errors and where they come from",
+    "text": "Typical errors and where they come from\n\n\n\n\n\nHomopolymers. AAAAAAA miscounted → false insertions or deletions. Worst on ONT.\nNot in FastQC: shows up in variant calls\n\n\n\n\n\n\nGC bias. GC-rich or GC-poor regions get fewer reads.\nFastQC: per sequence GC content\n\n\n\n\n\n\nPoly-G and adapters. “No signal” is called G; short inserts read into the adapter.\nFastQC: adapter content → trim\n\n\n\n\n\n\n\nDuplicates. PCR copies inflate coverage. Normal for highly expressed genes.\nFastQC: sequence duplication levels\n\n\n\n\n\n\nIndex hopping. Reads land in the wrong sample.\nPrevent with unique dual indexes\n\n\n\n\n\n\nArtefact or biology? Think of the technical explanation first.\n→ QC lecture and today’s exercises\n\n\n\n\n\nHöjer et al. (2026) NAR Genom Bioinform 8:lqag053; Illumina and Oxford Nanopore technical notes\n\n\nEach error type matters for analysis, and most of them show up in the FastQC and MultiQC reports you will look at in today’s exercises. Homopolymer errors create false insertions and deletions; they do not show in FastQC but in variant calls. GC bias leaves GC-rich regions such as promoters and first exons with few reads. Poly-G tails and adapter read-through stop reads mapping and are trimmed by fastp or Trim Galore. Duplicates inflate counts, but in RNA-seq highly expressed genes naturally give many. Index hopping puts reads into the wrong sample. Always think of the technical explanation before the biological one."
+  },
+  {
+    "objectID": "ngs/sequencing_lecture.html#whats-new-in-2026",
+    "href": "ngs/sequencing_lecture.html#whats-new-in-2026",
+    "title": "High-Throughput Sequencing",
+    "section": "What’s new in 2026",
+    "text": "What’s new in 2026\n\nRoche AXELIOS 1 / SBX (June 2026): DNA copied into a ~50× longer polymer, read through a nanopore; same-day genomes claimed (research use)\nUltima UG 200 (Feb 2026): open spinning wafer instead of a flow cell; twice the output of the UG 100, half the run time\nElement VITARI (H2 2026): high-throughput instrument, up to 10 billion reads per run; ~$100 genome claimed\nPacBio SPRQ-Nx (May 2026): HiFi human genome ~$345 list, &lt; $300 at scale; adds 5hmC\n\n\nRoche release 29 Jun 2026; Ultima (GEN, 23 Feb 2026); Element 2026 roadmap; PacBio release 26 May 2026 (all manufacturer claims)\n\n\nFour developments worth knowing. Roche launched its AXELIOS 1 instrument with SBX, sequencing by expansion, in June 2026, for research use: DNA is copied into a surrogate polymer about 50 times longer and read through a nanopore, with same-day genomes claimed. Ultima’s UG 200, launched in February 2026, keeps the open spinning wafer of the UG 100 with twice the output and half the run time. Element plans VITARI, a high-throughput instrument claiming a 100-dollar genome, for the second half of 2026. PacBio’s SPRQ-Nx chemistry brings HiFi genomes under 300 dollars at scale. All of these are manufacturer claims, not independent benchmarks."
+  },
+  {
+    "objectID": "ngs/sequencing_lecture.html#sequencing-in-sweden-ngi",
+    "href": "ngs/sequencing_lecture.html#sequencing-in-sweden-ngi",
+    "title": "High-Throughput Sequencing",
+    "section": "Sequencing in Sweden: NGI",
+    "text": "Sequencing in Sweden: NGI\n\nIllumina NovaSeq X: short reads at scale\nElement AVITI / AVITI24: accurate short reads, in situ\nPacBio Revio: HiFi long reads\nONT PromethION: ultra-long reads, direct RNA\n\nNational Genomics Infrastructure (SciLifeLab): Stockholm and Uppsala nodes. Ask them for advice on study design before you sequence: ngisweden.scilifelab.se\n\nNGI Sweden methods and technologies pages (accessed Oct 2026)\n\n\nIf you sequence in Sweden, you will probably work with the National Genomics Infrastructure at SciLifeLab, with nodes in Stockholm and Uppsala. NGI runs most of the platforms in this lecture, so you can choose by question rather than by what is available. They also advise on study design before you sequence; use that."
+  },
+  {
+    "objectID": "ngs/sequencing_lecture.html#learn-more",
+    "href": "ngs/sequencing_lecture.html#learn-more",
+    "title": "High-Throughput Sequencing",
+    "section": "Learn more",
+    "text": "Learn more\n\n\nShendure J et al. (2017) DNA sequencing at 40: past, present and future. Nature 550:345–353\nSatam H et al. (2023) Next-generation sequencing technology: current trends and advancements. Biology 12:997 (open access; correction: Biology 2024, 13:286)\nMarx V (2023) Method of the year: long-read sequencing. Nature Methods 20:6–11\nHöjer P et al. (2026) Whole-genome sequencing with AVITI and NovaSeq X Plus reveals comparable performance with contextual biases. NAR Genom Bioinform 8:lqag053\nStephens ZD et al. (2015) Big Data: Astronomical or Genomical? PLoS Biol 13:e1002195\nGoodwin S et al. (2016) Coming of age: ten years of next-generation sequencing technologies. Nat Rev Genet 17:333\n\n\n\nThese are good starting points. Shendure and colleagues give the history and outlook. Satam and colleagues is an open-access overview of current technologies. Nature Methods named long-read sequencing Method of the Year 2022; Vivien Marx’s feature explains why. Höjer and colleagues is the Swedish platform comparison. Goodwin and colleagues is the classic review, now partly historical."
+  },
+  {
+    "objectID": "ngs/sequencing_lecture.html#image-credits",
+    "href": "ngs/sequencing_lecture.html#image-credits",
+    "title": "High-Throughput Sequencing",
+    "section": "Image credits",
+    "text": "Image credits\n\n\nOwn work (CC BY 4.0): sample to library, pulsed-field gel, PacBio zero-mode waveguide, flow cell, Sanger workflow, gel and trace, chain termination, fragmentation, tagmentation, RNA library, Illumina SBS, two-colour chemistry, read types, PacBio HiFi, nanopore, isoforms, molecule count, read-length and N50 figures\nCost per genome: data NHGRI via Our World in Data (CC BY 4.0)\nGrowth of sequencing: Stephens et al. 2015, PLoS Biol (CC BY 4.0)\nNIPT panel: Shendure et al. 2017, Nature (© Springer Nature)"
+  },
+  {
+    "objectID": "ngs/qc_exercises.html",
+    "href": "ngs/qc_exercises.html",
+    "title": "Quality control of sequencing data",
+    "section": "",
+    "text": "Regardless of what type of bioinformatics project you are working on, you will have to assess whether the data you have is of good enough quality to proceed with - bad input data can seriously impair your ability to draw conclusions from the samples later on!\nPoor quality sequencing data can be caused by a variety of factors, such as sample contamination, improper sample handling, technical problems. Some of these problems will be checked for before and during the sequencing - it is always good to read all documentation coming from the sequencing facility.\nWhen it comes to sequencing data, FastQC is a well known and often used software to check raw reads for their quality.",
+    "crumbs": [
+      "Home",
+      "Introduction to NGS",
+      "Day 1: QC exercises"
+    ]
+  },
+  {
+    "objectID": "ngs/qc_exercises.html#connect-to-hpc2n",
+    "href": "ngs/qc_exercises.html#connect-to-hpc2n",
+    "title": "Quality control of sequencing data",
+    "section": "Connect to HPC2N",
+    "text": "Connect to HPC2N\nFor this tutorial we will connect to the course server.\nTo connect to the server, please follow the instructions here.\nQuick access link to the on-demand service of HPC2N:\nHPC2N on-demand link.",
+    "crumbs": [
+      "Home",
+      "Introduction to NGS",
+      "Day 1: QC exercises"
+    ]
+  },
+  {
+    "objectID": "ngs/qc_exercises.html#create-your-own-folder",
+    "href": "ngs/qc_exercises.html#create-your-own-folder",
+    "title": "Quality control of sequencing data",
+    "section": "Create your own folder",
+    "text": "Create your own folder\nGo to the course directory (you find its path in Canvas), create a folder with your name, and move into it:\ncd &lt;course directory&gt;\nmkdir &lt;your_name&gt;\ncd &lt;your_name&gt;\nReplace &lt;your_name&gt; with your own name, without spaces, for example anna_svensson.\n\n\n\n\n\n\nImportant\n\n\n\nDo all of today’s work inside this folder, and come back to it on day 2. If you log out, start again with cd &lt;course directory&gt;/&lt;your_name&gt;.\n\n\n\n\n\n\n\n\nTip\n\n\n\nUse the command line commands ls to list the contents of the directory you are currently in, pwd to print the path of the current working directory, and cd to navigate between directories.",
+    "crumbs": [
+      "Home",
+      "Introduction to NGS",
+      "Day 1: QC exercises"
+    ]
+  },
+  {
+    "objectID": "ngs/qc_exercises.html#start-a-screen-session",
+    "href": "ngs/qc_exercises.html#start-a-screen-session",
+    "title": "Quality control of sequencing data",
+    "section": "Start a screen session",
+    "text": "Start a screen session\nScreen or GNU Screen is a terminal multiplexer. In other words, it means that you can start a screen session and then open any number of windows (virtual terminals) inside that session. Processes running in Screen will continue to run when their window is not visible even if you get disconnected.\nStart a named session, with the name qc:\nscreen -S qc\nYou can detach from the screen session. The process within the screen will continue to run.\nCtrl + a d\nYou can always reattach to the session. If you have a number of screen running, or are unsure of the name or ID of the screen you want to reattach to you can list the currently running screens:\nscreen -ls\nTo resume your screen session use the following command:\nscreen -r name",
+    "crumbs": [
+      "Home",
+      "Introduction to NGS",
+      "Day 1: QC exercises"
+    ]
+  },
+  {
+    "objectID": "ngs/qc_exercises.html#create-a-directory-to-work-in",
+    "href": "ngs/qc_exercises.html#create-a-directory-to-work-in",
+    "title": "Quality control of sequencing data",
+    "section": "Create a directory to work in",
+    "text": "Create a directory to work in\nFrom within your folder &lt;course directory&gt;/&lt;your_name&gt;, start by creating a workspace for the raw data used in this exercise, and then move into it:\nmkdir -p  NGS_course/raw\ncd NGS_course/raw",
+    "crumbs": [
+      "Home",
+      "Introduction to NGS",
+      "Day 1: QC exercises"
+    ]
+  },
+  {
+    "objectID": "ngs/qc_exercises.html#create-symbolic-link-to-the-data",
+    "href": "ngs/qc_exercises.html#create-symbolic-link-to-the-data",
+    "title": "Quality control of sequencing data",
+    "section": "Create symbolic link to the data",
+    "text": "Create symbolic link to the data\nThe raw data files are located in the course directory, in teachers/course_data/NGS/ (see The NGS data). Save the path in a variable (replace &lt;course directory&gt; with the path from Canvas):\nDATA=&lt;course directory&gt;/teachers/course_data/NGS\nls $DATA\nYou could copy the files into your workspace to access them. However, it is better to create symbolic links (also called soft links) to the data files. This saves disk space and still allows you to work with them as if they were in your own directory.\nCreate symbolic links to the fastq files in your workspace:\nln -s $DATA/*.fastq .\nYou now have four files in your directory: two for the TMEB117 cultivar containing the DNA sequences, and two for the TMEB419 cultivar, containing the RNA sequencing results.\n\n\n\n\n\n\nImportantTo do for you\n\n\n\nLeave the /raw directory and make sure that you are back in &lt;your_name&gt;/NGS_course.",
+    "crumbs": [
+      "Home",
+      "Introduction to NGS",
+      "Day 1: QC exercises"
+    ]
+  },
+  {
+    "objectID": "ngs/qc_exercises.html#what-are-containers",
+    "href": "ngs/qc_exercises.html#what-are-containers",
+    "title": "Quality control of sequencing data",
+    "section": "What are containers?",
+    "text": "What are containers?\nContainers are stand-alone pieces of software that require a container management tool to run. They are build and exchanged as container images that specify the contents of the container, such as the operating system, all dependencies, and software in an isolated environment. The container management tool then takes the images and build the container. These management tools can be run on all operating systems, and since the container has the operating system within it, it will run the same in all environments. Container images are easily portable and immutable, so they are stable over time.",
+    "crumbs": [
+      "Home",
+      "Introduction to NGS",
+      "Day 1: QC exercises"
+    ]
+  },
+  {
+    "objectID": "ngs/qc_exercises.html#running-containers",
+    "href": "ngs/qc_exercises.html#running-containers",
+    "title": "Quality control of sequencing data",
+    "section": "Running Containers",
+    "text": "Running Containers\nThere are several programs that can be used to build and run containers. Docker, Apptainer, and Podman are the most commonly used platforms to date. They all have their pros and cons. If you are using a Windows machine that only you are using, then Docker is likely the least complex tool to install. On multi-user systems like a server, Apptainer is the best tool for the job. For this tutorial and the rest of the course, we will use Apptainer commands.",
+    "crumbs": [
+      "Home",
+      "Introduction to NGS",
+      "Day 1: QC exercises"
+    ]
+  },
+  {
+    "objectID": "ngs/qc_exercises.html#getting-apptainer-image",
+    "href": "ngs/qc_exercises.html#getting-apptainer-image",
+    "title": "Quality control of sequencing data",
+    "section": "Getting apptainer image",
+    "text": "Getting apptainer image\nOne good place to get quality controlled Apptainer/Singularity containers that contain the tools we want to use is seqera containers.\n\nOpen their homepage in a new tab.\nIn the searchbar, type in the tool you want - fastqc\n\n\n\n\nAdd the tool you want to have in your container (in this case fastqc from Bioconda). Be aware, the screenshot in this material might show a different tool version than the one you will see.\nIn the container settings underneath the search bar, select Singularity and linux/amd64\nClick “get container”.\n\n\n\n\nOnce the container is ready copy the path of the image.",
+    "crumbs": [
+      "Home",
+      "Introduction to NGS",
+      "Day 1: QC exercises"
+    ]
+  },
+  {
+    "objectID": "ngs/qc_exercises.html#download-container-images",
+    "href": "ngs/qc_exercises.html#download-container-images",
+    "title": "Quality control of sequencing data",
+    "section": "Download container images",
+    "text": "Download container images\nTo have a nice and clean project directory we will make a new sub-directory that will contain all the singularity images we will use during this tutorial.\nmkdir singularity_images\ncd singularity_images\nNow we can pull the container image from its location into our folder:\napptainer pull --name fastqc_0.13.0.sif oras://community.wave.seqera.io/library/fastqc:0.13.0--918df8ee88833f73\nIn this command we tell apptainer, the container system software, to pull a container with a name we can set ourselves, from a source oras....\nThen we move out of the directory again:\ncd .. \n\nRunning Containers\nOnce you have pulled the container image, you want to be able to use it. Apptainer can be used to build the container from the image.\n\nrunning “from the outside”\nThere are 2 different ways to use a container: run and exec. The apptainer run command launches the container and first runs the %runscript for the container if one is defined, and then runs your command (we will cover %runscript in the Building Containers section). The apptainer exec command will not run the %runscript even if one is defined. It is a small, fiddly detail that might be applicable if you use other people’s containers. After calling Apptainer and the run or exec commands, you can use your software as you usually would\napptainer exec singularity_images/fastqc_0.13.0.sif fastqc --version\nThis command runs your fastqc_0.13.0.sif container from the image, calls on the program fastqc that is within the container, and shows you the version. If you had installed FastQC locally, you would have just used\nfastqc --version\n\n\n\n\n\n\nImportant\n\n\n\nFastQC is just an example. If you want to run any other tool everything after apptainer run or apptainer exec has to be substituted by the name of the specific container image and the run commands for that particular tool!\n\n\n\n\nrunning interactively “from the inside”\nYou can also enter the container, and work interactively from within. For that you use the apptainer shell command:\napptainer shell singularity_images/fastqc_0.13.0.sif\nInside the container, your prompt will change to Singularity (remember, that is the legacy name for Apptainer). Now you can use the tools inside the container.\nTo exit the container, simply type and enter exit.\nGreat, now we have FastQC ready and can use it. How can we submit the job to the server?",
+    "crumbs": [
+      "Home",
+      "Introduction to NGS",
+      "Day 1: QC exercises"
+    ]
+  },
+  {
+    "objectID": "ngs/qc_exercises.html#slurm",
+    "href": "ngs/qc_exercises.html#slurm",
+    "title": "Quality control of sequencing data",
+    "section": "SLURM",
+    "text": "SLURM\nHPC2N is running SLURM (Simple Linux Utility for Resource Management) as its job scheduling system. When you submit a job on the cluster log-in node, SLURM will start, execute and monitor your jobs on the working nodes. It allocates access to the cluster resources, and manages the queue of pending jobs. Here is a more thorough documentation of SLURM on Kebnekaise.\nTo be able to do so, SLURM needs a bit of information from us when we submit a job:\n\n-A: project_ID (to deduct the used computing time from the correct project)\n-t allocated time dd-hh:mm:ss (to optimize the job queue)\n-n number of cores (default is one)",
+    "crumbs": [
+      "Home",
+      "Introduction to NGS",
+      "Day 1: QC exercises"
+    ]
+  },
+  {
+    "objectID": "ngs/qc_exercises.html#running-fastqc-with-sbatch",
+    "href": "ngs/qc_exercises.html#running-fastqc-with-sbatch",
+    "title": "Quality control of sequencing data",
+    "section": "Running fastqc with sbatch",
+    "text": "Running fastqc with sbatch\nWe will now write a script that runs fastqc on our samples - using the container we pulled. We will add the slurm flags from above and then submit to the server queue with the SLURM command sbatch.\nAgain, we want to maintain a clean and orderly project directory:\nIn your NGS_course folder, create a directory for the FastQC output and a new directory called scripts. Within the scripts directory create a file called fastqc.sh.\nmkdir fastqc\nmkdir scripts\ncd scripts\ntouch fastqc.sh\n\n\n\n\n\n\nTipTouch\n\n\n\nTouch makes a new file with the given name. You can then open it in the file explorer (left side of VS-Code).\n\n\nCopy the following into the file, and save the contents. Read through the file and try to understand what the different lines are doing.\n#! /bin/bash -l\n# The name of the compute account you are running in, mandatory.\n#SBATCH -A &lt;course project ID&gt;\n# Request runtime for the job (HHH:MM:SS) where 168 hours is the maximum. Here asking for 15 min. \n#SBATCH -t 15:00\n# Request resources - here for four cpus\n#SBATCH -n 4\n\n# FastQC needs the output folder to exist\nmkdir -p fastqc\n\napptainer exec singularity_images/fastqc_0.13.0.sif \\\n    fastqc -t 4 --outdir fastqc/ raw/*.fastq\necho \"complete\"\nThe slurm options used here:\n\nA: project ID (you find it in Canvas)\nt allocated time dd-hh:mm:ss\nn number of cpus\n\nFastQC’s -t 4 tells it to use the four cpus we asked for.\nMove back into the NGS_course directory and submit the script to slurm:\ncd ..\nsbatch scripts/fastqc.sh\nAfter running a bash script you will get a slurm output. Look at that output. See if you understand what that output contains.\nless slurm-XXXXX.out\nLocate the output of FastQC.\n\n\n\n\n\n\nNote\n\n\n\nWhich output directory did you specify in the batch file?\n\n\nFor each fastq file you will get two output files:\n\nTMEB117_R1_frac_fastq.zip (report, data files and graphs)\n\n\nTMEB117_R1_frac_fastq.html (report in html)\n\n\n\n\n\n\n\nImportantTo do for you\n\n\n\nNow you can download the .html report from the server and look at them:\nIn VScode: right click on the file in the file explorer –&gt; download\nFrom another terminal: open a local different terminal and navigate to where you want the files on your computer. Then copy the files with rsync (modify as needed).\nrsync -ah &lt;user_name&gt;@kebnekaise.hpc2n.umu.se:&lt;course directory&gt;/&lt;your_name&gt;/NGS_course/fastqc .\n\nWhat is the quality of your sample?\nLook at online resources to see if what you see is a problem, or expected because of the type of data you work with. A nice resource here is for example the FastQC tutorial from the Michigan State University.\n\n\n\nYou see that it is getting kind of tedious to look through all the different files one by one. Okay with only a few files, but imagine having to sift through a few dozen, or even hundreds of reports.",
+    "crumbs": [
+      "Home",
+      "Introduction to NGS",
+      "Day 1: QC exercises"
+    ]
+  },
+  {
+    "objectID": "ngs/qc_exercises.html#where-am-i",
+    "href": "ngs/qc_exercises.html#where-am-i",
+    "title": "Quality control of sequencing data",
+    "section": "Where am I?",
+    "text": "Where am I?\nMost “file not found” errors come from running a command in the wrong folder. Run pwd to print the folder you are in, ls to list what is in it, and cd to move.\n\n\n\nStep\nRun it in\n\n\n\n\nLink the data\n&lt;your_name&gt;/NGS_course/raw\n\n\nPull container images\n&lt;your_name&gt;/NGS_course/singularity_images\n\n\nWrite scripts\n&lt;your_name&gt;/NGS_course/scripts\n\n\nSubmit jobs with sbatch\n&lt;your_name&gt;/NGS_course\n\n\n\nThe paths in the scripts are relative to NGS_course, so jobs have to be submitted from there. After logging in again, start with cd &lt;course directory&gt;/&lt;your_name&gt;/NGS_course.",
+    "crumbs": [
+      "Home",
+      "Introduction to NGS",
+      "Day 1: QC exercises"
+    ]
+  },
+  {
+    "objectID": "ngs/qc_exercises.html#common-errors",
+    "href": "ngs/qc_exercises.html#common-errors",
+    "title": "Quality control of sequencing data",
+    "section": "Common errors",
+    "text": "Common errors\nThe messages may look slightly different from the ones here.\n\n\n\n\n\n\n\nMessage\nWhat it means\n\n\n\n\ncommand not found: apptainer\nYou are in a terminal on your own computer, not on Kebnekaise. Log in first.\n\n\nFATAL: could not open image\nThe image name in the script doesn’t match the file in singularity_images. Compare with ls singularity_images.\n\n\nunrecognized arguments: -o (FastQC)\nNewer FastQC versions only accept --outdir.\n\n\nFastQC: output directory does not exist\nCreate it first with mkdir -p fastqc.\n\n\nNo analysis results found (MultiQC)\nThe FastQC job wasn’t finished, or the job was submitted from the wrong folder. Check with squeue -u $USER and ls fastqc.\n\n\nInvalid account\nCheck the project ID after #SBATCH -A. You find it in Canvas.",
+    "crumbs": [
+      "Home",
+      "Introduction to NGS",
+      "Day 1: QC exercises"
+    ]
+  },
+  {
+    "objectID": "ngs/qc_exercises.html#is-my-job-running",
+    "href": "ngs/qc_exercises.html#is-my-job-running",
+    "title": "Quality control of sequencing data",
+    "section": "Is my job running?",
+    "text": "Is my job running?\n\nsqueue -u $USER lists your jobs that are waiting or running. A finished job disappears from the list.\nsbatch prints a job ID. The job’s output and errors are in slurm-&lt;job ID&gt;.out, in the folder you submitted from. Read it with cat slurm-&lt;job ID&gt;.out.\n\nWhen you are done, take the lab quiz for today in Canvas.",
+    "crumbs": [
+      "Home",
+      "Introduction to NGS",
+      "Day 1: QC exercises"
+    ]
+  },
+  {
+    "objectID": "ngs/mapping_lecture.html#this-lecture",
+    "href": "ngs/mapping_lecture.html#this-lecture",
+    "title": "Mapping sequencing reads",
+    "section": "This lecture",
+    "text": "This lecture\n\nMapping and BLAST: what they do, and how they differ\nAlignments: mismatches, gaps, pairs and repeats\nRNA: reads across splice junctions\nSAM files and mapping statistics\nThe exercises"
+  },
+  {
+    "objectID": "ngs/mapping_lecture.html#where-we-are-in-the-workflow",
+    "href": "ngs/mapping_lecture.html#where-we-are-in-the-workflow",
+    "title": "Mapping sequencing reads",
+    "section": "Where we are in the workflow",
+    "text": "Where we are in the workflow"
+  },
+  {
+    "objectID": "ngs/mapping_lecture.html#from-reads-to-positions",
+    "href": "ngs/mapping_lecture.html#from-reads-to-positions",
+    "title": "Mapping sequencing reads",
+    "section": "From reads to positions",
+    "text": "From reads to positions\n\nAfter sequencing we have millions of short reads, and we don’t know where any of them came from.\nMapping finds, for each read, the place in a reference where it fits best.\n\nReference genome: the assembled chromosomes of the species\nReference transcriptome: the sequences of all known transcripts\n\n\nOnce reads have a position we can count them per gene, look for variants, or check coverage."
+  },
+  {
+    "objectID": "ngs/mapping_lecture.html#many-reads-one-reference",
+    "href": "ngs/mapping_lecture.html#many-reads-one-reference",
+    "title": "Mapping sequencing reads",
+    "section": "Many reads, one reference",
+    "text": "Many reads, one reference"
+  },
+  {
+    "objectID": "ngs/mapping_lecture.html#mapping-in-a-picture",
+    "href": "ngs/mapping_lecture.html#mapping-in-a-picture",
+    "title": "Mapping sequencing reads",
+    "section": "Mapping in a picture",
+    "text": "Mapping in a picture\n\n\n\nRead 1: two mismatches. Read 2: local alignment, both ends clipped. Read 3: a 2-base insertion and a 1-base deletion. Figure: Galaxy Training Network"
+  },
+  {
+    "objectID": "ngs/mapping_lecture.html#blast",
+    "href": "ngs/mapping_lecture.html#blast",
+    "title": "Mapping sequencing reads",
+    "section": "BLAST",
+    "text": "BLAST\nBasic Local Alignment Search Tool (Altschul et al., 1990)\n\nOne sequence, the query, against a large database (for example NCBI nt, or all proteins)\nFinds similar sequences, not only identical ones, also in other species\nAnswers: what is this sequence?\n\n\n\n\n\n\nProgram\nQuery\nDatabase\n\n\n\n\nblastn\nDNA\nDNA\n\n\nblastp\nprotein\nprotein\n\n\nblastx\nDNA, translated\nprotein\n\n\ntblastn\nprotein\nDNA, translated"
+  },
+  {
+    "objectID": "ngs/mapping_lecture.html#how-blast-works",
+    "href": "ngs/mapping_lecture.html#how-blast-works",
+    "title": "Mapping sequencing reads",
+    "section": "How BLAST works",
+    "text": "How BLAST works\n\nSeed and extend: look for short exact matches first, then align only around them."
+  },
+  {
+    "objectID": "ngs/mapping_lecture.html#reading-a-blast-hit",
+    "href": "ngs/mapping_lecture.html#reading-a-blast-hit",
+    "title": "Mapping sequencing reads",
+    "section": "Reading a BLAST hit",
+    "text": "Reading a BLAST hit\n\n\n\n\n\n\n\n\nColumn\nMeaning\n\n\n\n\n% identity\nShare of identical positions in the alignment\n\n\nAlignment length\nHow much of the query is aligned\n\n\nBit score\nAlignment score, independent of the database size\n\n\nE-value\nNumber of hits this good expected by chance in a database this size\n\n\n\n\n\n\n\n\nE-value: close to 0 (e.g. 1e-50) means the hit is very unlikely to be chance. Around 1 or above means it could easily be chance."
+  },
+  {
+    "objectID": "ngs/mapping_lecture.html#blast-or-a-mapper",
+    "href": "ngs/mapping_lecture.html#blast-or-a-mapper",
+    "title": "Mapping sequencing reads",
+    "section": "BLAST or a mapper?",
+    "text": "BLAST or a mapper?\n\n\n\n\n\n\n\n\n\n\nBLAST\nRead mapper (Bowtie 2, STAR)\n\n\n\n\nQuestion\nWhat is this sequence?\nWhere in this genome does it come from?\n\n\nQueries\nOne or a few\nMillions of reads\n\n\nDatabase\nMany species\nOne reference genome\n\n\nDifferences allowed\nMany: finds distant relatives\nFew: same or closely related species\n\n\nSpeed per sequence\nSeconds\nMicroseconds\n\n\n\n\n\nBoth seed and extend. Mappers make it fast by indexing one reference once, and by expecting the read to be almost identical to it."
+  },
+  {
+    "objectID": "ngs/mapping_lecture.html#why-not-just-search",
+    "href": "ngs/mapping_lecture.html#why-not-just-search",
+    "title": "Mapping sequencing reads",
+    "section": "Why not just search?",
+    "text": "Why not just search?\n\n\n20 million read pairs × a genome of roughly 700 Mb (cassava)\nComparing every read with every position: about 1016 comparisons\nSearching with BLAST would take weeks\n\n\nMappers first build an index of the reference, once. Then each read is looked up in the index, like a word in the index at the back of a book."
+  },
+  {
+    "objectID": "ngs/mapping_lecture.html#index-seed-extend",
+    "href": "ngs/mapping_lecture.html#index-seed-extend",
+    "title": "Mapping sequencing reads",
+    "section": "Index, seed, extend",
+    "text": "Index, seed, extend\n\n\n\nEach mapper builds its own index format. A Bowtie 2 index cannot be used by STAR."
+  },
+  {
+    "objectID": "ngs/mapping_lecture.html#what-an-alignment-allows",
+    "href": "ngs/mapping_lecture.html#what-an-alignment-allows",
+    "title": "Mapping sequencing reads",
+    "section": "What an alignment allows",
+    "text": "What an alignment allows\n\n\n\n\n\n\n\n\nDifference\nWhy it happens\n\n\n\n\nMismatch\nSequencing error, or a real variant (SNP)\n\n\nInsertion / deletion\nSequencing error (homopolymers), or a real indel\n\n\nSoft clipping\nAdapter left on the read, low-quality ends, structural variant\n\n\n\n\nEvery difference costs points. The mapper reports the alignment with the best score."
+  },
+  {
+    "objectID": "ngs/mapping_lecture.html#end-to-end-or-local",
+    "href": "ngs/mapping_lecture.html#end-to-end-or-local",
+    "title": "Mapping sequencing reads",
+    "section": "End-to-end or local?",
+    "text": "End-to-end or local?\n\nEnd-to-end: the whole read must align. Unaligned ends are penalised as mismatches.\nLocal: the ends may be clipped if they don’t fit. Good when reads still carry adapter or low-quality ends.\n\n\nIn Bowtie 2: --very-sensitive (end-to-end) vs --very-sensitive-local (local). You will try both."
+  },
+  {
+    "objectID": "ngs/mapping_lecture.html#paired-end-reads",
+    "href": "ngs/mapping_lecture.html#paired-end-reads",
+    "title": "Mapping sequencing reads",
+    "section": "Paired-end reads",
+    "text": "Paired-end reads\n\n\n\n\n\nA pair that maps as expected is concordant (Bowtie 2) or properly paired (samtools)."
+  },
+  {
+    "objectID": "ngs/mapping_lecture.html#reads-that-fit-in-many-places",
+    "href": "ngs/mapping_lecture.html#reads-that-fit-in-many-places",
+    "title": "Mapping sequencing reads",
+    "section": "Reads that fit in many places",
+    "text": "Reads that fit in many places\nGenomes are full of repeats: transposons, gene families, duplicated regions.\n\n\n\n\n\n\n\nA read that fits equally well in several places is a multi-mapping read. The mapper picks one at random, or reports all of them.\nMAPQ (mapping quality) says how sure the mapper is: 0 means it could be anywhere."
+  },
+  {
+    "objectID": "ngs/mapping_lecture.html#plant-genomes-are-special",
+    "href": "ngs/mapping_lecture.html#plant-genomes-are-special",
+    "title": "Mapping sequencing reads",
+    "section": "Plant genomes are special",
+    "text": "Plant genomes are special\n\n\nLarge and full of transposable elements: often more than half the genome\nOften polyploid: several copies of each chromosome, similar but not identical\nOften heterozygous: cassava is, so the two copies of a chromosome differ\n\n\nYour cultivar is not the reference cultivar. Differences between them will look like mismatches to the mapper."
+  },
+  {
+    "objectID": "ngs/mapping_lecture.html#reads-across-exons",
+    "href": "ngs/mapping_lecture.html#reads-across-exons",
+    "title": "Mapping sequencing reads",
+    "section": "Reads across exons",
+    "text": "Reads across exons\n\nIn RNA-seq, reads come from spliced transcripts. Many reads span an exon-exon junction."
+  },
+  {
+    "objectID": "ngs/mapping_lecture.html#splice-aware-mappers",
+    "href": "ngs/mapping_lecture.html#splice-aware-mappers",
+    "title": "Mapping sequencing reads",
+    "section": "Splice-aware mappers",
+    "text": "Splice-aware mappers\n\n\nSTAR, HISAT2: allow a read to be split across an intron\nAn annotation (GTF) tells them where known exons and junctions are\nThey also find new junctions from the data\n\n\nThat is why STAR needs the .gtf file when it builds its index, and Bowtie 2 doesn’t."
+  },
+  {
+    "objectID": "ngs/mapping_lecture.html#which-mapper-for-which-data",
+    "href": "ngs/mapping_lecture.html#which-mapper-for-which-data",
+    "title": "Mapping sequencing reads",
+    "section": "Which mapper for which data?",
+    "text": "Which mapper for which data?\n\n\n\n\n\n\n\n\nData\nTypical tools\n\n\n\n\nDNA, short reads\nBowtie 2, BWA-MEM2\n\n\nRNA, short reads\nSTAR, HISAT2\n\n\nLong reads (DNA or RNA)\nminimap2\n\n\nRNA, counts only\nSalmon, kallisto (pseudo-alignment, no exact positions)"
+  },
+  {
+    "objectID": "ngs/mapping_lecture.html#sam-one-line-per-alignment",
+    "href": "ngs/mapping_lecture.html#sam-one-line-per-alignment",
+    "title": "Mapping sequencing reads",
+    "section": "SAM: one line per alignment",
+    "text": "SAM: one line per alignment\n\nA header (lines starting with @), then 11 tab-separated columns per read:\n\n\n\n\n\n\n\n\nColumn\nName\nExample\n\n\n\n\n1\nRead name\nread_123\n\n\n2\nFLAG\n99\n\n\n3\nReference\nChromosome01\n\n\n4\nPosition\n1048576\n\n\n5\nMAPQ\n42\n\n\n6\nCIGAR\n5S70M\n\n\n7 to 9\nMate: reference, position, fragment length\n=, 1048790, 289\n\n\n10, 11\nSequence, qualities\nACGT…, FFF:…"
+  },
+  {
+    "objectID": "ngs/mapping_lecture.html#cigar-read-alignment",
+    "href": "ngs/mapping_lecture.html#cigar-read-alignment",
+    "title": "Mapping sequencing reads",
+    "section": "CIGAR: read alignment",
+    "text": "CIGAR: read alignment\n\n\nIn RNA-seq you will also see N: a skipped region, the intron (e.g. 80M2000N70M)."
+  },
+  {
+    "objectID": "ngs/mapping_lecture.html#flag-yesno-answers-in-one-number",
+    "href": "ngs/mapping_lecture.html#flag-yesno-answers-in-one-number",
+    "title": "Mapping sequencing reads",
+    "section": "FLAG: yes/no answers in one number",
+    "text": "FLAG: yes/no answers in one number\n\nFLAG is a sum. Each yes/no answer has its own value:\n\n\n\nValue\nMeaning\nIn FLAG 99?\n\n\n\n\n1\nRead is paired\nyes\n\n\n2\nPair is properly paired\nyes\n\n\n4\nRead is unmapped\n\n\n\n16\nRead is on the reverse strand\n\n\n\n32\nMate is on the reverse strand\nyes\n\n\n64\nFirst read of the pair (R1)\nyes\n\n\n128\nSecond read of the pair (R2)\n\n\n\n256\nNot the primary alignment\n\n\n\n\n\n99 = 1 + 2 + 32 + 64. Decode any FLAG at broadinstitute.github.io/picard/explain-flags.html."
+  },
+  {
+    "objectID": "ngs/mapping_lecture.html#sam-bam-and-samtools",
+    "href": "ngs/mapping_lecture.html#sam-bam-and-samtools",
+    "title": "Mapping sequencing reads",
+    "section": "SAM, BAM and samtools",
+    "text": "SAM, BAM and samtools\n\n\nSAM is text: readable, but large\nBAM is the compressed binary version of the same data\nsamtools converts, sorts, indexes and summarises them\n\nsamtools view -b sample.sam &gt; sample.bam\nsamtools sort -o sample.sorted.bam sample.bam\nsamtools index sample.sorted.bam\nsamtools flagstat sample.sorted.bam"
+  },
+  {
+    "objectID": "ngs/mapping_lecture.html#what-does-a-good-mapping-look-like",
+    "href": "ngs/mapping_lecture.html#what-does-a-good-mapping-look-like",
+    "title": "Mapping sequencing reads",
+    "section": "What does a good mapping look like?",
+    "text": "What does a good mapping look like?\n\n\n\n\n\nDNA, same species\nRNA-seq\n\n\n\n\nOverall alignment rate\nabove 90 %\n70 to 90 % uniquely mapped\n\n\nProperly paired\nmost pairs\nmost pairs\n\n\nMulti-mapping\na few %\na few % to 10 %\n\n\n\nThese are rules of thumb for a whole reference genome."
+  },
+  {
+    "objectID": "ngs/mapping_lecture.html#unmapped-reads",
+    "href": "ngs/mapping_lecture.html#unmapped-reads",
+    "title": "Mapping sequencing reads",
+    "section": "Unmapped reads",
+    "text": "Unmapped reads\n\n\nWrong or incomplete reference\nContamination (bacteria, fungi, human)\nAdapters or poor quality left on the reads\nA divergent cultivar or species\nrRNA in RNA-seq\n\n\n\n\n\n\n\n\nImportant\n\n\nIn the exercise we map to chromosome 1 only. Cassava has 18 chromosomes. What mapping rate do you expect?"
+  },
+  {
+    "objectID": "ngs/mapping_lecture.html#you-will",
+    "href": "ngs/mapping_lecture.html#you-will",
+    "title": "Mapping sequencing reads",
+    "section": "You will",
+    "text": "You will\n\n\n\n\nSample\nData\nMapper\nIndex needs\n\n\n\n\nTMEB117\nDNA, paired-end\nBowtie 2\nchromosome01.fasta\n\n\nTMEB419\nRNA, paired-end\nSTAR\nchromosome01.fasta + .gtf\n\n\n\n\n\nBuild both indexes, map, read the logs\nCompare raw and trimmed reads, local and end-to-end\nLook inside the SAM file with samtools"
+  },
+  {
+    "objectID": "ngs/mapping_lecture.html#summary",
+    "href": "ngs/mapping_lecture.html#summary",
+    "title": "Mapping sequencing reads",
+    "section": "Summary",
+    "text": "Summary\n\n\nMapping places each read on a reference, using an index to be fast\nBLAST finds similar sequences across species; mappers place millions of reads in one genome\nAlignments allow mismatches, gaps and clipping, each at a cost\nPairs and MAPQ help with repeats; plant genomes have many\nRNA needs a splice-aware mapper such as STAR\nSAM/BAM stores the result; the log tells you if it worked"
+  },
+  {
+    "objectID": "ngs/day2.html",
+    "href": "ngs/day2.html",
+    "title": "NGS day 2: Mapping",
+    "section": "",
+    "text": "Today you map the reads you checked on day 1 to the cassava reference: the DNA reads with Bowtie 2 and the RNA reads with STAR.",
+    "crumbs": [
+      "Home",
+      "Introduction to NGS",
+      "Day 2: Mapping"
+    ]
+  },
+  {
+    "objectID": "ngs/day2.html#lecture",
+    "href": "ngs/day2.html#lecture",
+    "title": "NGS day 2: Mapping",
+    "section": "1. Lecture",
+    "text": "1. Lecture\nBefore class, watch the recorded lecture in Canvas. The slides:\n\nMapping sequencing reads\n\nLearning outcomes. After today you can:\n\nexplain what a mapper does, and why it needs an index\ntell local and end-to-end alignment apart\nexplain why RNA-seq reads need a splice-aware mapper\nread the main columns of a SAM file\njudge a mapping from its log file",
+    "crumbs": [
+      "Home",
+      "Introduction to NGS",
+      "Day 2: Mapping"
+    ]
+  },
+  {
+    "objectID": "ngs/day2.html#lecture-quiz",
+    "href": "ngs/day2.html#lecture-quiz",
+    "title": "NGS day 2: Mapping",
+    "section": "2. Lecture quiz",
+    "text": "2. Lecture quiz\nIn Canvas, before class.",
+    "crumbs": [
+      "Home",
+      "Introduction to NGS",
+      "Day 2: Mapping"
+    ]
+  },
+  {
+    "objectID": "ngs/day2.html#discussion",
+    "href": "ngs/day2.html#discussion",
+    "title": "NGS day 2: Mapping",
+    "section": "3. Discussion",
+    "text": "3. Discussion\nWe will talk about these questions in class. Think about them before you come.\n\nWhy do we build an index before mapping, and why can’t Bowtie 2 and STAR share one?\nWhen would you map to the genome, and when to the transcriptome?\nWhat could a low mapping rate mean? What rate do you expect when you map to one chromosome out of 18?\nShould you map trimmed or raw reads? What would you check to decide?",
+    "crumbs": [
+      "Home",
+      "Introduction to NGS",
+      "Day 2: Mapping"
+    ]
+  },
+  {
+    "objectID": "ngs/day2.html#exercises",
+    "href": "ngs/day2.html#exercises",
+    "title": "NGS day 2: Mapping",
+    "section": "4. Exercises",
+    "text": "4. Exercises\n\nThe NGS data: a reminder of the files and your folder layout from day 1\nMapping sequencing reads",
+    "crumbs": [
+      "Home",
+      "Introduction to NGS",
+      "Day 2: Mapping"
+    ]
+  },
+  {
+    "objectID": "ngs/day2.html#lab-quiz",
+    "href": "ngs/day2.html#lab-quiz",
+    "title": "NGS day 2: Mapping",
+    "section": "5. Lab quiz",
+    "text": "5. Lab quiz\nIn Canvas, after the exercises.",
+    "crumbs": [
+      "Home",
+      "Introduction to NGS",
+      "Day 2: Mapping"
+    ]
+  },
+  {
+    "objectID": "ngs/NGS_data.html",
+    "href": "ngs/NGS_data.html",
+    "title": "The NGS data",
+    "section": "",
+    "text": "We use the same data on both NGS days. Come back to this page whenever you need to find the files again.\n\nThe samples\nThe data we will be working on are DNA sequencing data and RNA sequencing data from cassava cultivars.\nThe paired end DNA sequences were retrieved from the cassava cultivar called TMEB117, a cultivar whose genome is now known and that, due to its susceptibility to certain cassava diseases, can be used as a reference for studying virus resistance mechanisms in cassava.\nThe paired end RNA sequencing data comes from a cassava genotype called TMEB419. This cultivar was bred to be highly resistant to various cassava viruses and is used commercially.\nThe reference sequence is chromosome01 from the latest cassava genome build V8. To save time and computing power we use only this one chromosome.\nSpecial thanks to Andreas Gisel for providing these samples (and the picture above)!\n\n\nThe files\n\n\n\n\n\n\n\nFile\nWhat it is\n\n\n\n\nTMEB117_R1_frac.fastq, TMEB117_R2_frac.fastq\nDNA sequencing: paired-end reads of cultivar TMEB117 (a fraction of the full run)\n\n\nTMEB419RNA_frag_R1.fastq, TMEB419RNA_frag_R2.fastq\nRNA sequencing: paired-end reads of cultivar TMEB419 (a fragment of the full run)\n\n\nchromosome01.fasta\nReference sequence: chromosome 1 of the cassava genome V8\n\n\nMesculenta_671_v8.1.gene_exons.gff3\nGene annotation for the reference, in GFF3 format\n\n\nMesculenta_671_v8.1.gene_exons.gtf\nThe same annotation in GTF format, which STAR needs\n\n\n\n\n\nData location\nThe data is on the server in the course directory, in the folder teachers/course_data/NGS/. You find the course directory in Canvas.\nSave the path in a variable, so you only have to type it once (replace &lt;course directory&gt; with the path from Canvas):\nDATA=&lt;course directory&gt;/teachers/course_data/NGS\nls -lh $DATA\n\n\n\n\n\n\nNote\n\n\n\nA variable only lives as long as your terminal session. If you log in again, or start a new screen session, set DATA again.\n\n\n\n\nYour working directory\nOver the two days you build up this folder structure in your own folder in the course directory:\nNGS_course/\n├── raw/                  links to the fastq files (day 1)\n├── singularity_images/   container images\n├── scripts/              your SLURM scripts\n├── fastqc/               FastQC reports (day 1)\n├── multiqc/              MultiQC report (day 1)\n├── fastp/                trimmed reads (day 1)\n└── mapping/              (day 2)\n    ├── ref/              links to the reference, and the indexes\n    ├── bowtie2/          DNA mapping results\n    └── star/             RNA mapping results",
+    "crumbs": [
+      "Home",
+      "Introduction to NGS",
+      "The data"
+    ]
+  },
+  {
     "objectID": "index.html",
     "href": "index.html",
     "title": "Introduction to Bioinformatics 2026",
     "section": "",
-    "text": "Welcome! This page collects the material for my parts of the course BK0004, Introduction to Bioinformatics. Check on the courses Canvas page for the other material.\nMore material will appear here before each session.",
+    "text": "Welcome! This page collects the material for my parts of the course BK0004, Introduction to Bioinformatics. Check on the courses Canvas page for the other material.",
     "crumbs": [
       "Home"
     ]
@@ -80,16 +764,457 @@
     ]
   },
   {
-    "objectID": "NGS_data.html",
-    "href": "NGS_data.html",
-    "title": "The NGS data",
+    "objectID": "ngs/day1.html",
+    "href": "ngs/day1.html",
+    "title": "NGS day 1: Quality control",
     "section": "",
-    "text": "The data we will be working on are DNA sequencing data and RNA sequencing data from cassava cultivars.\nThe paired end DNA sequences were retrieved from the cassava cultivar called TMEB117, a cultivar whose genome is now known and that, due to its susceptibility to certain cassava diseases, can be used as a reference for studying virus resistance mechanisms in cassava.\nThe paired end RNA sequencing data comes from a cassava genotype called TMEB419. This cultivar was bred to be highly resistant to various cassava viruses and is used commercially.\nThe reference sequence is chromosome01 from the latest cassava genome build V8. To save time and computing power we use only this one chromosome.\nSpecial thanks to Andreas Gisel for providing these samples (and the picture above)!\n\nWhat files do we have?\n\n\n\n\n\n\n\nFile\nWhat it contains\n\n\n\n\nTMEB117_R1_frac.fastq, TMEB117_R2_frac.fastq\nDNA sequencing: paired-end reads of cultivar TMEB117 (a fraction of the full run)\n\n\nTMEB419RNA_frag_R1.fastq, TMEB419RNA_frag_R2.fastq\nRNA sequencing: paired-end reads of cultivar TMEB419 (a fragment of the full run)\n\n\nchromosome01.fasta\nReference sequence: chromosome 1 of the cassava genome V8\n\n\nMesculenta_671_v8.1.gene_exons.gff3\nGene annotation for the reference, in GFF3 format\n\n\nMesculenta_671_v8.1.gene_exons.gtf\nThe same annotation in GTF format, which STAR needs\n\n\n\n\n\nData location\nThe data is on the server in the course directory, in the folder teachers/course_data/NGS/. You find the course directory in Canvas.",
+    "text": "Today we will look at raw sequencing reads and check whether they are good enough to work with. We will use FastQC, MultiQC and fastp on the cluster, run in containers and submitted with SLURM.\n\nLearning outcomes\nAfter today you can:\n\nexplain how short-read and long-read sequencing work, and choose a platform for a question\nexplain why QC of sequencing data is necessary\ninterpret a FastQC report and its warnings, for DNA and for RNA data\nrun tools in containers and submit them as SLURM jobs\ndecide whether reads need trimming, and check the result\n\n\n\nLecture slides\nBefore today I assume that you have watched the recorded lectures in Canvas, and answered the quiz there. Here are the slides:\n\nHigh-throughput sequencing\nQuality control of sequencing data\n\n\n\nIn class discussion\nWe will talk about these questions in class. Think about them before you come.\n\nYour sequencing facility sends a report that says all samples passed. Why check quality yourself?\nFastQC marks “per base sequence content” red for RNA-seq data. Is that a problem? Would it be for DNA?\nWhy do we link to the data instead of copying it into our own folder?\nWhat does a container solve that installing the tool yourself does not?",
     "crumbs": [
       "Home",
-      "NGS",
-      "The data"
+      "Introduction to NGS",
+      "Day 1: Quality control"
     ]
+  },
+  {
+    "objectID": "ngs/mapping_exercises.html",
+    "href": "ngs/mapping_exercises.html",
+    "title": "Mapping sequencing reads",
+    "section": "",
+    "text": "Now that you have looked at the quality of the samples, we will go to the next step of a typical analysis: mapping the reads to a reference genome. Once we know where our reads map we can continue to annotate our reads. You will annotate a genome in a different module of this course.",
+    "crumbs": [
+      "Home",
+      "Introduction to NGS",
+      "Day 2: Mapping exercises"
+    ]
+  },
+  {
+    "objectID": "ngs/mapping_exercises.html#connect-to-hpc2n",
+    "href": "ngs/mapping_exercises.html#connect-to-hpc2n",
+    "title": "Mapping sequencing reads",
+    "section": "Connect to HPC2N",
+    "text": "Connect to HPC2N\nFor this tutorial we will connect to the course server.\nTo connect to the server, please follow the instructions here.\nQuick access link to the on-demand service of HPC2N:\nHPC2N on-demand link.",
+    "crumbs": [
+      "Home",
+      "Introduction to NGS",
+      "Day 2: Mapping exercises"
+    ]
+  },
+  {
+    "objectID": "ngs/mapping_exercises.html#navigate-to-your-course-directory",
+    "href": "ngs/mapping_exercises.html#navigate-to-your-course-directory",
+    "title": "Mapping sequencing reads",
+    "section": "Navigate to your course directory",
+    "text": "Navigate to your course directory\nMake sure you are in your folder in the course directory. If you need a reminder of the folder layout from the first NGS day, see The NGS data.\n\n\n\n\n\n\nNoteSkipped NGS day 1? Unfold here to set up what you need\n\n\n\n\n\nThe mapping exercises build on the folder layout from day 1. If you don’t have an NGS_course folder yet, create it now (replace &lt;course directory&gt; with the path from Canvas):\ncd &lt;course directory&gt;\nmkdir -p &lt;your_name&gt;/NGS_course/raw\ncd &lt;your_name&gt;/NGS_course\nmkdir scripts singularity_images\nln -s &lt;course directory&gt;/teachers/course_data/NGS/*.fastq raw/\nls raw\nls raw should list four fastq files. Then go back to &lt;course directory&gt;/&lt;your_name&gt; and carry on below.\nYou won’t have the trimmed reads in fastp/. That’s fine, because today we map the raw reads. For how containers and sbatch work, see Quality control.",
+    "crumbs": [
+      "Home",
+      "Introduction to NGS",
+      "Day 2: Mapping exercises"
+    ]
+  },
+  {
+    "objectID": "ngs/mapping_exercises.html#start-a-screen-session",
+    "href": "ngs/mapping_exercises.html#start-a-screen-session",
+    "title": "Mapping sequencing reads",
+    "section": "Start a screen session",
+    "text": "Start a screen session\nScreen or GNU Screen is a terminal multiplexer. In other words, it means that you can start a screen session and then open any number of windows (virtual terminals) inside that session. Processes running in Screen will continue to run when their window is not visible even if you get disconnected.\nStart a named session\nscreen -S mapping\nYou can detach from the screen session. The process within the screen will continue to run.\nCtrl + a d\nYou can always reattach to the session. If you have a number of screen running, or are unsure of the name or ID of the screen you want to reattach to you can list the currently running screens:\nscreen -ls\nTo resume your screen session use the following command:\nscreen -r name\n\n\n\n\n\n\nImportantTo do for you\n\n\n\nCan you find the screen session that you started on the first NGS day?",
+    "crumbs": [
+      "Home",
+      "Introduction to NGS",
+      "Day 2: Mapping exercises"
+    ]
+  },
+  {
+    "objectID": "ngs/mapping_exercises.html#create-a-directory-to-work-in",
+    "href": "ngs/mapping_exercises.html#create-a-directory-to-work-in",
+    "title": "Mapping sequencing reads",
+    "section": "Create a directory to work in",
+    "text": "Create a directory to work in\nStart by creating a workspace for this exercise in your folder in the course directory, and then move into it:\nmkdir -p  NGS_course/mapping/ref\ncd NGS_course/mapping/ref",
+    "crumbs": [
+      "Home",
+      "Introduction to NGS",
+      "Day 2: Mapping exercises"
+    ]
+  },
+  {
+    "objectID": "ngs/mapping_exercises.html#symbolic-links-to-data",
+    "href": "ngs/mapping_exercises.html#symbolic-links-to-data",
+    "title": "Mapping sequencing reads",
+    "section": "Symbolic links to data",
+    "text": "Symbolic links to data\nTo save time and computation power we will use only chromosome01 for the exercise.\nThe reference data files are located in the course directory, in teachers/course_data/NGS/ (see The NGS data). Save the path in a variable again (replace &lt;course directory&gt; with the path from Canvas):\nDATA=&lt;course directory&gt;/teachers/course_data/NGS\nCreate symbolic links to the reference files in your workspace:\nln -s $DATA/chromosome01.fasta .\nln -s $DATA/Mesculenta_671_v8.1.gene_exons.gff3 .\nln -s $DATA/Mesculenta_671_v8.1.gene_exons.gtf .\n\n\n\n\n\n\nImportantTo do for you\n\n\n\nDo you remember why we decided to link to the files instead of copying them?\n\n\nCheck that you can now see the linked files in the directory and move back into the directory “mapping”.\nls\ncd ..",
+    "crumbs": [
+      "Home",
+      "Introduction to NGS",
+      "Day 2: Mapping exercises"
+    ]
+  },
+  {
+    "objectID": "ngs/mapping_exercises.html#bowtie-2",
+    "href": "ngs/mapping_exercises.html#bowtie-2",
+    "title": "Mapping sequencing reads",
+    "section": "Bowtie 2",
+    "text": "Bowtie 2\nNow we are all set to map our paired end DNA sequences onto the reference.\nBowtie2 is an ultrafast and memory-efficient tool for aligning sequencing reads to long reference sequences. It is particularly good at aligning reads of about 50 up to 100s or 1,000s of characters, and particularly good at aligning to relatively long (e.g. mammalian) genomes. Bowtie 2 indexes the genome with an FM Index to keep its memory footprint small: for the human genome, its memory footprint is typically around 3.2 GB. Bowtie 2 supports gapped, local, and paired-end alignment modes.",
+    "crumbs": [
+      "Home",
+      "Introduction to NGS",
+      "Day 2: Mapping exercises"
+    ]
+  },
+  {
+    "objectID": "ngs/mapping_exercises.html#apptainer-image",
+    "href": "ngs/mapping_exercises.html#apptainer-image",
+    "title": "Mapping sequencing reads",
+    "section": "Apptainer image",
+    "text": "Apptainer image\nGo to seqera containers, and get the container image path for bioconda::bowtie2. Remember to get the singularity container, not the one for docker.\nPull the image into the singularity_images directory.\n\n\n\n\n\n\nCautionExpand to see the code - try yourself first\n\n\n\n\n\napptainer pull --name bowtie2_2.5.5.sif oras://community.wave.seqera.io/library/bowtie2:2.5.5--8fdad5cac15e31bc",
+    "crumbs": [
+      "Home",
+      "Introduction to NGS",
+      "Day 2: Mapping exercises"
+    ]
+  },
+  {
+    "objectID": "ngs/mapping_exercises.html#create-index",
+    "href": "ngs/mapping_exercises.html#create-index",
+    "title": "Mapping sequencing reads",
+    "section": "Create index",
+    "text": "Create index\nEach NGS mapper uses indices to accelerate the mapping process, but unfortunately each one has his own way to create these indices. Therefore we first need to create the index for bowtie2 of our reference sequence, which we will call Bowtie2Cassava01Index and will be located in the reference directory.\nCreate a bash file within the scripts directory:\ntouch bowtie_index.sh\nAnd copy the following into the file:\n#! /bin/bash -l\n\n#SBATCH -A &lt;course project ID&gt;\n#SBATCH -t 05:00\n#SBATCH -n 1\n\nset -ueo pipefail\n\n# Define input reference and output directory\nREFERENCE=mapping/ref/chromosome01.fasta\nOUTPUT_DIR=mapping/ref/\n\napptainer exec singularity_images/bowtie2_2.5.5.sif \\\n    bowtie2-build -o 3 $REFERENCE $OUTPUT_DIR/Bowtie2Cassava01Index\n    \necho \"complete\"\nSave the above code and run the script using\nsbatch scripts/bowtie_index.sh\n\n\n\n\n\n\nImportant\n\n\n\nFrom where are you calling this script?\n\n\nYou will get the following index files:",
+    "crumbs": [
+      "Home",
+      "Introduction to NGS",
+      "Day 2: Mapping exercises"
+    ]
+  },
+  {
+    "objectID": "ngs/mapping_exercises.html#map-with-bowtie2",
+    "href": "ngs/mapping_exercises.html#map-with-bowtie2",
+    "title": "Mapping sequencing reads",
+    "section": "Map with bowtie2",
+    "text": "Map with bowtie2\nNow that we have the index we create a directory for the bowtie2 results:\nmkdir mapping/bowtie2\nand then we can run the mapping:\nMake a file in the scripts folder bowtie2_mapping.sh.\n#! /bin/bash -l\n\n#SBATCH -A &lt;course project ID&gt;\n#SBATCH -t 15:00\n#SBATCH -n 4\n\nset -ueo pipefail\n\n# Get CPUS allocated to slurm script (-n above)\nCPUS=$SLURM_NPROCS\n\nINDEX=mapping/ref/Bowtie2Cassava01Index\nR1=raw/TMEB117_R1_frac.fastq\nR2=raw/TMEB117_R2_frac.fastq\n\n# trimmed data \n# R1=fastp/TMEB117_fastp-trimmed_R1.fastq\n# R2=fastp/TMEB117_fastp-trimmed_R2.fastq\n\napptainer exec singularity_images/bowtie2_2.5.5.sif \\\n    bowtie2 --very-sensitive-local \\\n    --threads $CPUS \\\n    -x $INDEX \\\n    -S mapping/bowtie2/TMEB117.sam \\\n    -1 $R1 \\\n    -2 $R2 |& tee mapping/bowtie2/TMEB117.log\n\necho \"complete\"\n\n\n\n\n\n\nImportantTo do for you\n\n\n\nSave the script in the scripts directory and run the code.\n\n\n\n\n\n\n\n\nTip\n\n\n\nYou can check running jobs with\nsqueue -u &lt;your_user_name&gt;\n\n\nWe will get a mapping file in the SAM format and the log file with the mapping statistics.\n\nmapping/bowtie2/TMEB117.sam\nmapping/bowtie2/TMEB117.log\n\n\n\n\n\n\n\nImportantTo do for you\n\n\n\nCheck the log: how many read pairs mapped concordantly to exactly one place in the reference? What does “concordantly” mean, and why might a pair map to more than one place?\n\n\nCheck the SAM file and check how many hits we have - use samtools to do so.\n\n\n\n\n\n\nImportantTo do for you\n\n\n\nGet the appropriate container and use it from within with apptainer shell. Look into the samtools manual to figure out how to look at the file.\n\n\nNow you can play around a bit. You could see what influence the trimming might have on the mapping of these data. For that re-run the mapping with the trimmed data. Make sure you point towards the correct file paths!\nCheck the log and SAM file and see what difference we have.\nTime allowing, I propose to run a third test mapping either using the raw data of trimmed data by changing the mapping mode from local to end-to-end or from very-sensitive to fast, loosing some accuracy but reducing the mapping time.\nReplace in the commands above –very-sensitive-local to –very-sensitive or from –very-sensitive-local to –fast-local.\nAgain, compare the output with the previous ones.",
+    "crumbs": [
+      "Home",
+      "Introduction to NGS",
+      "Day 2: Mapping exercises"
+    ]
+  },
+  {
+    "objectID": "ngs/mapping_exercises.html#star",
+    "href": "ngs/mapping_exercises.html#star",
+    "title": "Mapping sequencing reads",
+    "section": "STAR",
+    "text": "STAR\nSTAR is one such splicing site sensitive mapper for RNA sequencing data.",
+    "crumbs": [
+      "Home",
+      "Introduction to NGS",
+      "Day 2: Mapping exercises"
+    ]
+  },
+  {
+    "objectID": "ngs/mapping_exercises.html#apptainer-image-1",
+    "href": "ngs/mapping_exercises.html#apptainer-image-1",
+    "title": "Mapping sequencing reads",
+    "section": "Apptainer image",
+    "text": "Apptainer image\nGo to seqera containers, and get the container image path for bioconda::star.\nPull the image into the same directory as the other container images.\n\n\n\n\n\n\nNote\n\n\n\nWhich one was that again?\n\n\n\n\n\n\n\n\nCautionExpand to see the code for the pull - try yourself first\n\n\n\n\n\napptainer pull --name star_2.7.11b.sif oras://community.wave.seqera.io/library/star:2.7.11b--d61915af03bd3432",
+    "crumbs": [
+      "Home",
+      "Introduction to NGS",
+      "Day 2: Mapping exercises"
+    ]
+  },
+  {
+    "objectID": "ngs/mapping_exercises.html#prepare-index",
+    "href": "ngs/mapping_exercises.html#prepare-index",
+    "title": "Mapping sequencing reads",
+    "section": "Prepare index",
+    "text": "Prepare index\nThe data we will use for this part of the tutorial is paired end RNA sequencing data and is already in your /raw directory (TMEB419RNA_frag_R1.fastq, TMEB419RNA_frag_R2.fastq).\nFirst, we need to generate the STAR index, and this time we will include gene annotations to enable the mapped reads to be associated with known genes and transcripts.\nNext we have to create the directory where we will store the STAR index for chromosome 1. Let’s use the /refdirectory for that:\nmkdir mapping/ref/STARCassava01Index\nThe indexing script for STAR will be the following:\n\n\n\n\n\n\nTipExercise\n\n\n\nDo you remember all the steps you need to do to run the script?\n\n\n\n\n\n\n\n\nCautionExpand to see how to run it - try yourself first\n\n\n\n\n\nSave the below in the scripts directory:\ntouch scripts/star_index.sh\nand run it from the mapping directory with\nsbatch scripts/star_index.sh\n\n\n\n#! /bin/bash -l\n\n#SBATCH -A &lt;course project ID&gt;\n#SBATCH -t 05:00\n#SBATCH -n 1\n\nset -ueo pipefail\n\nINDEX=mapping/ref/STARCassava01Index\nREFERENCE=mapping/ref/chromosome01.fasta\nGTF=mapping/ref/Mesculenta_671_v8.1.gene_exons.gtf\n\napptainer exec singularity_images/star_2.7.11b.sif \\\n    STAR    --runMode genomeGenerate \\\n        --genomeDir $INDEX \\\n        --genomeFastaFiles $REFERENCE \\\n        --sjdbGTFfile $GTF \\\n        --genomeSAindexNbases 11 \\\n        --genomeChrBinNbits 16 \\\n        --outTmpDir mapping/star_tmp\nWith this you will end up with a bunch of index files:\n\nFiles like geneInfo.tab, exonGeTrInfo.tab, transcriptInfo.tab, exonInfo.tab, sjdbList.fromGTF.out.tab, sjdbList.out.tab, sjdbInfo.txt contain the indexing information of the predicted genes, transcripts, exons and splicing sites annotated in the Mesculenta_671_v8.1.gene_exons.gtf file. Have a look around!\n\n\n\n\n\n\nImportantTo do for you\n\n\n\nHave a look around the files to see what you discover!",
+    "crumbs": [
+      "Home",
+      "Introduction to NGS",
+      "Day 2: Mapping exercises"
+    ]
+  },
+  {
+    "objectID": "ngs/mapping_exercises.html#map-with-star",
+    "href": "ngs/mapping_exercises.html#map-with-star",
+    "title": "Mapping sequencing reads",
+    "section": "Map with STAR",
+    "text": "Map with STAR\nNow we are ready to map the RNA sequences to the reference sequence.\nMake a directory for the output:\nmkdir mapping/star\nAnd then save the following script and run it with sbatch (like above).\n#! /bin/bash -l\n\n#SBATCH -A &lt;course project ID&gt;\n#SBATCH -t 15:00\n#SBATCH -n 4\n\nset -ueo pipefail\n\n# Get CPUS allocated to slurm script (-n above)\nCPUS=$SLURM_NPROCS\n\nINDEX=mapping/ref/STARCassava01Index\nREAD1=raw/TMEB419RNA_frag_R1.fastq\nREAD2=raw/TMEB419RNA_frag_R2.fastq\n\napptainer exec singularity_images/star_2.7.11b.sif \\\n    STAR --genomeDir $INDEX \\\n        --runThreadN $CPUS \\\n        --outFilterMismatchNoverLmax 0.06 \\\n        --outFilterMatchNminOverLread 0.5 \\\n        --outFilterScoreMinOverLread 0.2 \\\n        --alignIntronMax 20000 \\\n        --alignMatesGapMax 10000 \\\n        --outFileNamePrefix mapping/star/TMEB419RNA_  \\\n        --readFilesIn $READ1 $READ2\n\necho \"complete\"\nRun with sbatch.\nYour output will be the SAM file, report files and the list of predicted splicing sites.\n\n\n\n\n\n\nImportantTo do for you\n\n\n\nInspect the report file and check the mapped reads and the average mapped length.\nIs this a good mapping?",
+    "crumbs": [
+      "Home",
+      "Introduction to NGS",
+      "Day 2: Mapping exercises"
+    ]
+  },
+  {
+    "objectID": "ngs/mapping_exercises.html#footnotes",
+    "href": "ngs/mapping_exercises.html#footnotes",
+    "title": "Mapping sequencing reads",
+    "section": "Footnotes",
+    "text": "Footnotes\n\n\nhttps://www.ebi.ac.uk/training/online/courses/functional-genomics-ii-common-technologies-and-data-analysis-methods/rna-sequencing/performing-a-rna-seq-experiment/data-analysis/read-mapping-or-alignment/↩︎\nhttps://training.galaxyproject.org/training-material/topics/sequence-analysis/tutorials/mapping/tutorial.html↩︎",
+    "crumbs": [
+      "Home",
+      "Introduction to NGS",
+      "Day 2: Mapping exercises"
+    ]
+  },
+  {
+    "objectID": "ngs/ngs_intro.html",
+    "href": "ngs/ngs_intro.html",
+    "title": "Introduction to next generation sequencing (NGS)",
+    "section": "",
+    "text": "Next-generation sequencing (NGS) turns DNA or RNA from a sample into millions of short text strings, the so called reads. Reads contain the called bases, but on their own tell you very little. Before they can answer a biological question, we need to check that they are trustworthy (are of good enough quality), and work out where in the genome each one comes from. This is the basis of many different workflows, regardless of what data you will work with. So that is what we will concentrate on in this module.",
+    "crumbs": [
+      "Home",
+      "Introduction to NGS",
+      "Introduction to NGS"
+    ]
+  },
+  {
+    "objectID": "ngs/ngs_intro.html#the-data-before-it-reaches-us",
+    "href": "ngs/ngs_intro.html#the-data-before-it-reaches-us",
+    "title": "Introduction to next generation sequencing (NGS)",
+    "section": "The data before it reaches us",
+    "text": "The data before it reaches us\nBefore any NGS data hits a terminal, it’s journey typically begins in the minds of the researchers, and then goes to the lab:\n\nStudy design: what is the question the experiment should answer? which samples are necessary? how many replicates should be included?\nSample extraction: Samples are taken, and DNA or RNA is extracted. Its purity and integrity limit everything that follows.\nLibrary preparation: the DNA or RNA is fragmented, adapters and sample indexes are added so the sequencer can process the samples.\nSequencing: the sequencer reads the fragments and writes the results to so called FASTQ files: they contain the sequence of each read, as well as a quality score for every base of the sequence.\n\nOften, you will get FASTQ files from a sequencing facility without having seen any of the steps above. However, each of them can leave traces in the data, and can influence the answers you will get from the data. This is why quality control is so importan: it can tell you much about your data, and the answers you can get from them.",
+    "crumbs": [
+      "Home",
+      "Introduction to NGS",
+      "Introduction to NGS"
+    ]
+  },
+  {
+    "objectID": "ngs/ngs_intro.html#day-1-quality-control",
+    "href": "ngs/ngs_intro.html#day-1-quality-control",
+    "title": "Introduction to next generation sequencing (NGS)",
+    "section": "Day 1: Quality control",
+    "text": "Day 1: Quality control\nWhat we do: We will check the quality of the raw cassava reads with FastQC, collect the reports with MultiQC, trim the reads with fastp, and check them again.\nWhy is it important? Bad input gives bad results, and you need to know your data to assess if you can trust its results. Your analyses will run whether the input data is good or bad, it is up to you to interpret them. Low-quality bases can look like mutations, leftover adapters stop reads from mapping, and a contaminated sample can look like a biological difference. Quality control tells you whether the data can be used as it is, needs cleaning, or should not be used at all.",
+    "crumbs": [
+      "Home",
+      "Introduction to NGS",
+      "Introduction to NGS"
+    ]
+  },
+  {
+    "objectID": "ngs/ngs_intro.html#day-2-mapping",
+    "href": "ngs/ngs_intro.html#day-2-mapping",
+    "title": "Introduction to next generation sequencing (NGS)",
+    "section": "Day 2: Mapping",
+    "text": "Day 2: Mapping\nWhat we do: We will map our quality controlled reads to the cassava reference genome using specialized programs: DNA reads will be mapped with Bowtie 2, and RNA-seq reads with STAR. This results in a BAM file, which we can inspect with samtools.\nWhy is it important? A read is only useful once you know where in the genome it belongs. Mapping places each read on the reference genome. With this information we can run many more analyses: getting information on the gene function, finding variants, counting reads per gene, or measuring coverage.",
+    "crumbs": [
+      "Home",
+      "Introduction to NGS",
+      "Introduction to NGS"
+    ]
+  },
+  {
+    "objectID": "ngs/ngs_intro.html#the-data-after-we-are-done-with-it",
+    "href": "ngs/ngs_intro.html#the-data-after-we-are-done-with-it",
+    "title": "Introduction to next generation sequencing (NGS)",
+    "section": "The data after we are done with it",
+    "text": "The data after we are done with it\nIn other modules of this course you will encounter some analyses that come after the quality control and mapping: you will encounter genome annotation (what do we know about the locations we mapped the reads to?), RNAseq analyses (what genes are expressed in our samples?), and metagenomics (how can we deal with mixed species samples, and what information can we get out of them?).",
+    "crumbs": [
+      "Home",
+      "Introduction to NGS",
+      "Introduction to NGS"
+    ]
+  },
+  {
+    "objectID": "ngs/ngs_intro.html#how-will-we-work",
+    "href": "ngs/ngs_intro.html#how-will-we-work",
+    "title": "Introduction to next generation sequencing (NGS)",
+    "section": "How will we work?",
+    "text": "How will we work?\nWe will run our analyses on a high performance computing cluster, called HPC2N, using what you learned on the Bash and HPC day:\n\nthe tools run in containers with Apptainer, so you don’t install anything yourself\nlonger jobs go to the queue with SLURM\nthe data stays in one shared place, and you link to it from your own folder\n\nThe NGS data explains the data and the folder layout. Each day follows the same pattern: a recorded lecture and a lecture quiz before class, a discussion in class, exercises, and a lab quiz in Canvas.\n\nDay 1: Quality control\nDay 2: Mapping",
+    "crumbs": [
+      "Home",
+      "Introduction to NGS",
+      "Introduction to NGS"
+    ]
+  },
+  {
+    "objectID": "ngs/qc_lecture.html#this-lecture",
+    "href": "ngs/qc_lecture.html#this-lecture",
+    "title": "Quality control of sequencing data",
+    "section": "This lecture",
+    "text": "This lecture\nAfter this lecture you can:\n\nExplain why QC of sequencing data is necessary\nInterpret FastQC reports and their warnings\nDecide what action, if any, to take based on QC results"
+  },
+  {
+    "objectID": "ngs/qc_lecture.html#where-we-are-in-the-workflow",
+    "href": "ngs/qc_lecture.html#where-we-are-in-the-workflow",
+    "title": "Quality control of sequencing data",
+    "section": "Where we are in the workflow",
+    "text": "Where we are in the workflow"
+  },
+  {
+    "objectID": "ngs/qc_lecture.html#from-plant-to-reads",
+    "href": "ngs/qc_lecture.html#from-plant-to-reads",
+    "title": "Quality control of sequencing data",
+    "section": "From plant to reads",
+    "text": "From plant to reads\n\nPlant tissue → DNA extraction → Library preparation → Sequencing → FASTQ files\n\nEach step can introduce technical effects that later show up in QC reports.\n\nWe sequence to answer a biological question: which variants, which alleles, which genes are expressed.\nAll of these assume that the sequencing data reflects the real biology of the plant. QC checks whether that assumption is reasonable."
+  },
+  {
+    "objectID": "ngs/qc_lecture.html#what-can-go-wrong",
+    "href": "ngs/qc_lecture.html#what-can-go-wrong",
+    "title": "Quality control of sequencing data",
+    "section": "What can go wrong?",
+    "text": "What can go wrong?\n\n\n\nTechnical issue\n\nBiological consequence\n\n\n\n\nLow base quality\n→\nFalse SNPs\n\n\nAdapter contamination\n→\nArtificial variants\n\n\nGC bias\n→\nSkewed allele frequencies\n\n\nHigh duplication\n→\nOverconfidence in genotypes\n\n\n\n\n\n\n\nIn a breeding context this could mean choosing the wrong markers, missing true marker-trait associations, misjudging genetic diversity."
+  },
+  {
+    "objectID": "ngs/qc_lecture.html#step-1-dna-extraction",
+    "href": "ngs/qc_lecture.html#step-1-dna-extraction",
+    "title": "Quality control of sequencing data",
+    "section": "Step 1: DNA extraction",
+    "text": "Step 1: DNA extraction\n\n\n\n\n\nPolyphenols and polysaccharides interfere with enzymes and make DNA sticky\nDNA quality varies between samples, tissues, methods and people"
+  },
+  {
+    "objectID": "ngs/qc_lecture.html#step-2-library-preparation",
+    "href": "ngs/qc_lecture.html#step-2-library-preparation",
+    "title": "Quality control of sequencing data",
+    "section": "Step 2: Library preparation",
+    "text": "Step 2: Library preparation\n\n\n\n\n\nDNA is sheared, adapters are ligated, fragments are amplified by PCR\nDegraded DNA gives uneven coverage\nPCR amplifies some fragments more than others: PCR bias"
+  },
+  {
+    "objectID": "ngs/qc_lecture.html#step-3-sequencing",
+    "href": "ngs/qc_lecture.html#step-3-sequencing",
+    "title": "Quality control of sequencing data",
+    "section": "Step 3: Sequencing",
+    "text": "Step 3: Sequencing\n\n\n\n\n\nBase calls get less accurate towards the end of the read\nErrors accumulate over cycles\nLanes and runs differ in quality"
+  },
+  {
+    "objectID": "ngs/qc_lecture.html#plant-genomes-are-special",
+    "href": "ngs/qc_lecture.html#plant-genomes-are-special",
+    "title": "Quality control of sequencing data",
+    "section": "Plant genomes are special",
+    "text": "Plant genomes are special\nQC tools are generic. They don’t know your data comes from a plant.\n\nLarge genomes, high repeat content\nPolyploidy and high heterozygosity\nGC content that varies between species\n\n\nSo GC plots can look unusual and duplication can be high, even for good data.\nQC tools show you what looks unusual. You need biological knowledge to decide why."
+  },
+  {
+    "objectID": "ngs/qc_lecture.html#the-raw-reads",
+    "href": "ngs/qc_lecture.html#the-raw-reads",
+    "title": "Quality control of sequencing data",
+    "section": "The raw reads",
+    "text": "The raw reads\nFrom the sequencer we get the raw data in FASTQ file format. Each read takes four lines:\n\n\n@A00123:45:HKLMNDSX3:2:1101:10004:1000 1:N:0:ACGTACGT\nGATCCTAGCAATGGTCGTACCGTTAGCTTGAACCTAGGATCAGTTCAAGC\n+\nFFFFFFFFF:FFFFFFFFFFF:FFF,FFFFFFF:FFFF:FF,F:F:,#:,\n\n\n\n\n\n\n\n\n\nLine\nContent\n\n\n\n\n1\n@ + read name: instrument, run, flow cell, lane, tile, position; 1 = read 1 of the pair\n\n\n2\nThe sequence\n\n\n3\n+ (sometimes the name again)\n\n\n4\nOne quality character per base"
+  },
+  {
+    "objectID": "ngs/qc_lecture.html#quality-scores",
+    "href": "ngs/qc_lecture.html#quality-scores",
+    "title": "Quality control of sequencing data",
+    "section": "Quality scores",
+    "text": "Quality scores\n\n\nPhred score\nQ = −10 × log10(Perror)\n\n\n\nQ\nError rate\nAccuracy\n\n\n\n\n10\n1 in 10\n90%\n\n\n20\n1 in 100\n99%\n\n\n30\n1 in 1,000\n99.9%\n\n\n40\n1 in 10,000\n99.99%\n\n\n\n\nOne character per base\nQ = ASCII code − 33\n\n\n\nCharacter\nASCII\nQ\n\n\n\n\n#\n35\n2\n\n\n,\n44\n11\n\n\n:\n58\n25\n\n\nF\n70\n37"
+  },
+  {
+    "objectID": "ngs/qc_lecture.html#what-fastqc-does",
+    "href": "ngs/qc_lecture.html#what-fastqc-does",
+    "title": "Quality control of sequencing data",
+    "section": "What FastQC does",
+    "text": "What FastQC does\n\nReads a FASTQ file: millions of reads, each with a quality score per base\nRuns a series of standard tests, called modules\nWrites an HTML report with a figure or table per module\n\n\nFastQC does not know your experiment or your plans. The interpretation and decisions are up to you."
+  },
+  {
+    "objectID": "ngs/qc_lecture.html#pass-warn-fail",
+    "href": "ngs/qc_lecture.html#pass-warn-fail",
+    "title": "Quality control of sequencing data",
+    "section": "Pass, warn, fail",
+    "text": "Pass, warn, fail\nEvery module gets a label: ✅ pass, ⚠️ warn, ❌ fail.\n\nA fail does not mean the data is unusable\nA pass does not mean the data is perfect\nThresholds are generic: they assume random, whole-genome DNA\n\n\nTreat the flags as signals to investigate, not as decisions."
+  },
+  {
+    "objectID": "ngs/qc_lecture.html#basic-statistics",
+    "href": "ngs/qc_lecture.html#basic-statistics",
+    "title": "Quality control of sequencing data",
+    "section": "Basic statistics",
+    "text": "Basic statistics\n\n\n\n\nShows file name, number of reads, read length, GC %.\nCheck you are looking at the right sample, and compare read numbers between files.\nNever raises a warning."
+  },
+  {
+    "objectID": "ngs/qc_lecture.html#per-base-sequence-quality",
+    "href": "ngs/qc_lecture.html#per-base-sequence-quality",
+    "title": "Quality control of sequencing data",
+    "section": "Per base sequence quality",
+    "text": "Per base sequence quality\n\n\n\n\nShows quality scores at each position in the read.\nWe expect high quality at the start, a slow decline towards the end.\nWarning signs include a sharp drop, large parts of the read in the red, big differences between samples."
+  },
+  {
+    "objectID": "ngs/qc_lecture.html#your-turn-pause-the-video",
+    "href": "ngs/qc_lecture.html#your-turn-pause-the-video",
+    "title": "Quality control of sequencing data",
+    "section": "Your turn: Pause the video",
+    "text": "Your turn: Pause the video\n\n\n\n\n\nFrom which position does the quality drop?\nWould you use these reads as they are?"
+  },
+  {
+    "objectID": "ngs/qc_lecture.html#the-answer",
+    "href": "ngs/qc_lecture.html#the-answer",
+    "title": "Quality control of sequencing data",
+    "section": "The answer",
+    "text": "The answer\n\n\n\n\n\nThe median (red line) stays above 26, but the mean (blue line) drops below 28 around position 19. From position 26 at least a quarter of the reads are in the red zone.\nNot as they are. Trim the low-quality ends, then run FastQC again."
+  },
+  {
+    "objectID": "ngs/qc_lecture.html#per-sequence-quality-scores",
+    "href": "ngs/qc_lecture.html#per-sequence-quality-scores",
+    "title": "Quality control of sequencing data",
+    "section": "Per sequence quality scores",
+    "text": "Per sequence quality scores\n\n\n\n\nShows the mean quality per read, not per position.\nWe expect one sharp peak at high quality.\nWarning signals include a large share of low-quality reads, or a second peak. Points to library or sequencing problems, or poor starting material."
+  },
+  {
+    "objectID": "ngs/qc_lecture.html#per-base-sequence-content",
+    "href": "ngs/qc_lecture.html#per-base-sequence-content",
+    "title": "Quality control of sequencing data",
+    "section": "Per base sequence content",
+    "text": "Per base sequence content\n\n\n\n\nShows the share of A, C, G and T at each position.\nWe expect flat lines for random genomic DNA.\nBut many library types are biased at the start of the read, RNA-seq always. Ask whether the pattern is expected for your experiment."
+  },
+  {
+    "objectID": "ngs/qc_lecture.html#per-sequence-gc-content",
+    "href": "ngs/qc_lecture.html#per-sequence-gc-content",
+    "title": "Quality control of sequencing data",
+    "section": "Per sequence GC content",
+    "text": "Per sequence GC content\n\n\n\n\nIt shows GC content of the reads, against a theoretical curve.\nWe expect roughly a normal distribution, peaking at the genome’s GC content.\nWarning signals include a second peak or a shifted sample: contamination. In plants also repeats or genome composition. Always compare samples with each other."
+  },
+  {
+    "objectID": "ngs/qc_lecture.html#n-content-and-read-length",
+    "href": "ngs/qc_lecture.html#n-content-and-read-length",
+    "title": "Quality control of sequencing data",
+    "section": "N content and read length",
+    "text": "N content and read length\n\n\n\n\n\n\n\n\nN content: the sequencer could not call the base. A few at the end of reads is normal.\nRead lenght: Illumina reads have one length; PacBio and Nanopore vary. After trimming, lengths vary too."
+  },
+  {
+    "objectID": "ngs/qc_lecture.html#sequence-duplication-levels",
+    "href": "ngs/qc_lecture.html#sequence-duplication-levels",
+    "title": "Quality control of sequencing data",
+    "section": "Sequence duplication levels",
+    "text": "Sequence duplication levels\n\n\n\n\nIt shows how often identical sequences occur.\nWe expect most sequences to occur once in a diverse library.\nHigh duplication comes from PCR bias, low library complexity or very deep sequencing. In plants also conserved and repetitive regions. Normal in RNA-seq."
+  },
+  {
+    "objectID": "ngs/qc_lecture.html#overrepresented-sequences-and-adapters",
+    "href": "ngs/qc_lecture.html#overrepresented-sequences-and-adapters",
+    "title": "Quality control of sequencing data",
+    "section": "Overrepresented sequences and adapters",
+    "text": "Overrepresented sequences and adapters\n\n\n\n\n\n\n\n\nOverrepresented means single sequences are much more common than expected. Could be adapters, primers, repeats, or real biology.\nAdapter content shows which adapter is present, and how much. Tells you what to trim."
+  },
+  {
+    "objectID": "ngs/qc_lecture.html#k-mer-content-optional",
+    "href": "ngs/qc_lecture.html#k-mer-content-optional",
+    "title": "Quality control of sequencing data",
+    "section": "K-mer content (optional)",
+    "text": "K-mer content (optional)\n\n\n\n\nA k-mer is a short sequence of length k, for example the 7-mer ATCGTGA.\nFastQC looks for k-mers enriched at certain positions. Enrichment at the start or end of reads usually means adapters, primers or library artefacts.\nOnly 2 % of the reads are checked."
+  },
+  {
+    "objectID": "ngs/qc_lecture.html#three-possible-outcomes",
+    "href": "ngs/qc_lecture.html#three-possible-outcomes",
+    "title": "Quality control of sequencing data",
+    "section": "Three possible outcomes",
+    "text": "Three possible outcomes\n\nQC helps you to decide what to do next with your data.\n\n\nUse as is: minor or expected warnings\n\n\n\n\nProcess: trim adapters or low-quality ends, then run FastQC again\n\n\n\n\nInvestigate: serious problems may mean re-preparing, resequencing or excluding the sample"
+  },
+  {
+    "objectID": "ngs/qc_lecture.html#qc-in-a-reproducible-workflow",
+    "href": "ngs/qc_lecture.html#qc-in-a-reproducible-workflow",
+    "title": "Quality control of sequencing data",
+    "section": "QC in a reproducible workflow",
+    "text": "QC in a reproducible workflow\n\n\nRun QC the same way on all samples\nRecord which issues you saw\nDocument what you did about them, and why"
+  },
+  {
+    "objectID": "ngs/qc_lecture.html#many-samples-multiqc",
+    "href": "ngs/qc_lecture.html#many-samples-multiqc",
+    "title": "Quality control of sequencing data",
+    "section": "Many samples: MultiQC",
+    "text": "Many samples: MultiQC\n\nDozens of samples × 2 reads × FastQC before and after trimming: too many reports to read one by one.\n\nMultiQC collects them into one report:\n\nSamples side by side\nOutliers stand out\nSystematic problems across samples become visible\n\n\nYou will use FastQC, MultiQC and fastp in the exercises."
+  },
+  {
+    "objectID": "ngs/qc_lecture.html#summary",
+    "href": "ngs/qc_lecture.html#summary",
+    "title": "Quality control of sequencing data",
+    "section": "Summary",
+    "text": "Summary\n\nQC protects your biological conclusions from technical problems\nRemeber problems can start long before the FASTQ file: during extraction, library preparation, sequencing\nFastQC flags are signals, not verdicts; interpret them for your data and organism\nAfter QC: use, trim and re-check, or investigate\nDocument what you checked and what you did\n\n\n\nFastQC figures and module descriptions adapted from the FastQC documentation, Babraham Bioinformatics."
   },
   {
     "objectID": "server_access.html",
