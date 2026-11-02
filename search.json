@@ -80,6 +80,18 @@
     ]
   },
   {
+    "objectID": "NGS_data.html",
+    "href": "NGS_data.html",
+    "title": "The NGS data",
+    "section": "",
+    "text": "The data we will be working on are DNA sequencing data and RNA sequencing data from cassava cultivars.\nThe paired end DNA sequences were retrieved from the cassava cultivar called TMEB117, a cultivar whose genome is now known and that, due to its susceptibility to certain cassava diseases, can be used as a reference for studying virus resistance mechanisms in cassava.\nThe paired end RNA sequencing data comes from a cassava genotype called TMEB419. This cultivar was bred to be highly resistant to various cassava viruses and is used commercially.\nThe reference sequence is chromosome01 from the latest cassava genome build V8. To save time and computing power we use only this one chromosome.\nSpecial thanks to Andreas Gisel for providing these samples (and the picture above)!\n\nWhat files do we have?\n\n\n\n\n\n\n\nFile\nWhat it contains\n\n\n\n\nTMEB117_R1_frac.fastq, TMEB117_R2_frac.fastq\nDNA sequencing: paired-end reads of cultivar TMEB117 (a fraction of the full run)\n\n\nTMEB419RNA_frag_R1.fastq, TMEB419RNA_frag_R2.fastq\nRNA sequencing: paired-end reads of cultivar TMEB419 (a fragment of the full run)\n\n\nchromosome01.fasta\nReference sequence: chromosome 1 of the cassava genome V8\n\n\nMesculenta_671_v8.1.gene_exons.gff3\nGene annotation for the reference, in GFF3 format\n\n\nMesculenta_671_v8.1.gene_exons.gtf\nThe same annotation in GTF format, which STAR needs\n\n\n\n\n\nData location\nThe data is on the server in the course directory, in the folder teachers/course_data/NGS/. You find the course directory in Canvas.",
+    "crumbs": [
+      "Home",
+      "NGS",
+      "The data"
+    ]
+  },
+  {
     "objectID": "server_access.html",
     "href": "server_access.html",
     "title": "Connect to the course server",
