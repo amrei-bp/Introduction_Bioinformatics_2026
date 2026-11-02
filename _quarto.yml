@@ -4,6 +4,7 @@ project:
     - "*.qmd"
     - "ngs/*.qmd"
     - "!README.md"
+    - "!ngs/*_notes.qmd"
 
 website:
   title: "Introduction to Bioinformatics"
@@ -25,6 +26,12 @@ website:
             href: server_accounts.qmd
           - text: "Server access"
             href: server_access.qmd
+      - section: "Command line"
+        contents:
+          - text: "Introduction to Unix"
+            href: unix/unix.qmd
+          - text: "Unix Exercises"
+            href: unix/unix_exercises.qmd
       - section: "Introduction to NGS"
         contents:
           - text: "Introduction to NGS"
