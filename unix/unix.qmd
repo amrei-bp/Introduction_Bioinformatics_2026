@@ -1,0 +1,34 @@
+---
+title: "The command line"
+---
+
+Today we will work with the very basics of bioinformatics - the command line. We will get to know what it is and why it is so popular. You will learn how to move around dorectories, create, read and edit files. 
+
+This will be the basis for other modules in the course. On the course server you will use the same commands.
+
+## Learning outcomes
+
+After today you can:
+
+- explain what a shell is and why we use it for bioinformatics
+- tell absolute and relative paths apart, and write both
+- move around folders with `pwd`, `ls` and `cd`
+- create, copy, move and delete files and folders with `mkdir`, `touch`, `cp`, `mv` and `rm`
+- create and edit a text file with `nano`
+- read a file with `cat`, `less` and `head`, and use wildcards like `*`
+
+## 1. Lecture
+
+We will go through the lecture together in class. The slides are here:
+
+- [Introduction to the command line](unix_lecture.qmd){target="_blank"}
+
+## 2. Exercises
+
+We will work on the excellent tutorial from the [Software Carpentries](https://software-carpentry.org/). 
+
+[Here are the instructions](unix_exercises.qmd) on how to set up your terminal, download the data and access the tutorial. 
+
+## 3. Lab quiz
+
+In Canvas, after the exercises.

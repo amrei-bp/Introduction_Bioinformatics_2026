@@ -1,0 +1,109 @@
+---
+title: "The command line"
+---
+
+And now you will finally get to work with a terminal on your own computer, yay! 
+
+
+## 1. Get a terminal
+
+You need a terminal that runs the **Bash** shell, and the exercise data.
+
+::: {.panel-tabset}
+
+## macOS
+
+Terminal is already installed. Open it with Spotlight (<kbd>Cmd</kbd> + <kbd>Space</kbd>, type `Terminal`) or from *Applications → Utilities → Terminal*.
+
+Newer Macs start the **zsh** shell, not Bash. Check which one you have:
+
+```{.bash}
+echo $SHELL
+```
+
+If it says `/bin/zsh`, type `bash` and press <kbd>Enter</kbd> each time you open the terminal. Most commands work the same in both shells, but this way your terminal matches the exercises.
+
+## Windows
+
+Install **Git for Windows**, which includes the Git Bash terminal.
+
+1. Download the installer from [gitforwindows.org](https://gitforwindows.org/){target="_blank"}.
+2. Run it and click *Next* through all the screens. The default settings are fine.
+3. Open the Start menu, type `Git Bash`, and open it.
+
+You do not need admin rights or a restart.
+
+::: {.callout-note collapse="true"}
+## Already use WSL (Ubuntu on Windows)?
+You can use it instead. Your Windows Desktop is then at `/mnt/c/Users/<your Windows name>/Desktop`, not at `~/Desktop`. Adjust the paths in the exercises.
+:::
+
+## Linux
+
+Open the Terminal app. It runs Bash by default.
+
+:::
+
+### Download the exercise data
+
+1. Download [shell-lesson-data.zip](https://swcarpentry.github.io/shell-novice/data/shell-lesson-data.zip).
+2. Move it to your **Desktop**.
+3. Unzip it there, so that you have a folder `shell-lesson-data` on your Desktop.
+   On Windows, right-click the zip and choose **Extract All…**. Double-clicking can create a folder inside a folder with the same name.
+
+### Check that it works
+
+Open the terminal and type:
+
+```{.bash}
+cd
+ls Desktop/shell-lesson-data
+```
+
+You should see `exercise-data` and `north-pacific-gyre`. If you get `No such file or directory`, ask a teacher.
+
+## 2. Exercises
+
+We follow the Software Carpentry lesson [The Unix Shell](https://swcarpentry.github.io/shell-novice/){target="_blank"}. The data is the zip you downloaded above, so you can skip the lesson's own setup page.
+
+::: {.callout-important}
+## To do for you
+Work through these episodes. Type every command yourself, do not copy and paste. Do the challenges and only then open the solutions.
+
+1. [Introducing the Shell](https://swcarpentry.github.io/shell-novice/01-intro.html){target="_blank"}
+2. [Navigating Files and Directories](https://swcarpentry.github.io/shell-novice/02-filedir.html){target="_blank"}
+3. [Working With Files and Directories](https://swcarpentry.github.io/shell-novice/03-create.html){target="_blank"}
+4. [Pipes and Filters](https://swcarpentry.github.io/shell-novice/04-pipefilter.html){target="_blank"}
+
+**Skip the sections about Nelle** ("Nelle's Pipeline: …"). They come at the end of the episodes.
+:::
+
+::: {.callout-tip}
+## Pay extra attention to
+- **Paths.** Before each command, ask yourself: where am I (`pwd`), and where is the file I want? Most errors on the server later are a wrong path.
+- **`nano` and `touch`** in episode 3. You will write your own scripts with `nano` on the server. Do the challenge *Creating Files a Different Way*, which uses `touch`.
+- **`rm` is permanent.** There is no bin to get files back from.
+:::
+
+### Bonus
+
+- If you finish early, try your hand at [Shell Scripts](https://swcarpentry.github.io/shell-novice/06-script.html){target="_blank"}: save commands in a file and run them. On the server, every job you submit is a script like this. Skip the Nelle section. Some challenges use loops from episode 5; you can skip those.
+
+::: {.callout-note}
+## Need a reminder?
+The Carpentries [reference page](https://swcarpentry.github.io/shell-novice/reference.html){target="_blank"} lists all commands from the lesson. [explainshell.com](https://explainshell.com/){target="_blank"} explains any command you paste into it.
+:::
+
+## 3. Discussion
+
+We will talk about these questions in class.
+
+1. You type `cd data` and get `No such file or directory`, but you are sure the folder exists. What could be wrong, and which commands help you find out?
+2. When would you use an absolute path, and when a relative one? Which one still works if you move your project folder?
+3. Why do many bioinformaticians avoid spaces in file and folder names?
+4. What can you do in the terminal that is hard to do by clicking in a file browser? And the other way round?
+
+
+## 4. Lab quiz
+
+In Canvas, after the exercises.
