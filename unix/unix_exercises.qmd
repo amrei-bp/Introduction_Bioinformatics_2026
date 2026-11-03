@@ -25,18 +25,26 @@ If it says `/bin/zsh`, type `bash` and press <kbd>Enter</kbd> each time you open
 
 ## Windows
 
-Install **Git for Windows**, which includes the Git Bash terminal.
 
-1. Download the installer from [gitforwindows.org](https://gitforwindows.org/){target="_blank"}.
-2. Run it and click *Next* through all the screens. The default settings are fine.
-3. Open the Start menu, type `Git Bash`, and open it.
+To get a terminal with a linux shell, install the [Windows Subsystem for Linux (WSL)](https://learn.microsoft.com/en-us/windows/wsl/setup/environment). Follow the instructions in the link above.
 
-You do not need admin rights or a restart.
+Very short summary:
+
+- type in the bottom left search bar "powershell", right-click on the result and select "run as administrator"
+- copy-paste in the window you opened the following command:
+
+```{.bash}
+wsl --install
+```
+
+- reboot your system
+- launch WSL (the first time will take a while), set a username and a password (you will be prompted autmatically)
 
 ::: {.callout-note collapse="true"}
-## Already use WSL (Ubuntu on Windows)?
-You can use it instead. Your Windows Desktop is then at `/mnt/c/Users/<your Windows name>/Desktop`, not at `~/Desktop`. Adjust the paths in the exercises.
+## Using WSL (Ubuntu on Windows)?
+Your Windows Desktop is at `/mnt/c/Users/<your Windows name>/Desktop`, not at `~/Desktop`. Adjust the paths in the exercises.
 :::
+
 
 ## Linux
 

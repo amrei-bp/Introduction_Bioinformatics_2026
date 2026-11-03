@@ -33,9 +33,7 @@ wsl --install
 ```
 
 - reboot your system
-- open the Microsoft store and search for Ubuntu
-- install Ubuntu 22.04.3 LTS
-- launch it, set a username and a password
+- launch WSL (the first time will take a while), set a username and a password
 
 :::
 
