@@ -23,7 +23,7 @@ We will go through the lecture together in class. The slides are here:
 
 - [Introduction to the command line](unix_lecture.qmd){target="_blank"}
 
-If you want to follow along in a nice sandbox, you can use the one from [sandbox.io](https://sandbox.bio/tutorials/terminal-basics).
+If you want to follow along in a nice sandbox, you can use the one from [sandbox.io](https://sandbox.bio/tutorials/carpentries-shell-novice).
 
 ## 2. Exercises
 
