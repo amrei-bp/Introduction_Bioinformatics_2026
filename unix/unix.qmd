@@ -2,7 +2,7 @@
 title: "The command line"
 ---
 
-Today we will work with the very basics of bioinformatics - the command line. We will get to know what it is and why it is so popular. You will learn how to move around dorectories, create, read and edit files. 
+Today we will work with the very basics of bioinformatics - the command line. We will get to know what it is and why it is so popular. You will learn how to move around directories, create, read and edit files. 
 
 This will be the basis for other modules in the course. On the course server you will use the same commands.
 
@@ -23,9 +23,11 @@ We will go through the lecture together in class. The slides are here:
 
 - [Introduction to the command line](unix_lecture.qmd){target="_blank"}
 
+If you want to follow along in a nice sandbox, you can use the one from [sandbox.io](https://sandbox.bio/tutorials/terminal-basics).
+
 ## 2. Exercises
 
-We will work on the excellent tutorial from the [Software Carpentries](https://software-carpentry.org/). 
+We will work on the excellent tutorial from the [Software Carpentries](https://software-carpentry.org/). You will be able to go through the chapters at your own pace. 
 
 [Here are the instructions](unix_exercises.qmd) on how to set up your terminal, download the data and access the tutorial. 
 
