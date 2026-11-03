@@ -314,26 +314,30 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>If it says <code>/bin/zsh</code>, type <code>bash</code> and press <kbd>Enter</kbd> each time you open the terminal. Most commands work the same in both shells, but this way your terminal matches the exercises.</p>
 </div>
 <div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
-<p>Install <strong>Git for Windows</strong>, which includes the Git Bash terminal.</p>
-<ol type="1">
-<li>Download the installer from <a href="https://gitforwindows.org/" target="_blank">gitforwindows.org</a>.</li>
-<li>Run it and click <em>Next</em> through all the screens. The default settings are fine.</li>
-<li>Open the Start menu, type <code>Git Bash</code>, and open it.</li>
-</ol>
-<p>You do not need admin rights or a restart.</p>
+<p>To get a terminal with a linux shell, install the <a href="https://learn.microsoft.com/en-us/windows/wsl/setup/environment">Windows Subsystem for Linux (WSL)</a>. Follow the instructions in the link above.</p>
+<p>Very short summary:</p>
+<ul>
+<li>type in the bottom left search bar “powershell”, right-click on the result and select “run as administrator”</li>
+<li>copy-paste in the window you opened the following command:</li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">wsl</span> <span class="at">--install</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li>reboot your system</li>
+<li>launch WSL (the first time will take a while), set a username and a password (you will be prompted autmatically)</li>
+</ul>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center collapsed" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>Already use WSL (Ubuntu on Windows)?
+<span class="screen-reader-only">Note</span>Using WSL (Ubuntu on Windows)?
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
 <div id="callout-1" class="callout-1-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>You can use it instead. Your Windows Desktop is then at <code>/mnt/c/Users/&lt;your Windows name&gt;/Desktop</code>, not at <code>~/Desktop</code>. Adjust the paths in the exercises.</p>
+<p>Your Windows Desktop is at <code>/mnt/c/Users/&lt;your Windows name&gt;/Desktop</code>, not at <code>~/Desktop</code>. Adjust the paths in the exercises.</p>
 </div>
 </div>
 </div>
@@ -354,8 +358,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="check-that-it-works" class="level3">
 <h3 class="anchored" data-anchor-id="check-that-it-works">Check that it works</h3>
 <p>Open the terminal and type:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> Desktop/shell-lesson-data</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> Desktop/shell-lesson-data</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>You should see <code>exercise-data</code> and <code>north-pacific-gyre</code>. If you get <code>No such file or directory</code>, ask a teacher.</p>
 </section>
 </section>
