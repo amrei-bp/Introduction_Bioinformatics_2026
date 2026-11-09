@@ -286,12 +286,121 @@ Amrei Binzer-Panchal
 </ul>
 </section></section>
 <section>
+<section id="commands" class="title-slide slide level1 center">
+<h1>Commands</h1>
+
+</section>
+<section id="basic-syntax" class="slide level2">
+<h2>Basic syntax</h2>
+<p><br></p>
+<div class="big">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a aria-label="1"></a><span class="fu">ls</span> <span class="at">-l</span> <span class="at">-h</span> Desktop/shell-lesson-data</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p><span style="display:block; height:1.5em"></span></p>
+<table class="caption-top">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Part</th>
+<th>Here</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>command</td>
+<td><code>ls</code></td>
+<td>the program to run</td>
+</tr>
+<tr class="even">
+<td>options</td>
+<td><code>-l -h</code></td>
+<td>change what it does; usually start with <code>-</code></td>
+</tr>
+<tr class="odd">
+<td>arguments</td>
+<td><code>Desktop/shell-lesson-data</code></td>
+<td>what to work on: often a path</td>
+</tr>
+</tbody>
+</table>
+<p><span style="display:block; height:1.5em"></span></p>
+<p>PS: In the material, <code>$</code> stands for the prompt (meaning the terminal is waiting for your input): do not type it. In your terminal the prompt might look different.</p>
+</section>
+<section id="getting-help" class="slide level2">
+<h2>Getting help</h2>
+<p><span style="display:block; height:1.5em"></span></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a aria-label="1"></a><span class="fu">ls</span> <span class="at">--help</span>      <span class="co"># short help (Git Bash, Linux)</span></span>
+<span id="cb2-2"><a aria-label="2"></a><span class="fu">man</span> ls         <span class="co"># full manual (macOS, Linux); quit with q</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><span style="display:block; height:1.5em"></span></p>
+<p><a href="https://explainshell.com/">explainshell.com</a> explains any command you paste into it.</p>
+</section>
+<section id="commands-for-today" class="slide level2">
+<h2>Commands for today</h2>
+<p><span style="display:block; height:1.5em"></span></p>
+<table class="caption-top">
+<thead>
+<tr class="header">
+<th>Command</th>
+<th>Does</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>pwd</code></td>
+<td>show where you are</td>
+<td><code>pwd</code></td>
+</tr>
+<tr class="even">
+<td><code>ls</code></td>
+<td>list a folder</td>
+<td><code>ls -F data</code></td>
+</tr>
+<tr class="odd">
+<td><code>cd</code></td>
+<td>change folder</td>
+<td><code>cd ..</code></td>
+</tr>
+<tr class="even">
+<td><code>mkdir</code></td>
+<td>make a folder</td>
+<td><code>mkdir results</code></td>
+</tr>
+<tr class="odd">
+<td><code>touch</code></td>
+<td>make an empty file</td>
+<td><code>touch notes.txt</code></td>
+</tr>
+<tr class="even">
+<td><code>cp</code></td>
+<td>copy</td>
+<td><code>cp a.txt b.txt</code></td>
+</tr>
+<tr class="odd">
+<td><code>mv</code></td>
+<td>move or rename</td>
+<td><code>mv b.txt results/</code></td>
+</tr>
+<tr class="even">
+<td><code>rm</code></td>
+<td>delete, <strong>for good</strong></td>
+<td><code>rm results/b.txt</code></td>
+</tr>
+</tbody>
+</table>
+</section></section>
+<section>
 <section id="files-and-folders" class="title-slide slide level1 center">
 <h1>Files and folders</h1>
 
 </section>
-<section id="the-directory-tree" class="slide level2">
-<h2>The directory tree</h2>
+<section id="the-directory-tree-file-system" class="slide level2">
+<h2>The directory tree/ file system</h2>
 
 <img data-src="images/tree_plain.svg" class="quarto-figure quarto-figure-center r-stretch" style="width:85.0%"><ul>
 <li>Folders (also called <strong>directories</strong>) contain files and other folders.</li>
@@ -314,7 +423,7 @@ Amrei Binzer-Panchal
 <section id="your-home-folder" class="slide level2">
 <h2>Your home folder</h2>
 <p><span style="display:block; height:1.5em"></span></p>
-<p>Each user has a home folder. This is the default location when the shell is started. It can be accessed by <code>~</code>.</p>
+<p>Each user has a home folder. This is the default location when the shell is started. It can be accessed by the shortcut <code>~</code>.</p>
 <p><span style="display:block; height:1.5em"></span></p>
 <table class="caption-top">
 <thead>
@@ -434,113 +543,9 @@ Amrei Binzer-Panchal
 </ul>
 </section></section>
 <section>
-<section id="commands" class="title-slide slide level1 center">
-<h1>Commands</h1>
+<section id="manipulating-files-and-directories" class="title-slide slide level1 center">
+<h1>Manipulating files and directories</h1>
 
-</section>
-<section id="what-a-command-looks-like" class="slide level2">
-<h2>What a command looks like</h2>
-<p><br></p>
-<div class="big">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a aria-label="1"></a><span class="fu">ls</span> <span class="at">-l</span> <span class="at">-h</span> Desktop/shell-lesson-data</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<p><span style="display:block; height:1.5em"></span></p>
-<table class="caption-top">
-<colgroup>
-<col style="width: 33%">
-<col style="width: 33%">
-<col style="width: 33%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Part</th>
-<th>Here</th>
-<th>Meaning</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>command</td>
-<td><code>ls</code></td>
-<td>the program to run</td>
-</tr>
-<tr class="even">
-<td>options</td>
-<td><code>-l -h</code></td>
-<td>change what it does; usually start with <code>-</code></td>
-</tr>
-<tr class="odd">
-<td>arguments</td>
-<td><code>Desktop/shell-lesson-data</code></td>
-<td>what to work on: often a path</td>
-</tr>
-</tbody>
-</table>
-<p><span style="display:block; height:1.5em"></span></p>
-<p>In the material, <code>$</code> stands for the prompt: do not type it.</p>
-</section>
-<section id="getting-help" class="slide level2">
-<h2>Getting help</h2>
-<p><span style="display:block; height:1.5em"></span></p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a aria-label="1"></a><span class="fu">ls</span> <span class="at">--help</span>      <span class="co"># short help (Git Bash, Linux)</span></span>
-<span id="cb2-2"><a aria-label="2"></a><span class="fu">man</span> ls         <span class="co"># full manual (macOS, Linux); quit with q</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p><span style="display:block; height:1.5em"></span></p>
-<p><a href="https://explainshell.com/">explainshell.com</a> explains any command you paste into it.</p>
-</section>
-<section id="commands-for-today" class="slide level2">
-<h2>Commands for today</h2>
-<p><span style="display:block; height:1.5em"></span></p>
-<table class="caption-top">
-<thead>
-<tr class="header">
-<th>Command</th>
-<th>Does</th>
-<th>Example</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><code>pwd</code></td>
-<td>show where you are</td>
-<td><code>pwd</code></td>
-</tr>
-<tr class="even">
-<td><code>ls</code></td>
-<td>list a folder</td>
-<td><code>ls -F data</code></td>
-</tr>
-<tr class="odd">
-<td><code>cd</code></td>
-<td>change folder</td>
-<td><code>cd ..</code></td>
-</tr>
-<tr class="even">
-<td><code>mkdir</code></td>
-<td>make a folder</td>
-<td><code>mkdir results</code></td>
-</tr>
-<tr class="odd">
-<td><code>touch</code></td>
-<td>make an empty file</td>
-<td><code>touch notes.txt</code></td>
-</tr>
-<tr class="even">
-<td><code>cp</code></td>
-<td>copy</td>
-<td><code>cp a.txt b.txt</code></td>
-</tr>
-<tr class="odd">
-<td><code>mv</code></td>
-<td>move or rename</td>
-<td><code>mv b.txt results/</code></td>
-</tr>
-<tr class="even">
-<td><code>rm</code></td>
-<td>delete, <strong>for good</strong></td>
-<td><code>rm results/b.txt</code></td>
-</tr>
-</tbody>
-</table>
 </section>
 <section id="reading-and-writing-files" class="slide level2">
 <h2>Reading and writing files</h2>

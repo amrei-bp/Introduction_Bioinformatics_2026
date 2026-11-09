@@ -28,18 +28,39 @@
     "text": "Bioinformaticians use it\n\n\nAlmost all servers and clusters run Linux, and you reach them only through a shell.\nMost bioinformatics tools have no graphical interface: they are commands.\nFiles are huge: you cannot open a 10 GB FASTQ file in a word processor.\nCommands can be saved in scripts: your analysis becomes repeatable and documented."
   },
   {
-    "objectID": "unix/unix_lecture.html#the-directory-tree",
-    "href": "unix/unix_lecture.html#the-directory-tree",
+    "objectID": "unix/unix_lecture.html#basic-syntax",
+    "href": "unix/unix_lecture.html#basic-syntax",
     "title": "Introduction to the command line",
-    "section": "The directory tree",
-    "text": "The directory tree\n\n\nFolders (also called directories) contain files and other folders.\nEverything starts at the root, written /.\n\n\nLinux and macOS have one tree starting at /. Git Bash shows the Windows C: drive as /c."
+    "section": "Basic syntax",
+    "text": "Basic syntax\n\n\nls -l -h Desktop/shell-lesson-data\n\n\n\n\n\n\n\n\n\n\nPart\nHere\nMeaning\n\n\n\n\ncommand\nls\nthe program to run\n\n\noptions\n-l -h\nchange what it does; usually start with -\n\n\narguments\nDesktop/shell-lesson-data\nwhat to work on: often a path\n\n\n\n\nPS: In the material, $ stands for the prompt (meaning the terminal is waiting for your input): do not type it. In your terminal the prompt might look different."
+  },
+  {
+    "objectID": "unix/unix_lecture.html#getting-help",
+    "href": "unix/unix_lecture.html#getting-help",
+    "title": "Introduction to the command line",
+    "section": "Getting help",
+    "text": "Getting help\n\nls --help      # short help (Git Bash, Linux)\nman ls         # full manual (macOS, Linux); quit with q\n\nexplainshell.com explains any command you paste into it."
+  },
+  {
+    "objectID": "unix/unix_lecture.html#commands-for-today",
+    "href": "unix/unix_lecture.html#commands-for-today",
+    "title": "Introduction to the command line",
+    "section": "Commands for today",
+    "text": "Commands for today\n\n\n\n\nCommand\nDoes\nExample\n\n\n\n\npwd\nshow where you are\npwd\n\n\nls\nlist a folder\nls -F data\n\n\ncd\nchange folder\ncd ..\n\n\nmkdir\nmake a folder\nmkdir results\n\n\ntouch\nmake an empty file\ntouch notes.txt\n\n\ncp\ncopy\ncp a.txt b.txt\n\n\nmv\nmove or rename\nmv b.txt results/\n\n\nrm\ndelete, for good\nrm results/b.txt"
+  },
+  {
+    "objectID": "unix/unix_lecture.html#the-directory-tree-file-system",
+    "href": "unix/unix_lecture.html#the-directory-tree-file-system",
+    "title": "Introduction to the command line",
+    "section": "The directory tree/ file system",
+    "text": "The directory tree/ file system\n\n\nFolders (also called directories) contain files and other folders.\nEverything starts at the root, written /.\n\n\nLinux and macOS have one tree starting at /. Git Bash shows the Windows C: drive as /c."
   },
   {
     "objectID": "unix/unix_lecture.html#your-home-folder",
     "href": "unix/unix_lecture.html#your-home-folder",
     "title": "Introduction to the command line",
     "section": "Your home folder",
-    "text": "Your home folder\n\nEach user has a home folder. This is the default location when the shell is started. It can be accessed by ~.\n\n\n\n\nWhere\nYour home folder\n\n\n\n\nmacOS\n/Users/anna\n\n\nGit Bash on Windows\n/c/Users/anna\n\n\nLinux, WSL\n/home/anna\n\n\nHPC2N server\n/home/a/anna\n\n\n\n\nYour Desktop is ~/Desktop: today’s data will be in ~/Desktop/shell-lesson-data."
+    "text": "Your home folder\n\nEach user has a home folder. This is the default location when the shell is started. It can be accessed by the shortcut ~.\n\n\n\n\nWhere\nYour home folder\n\n\n\n\nmacOS\n/Users/anna\n\n\nGit Bash on Windows\n/c/Users/anna\n\n\nLinux, WSL\n/home/anna\n\n\nHPC2N server\n/home/a/anna\n\n\n\n\nYour Desktop is ~/Desktop: today’s data will be in ~/Desktop/shell-lesson-data."
   },
   {
     "objectID": "unix/unix_lecture.html#where-am-i",
@@ -68,27 +89,6 @@
     "title": "Introduction to the command line",
     "section": "Tips for paths",
     "text": "Tips for paths\n\n\nPress Tab (-&gt;|) to complete file and folder names. This way, you will have fewer typos. If nothing completes, the file is not where you think it is, or is called differently.\nAvoid spaces in names: my data.txt is read as two files. Use my_data.txt.\nRemember: upper and lower case are different: Data is not data."
-  },
-  {
-    "objectID": "unix/unix_lecture.html#what-a-command-looks-like",
-    "href": "unix/unix_lecture.html#what-a-command-looks-like",
-    "title": "Introduction to the command line",
-    "section": "What a command looks like",
-    "text": "What a command looks like\n\n\nls -l -h Desktop/shell-lesson-data\n\n\n\n\n\n\n\n\n\n\nPart\nHere\nMeaning\n\n\n\n\ncommand\nls\nthe program to run\n\n\noptions\n-l -h\nchange what it does; usually start with -\n\n\narguments\nDesktop/shell-lesson-data\nwhat to work on: often a path\n\n\n\n\nIn the material, $ stands for the prompt: do not type it."
-  },
-  {
-    "objectID": "unix/unix_lecture.html#getting-help",
-    "href": "unix/unix_lecture.html#getting-help",
-    "title": "Introduction to the command line",
-    "section": "Getting help",
-    "text": "Getting help\n\nls --help      # short help (Git Bash, Linux)\nman ls         # full manual (macOS, Linux); quit with q\n\nexplainshell.com explains any command you paste into it."
-  },
-  {
-    "objectID": "unix/unix_lecture.html#commands-for-today",
-    "href": "unix/unix_lecture.html#commands-for-today",
-    "title": "Introduction to the command line",
-    "section": "Commands for today",
-    "text": "Commands for today\n\n\n\n\nCommand\nDoes\nExample\n\n\n\n\npwd\nshow where you are\npwd\n\n\nls\nlist a folder\nls -F data\n\n\ncd\nchange folder\ncd ..\n\n\nmkdir\nmake a folder\nmkdir results\n\n\ntouch\nmake an empty file\ntouch notes.txt\n\n\ncp\ncopy\ncp a.txt b.txt\n\n\nmv\nmove or rename\nmv b.txt results/\n\n\nrm\ndelete, for good\nrm results/b.txt"
   },
   {
     "objectID": "unix/unix_lecture.html#reading-and-writing-files",
