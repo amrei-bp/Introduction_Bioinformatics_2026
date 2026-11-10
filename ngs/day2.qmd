@@ -10,6 +10,8 @@ Before class, watch the recorded lecture in Canvas. The slides:
 
 - [Mapping sequencing reads](mapping_lecture.qmd){target="_blank"}
 
+Download the [PDF](mapping_lecture.pdf){download="mapping_lecture.pdf"} of the slides here.
+
 **Learning outcomes.** After today you can:
 
 - explain what a mapper does, and why it needs an index
