@@ -5,6 +5,7 @@ project:
     - "ngs/*.qmd"
     - "!README.md"
     - "!ngs/*_notes.qmd"
+  post-render: ./make_pdfs.sh
 
 website:
   title: "Introduction to Bioinformatics"

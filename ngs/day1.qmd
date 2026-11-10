@@ -19,8 +19,13 @@ After today you can:
 
 Before today I assume that you have watched the recorded lectures in Canvas, and answered the quiz there. Here are the slides:
 
-- [High-throughput sequencing](sequencing_lecture.qmd){target="_blank"}
-- [Quality control of sequencing data](qc_lecture.qmd){target="_blank"}
+- [High-throughput sequencing (HTML format)](sequencing_lecture.qmd){target="_blank"}
+
+Download the [PDF](sequencing_lecture.pdf){download="sequencing_lecture.pdf"}  of the slides here.
+
+- [Quality control of sequencing data (HTML format)](qc_lecture.qmd){target="_blank"} 
+
+Download the [PDF](qc_lecture.pdf){download="qc_lecture.pdf"} of the slides here.
 
 
 ### In class discussion

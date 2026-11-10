@@ -23,6 +23,8 @@ We will go through the lecture together in class. The slides are here:
 
 - [Introduction to the command line](unix_lecture.qmd){target="_blank"}
 
+Download the [PDF](unix_lecture.pdf){download="unix_lecture.pdf"} of the slides here.
+
 If you want to follow along in a nice sandbox, you can use the one from [sandbox.io](https://sandbox.bio/tutorials/carpentries-shell-novice).
 
 ## 2. Exercises
