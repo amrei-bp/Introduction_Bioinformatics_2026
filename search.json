@@ -723,7 +723,7 @@
     "href": "ngs/day2.html#lecture",
     "title": "NGS day 2: Mapping",
     "section": "1. Lecture",
-    "text": "1. Lecture\nBefore class, watch the recorded lecture in Canvas. The slides:\n\nMapping sequencing reads\n\nLearning outcomes. After today you can:\n\nexplain what a mapper does, and why it needs an index\ntell local and end-to-end alignment apart\nexplain why RNA-seq reads need a splice-aware mapper\nread the main columns of a SAM file\njudge a mapping from its log file",
+    "text": "1. Lecture\nBefore class, watch the recorded lecture in Canvas. The slides:\n\nMapping sequencing reads\n\nDownload the PDF of the slides here.\nLearning outcomes. After today you can:\n\nexplain what a mapper does, and why it needs an index\ntell local and end-to-end alignment apart\nexplain why RNA-seq reads need a splice-aware mapper\nread the main columns of a SAM file\njudge a mapping from its log file",
     "crumbs": [
       "Home",
       "Introduction to NGS",
