@@ -154,7 +154,7 @@
     "href": "unix/unix.html#lecture",
     "title": "The command line",
     "section": "1. Lecture",
-    "text": "1. Lecture\nWe will go through the lecture together in class. The slides are here:\n\nIntroduction to the command line\n\nIf you want to follow along in a nice sandbox, you can use the one from sandbox.io.",
+    "text": "1. Lecture\nWe will go through the lecture together in class. The slides are here:\n\nIntroduction to the command line\n\nDownload the PDF of the slides here.\nIf you want to follow along in a nice sandbox, you can use the one from sandbox.io.",
     "crumbs": [
       "Home",
       "Command line",
@@ -667,7 +667,7 @@
     "href": "ngs/day1.html",
     "title": "NGS day 1: Quality control",
     "section": "",
-    "text": "Today we will look at raw sequencing reads and check whether they are good enough to work with. We will use FastQC, MultiQC and fastp on the cluster, run in containers and submitted with SLURM.\n\nLearning outcomes\nAfter today you can:\n\nexplain how short-read and long-read sequencing work, and choose a platform for a question\nexplain why QC of sequencing data is necessary\ninterpret a FastQC report and its warnings, for DNA and for RNA data\nrun tools in containers and submit them as SLURM jobs\ndecide whether reads need trimming, and check the result\n\n\n\nLecture slides\nBefore today I assume that you have watched the recorded lectures in Canvas, and answered the quiz there. Here are the slides:\n\nHigh-throughput sequencing\nQuality control of sequencing data\n\n\n\nIn class discussion\nWe will talk about these questions in class. Think about them before you come.\n\nYour sequencing facility sends a report that says all samples passed. Why check quality yourself?\nFastQC marks “per base sequence content” red for RNA-seq data. Is that a problem? Would it be for DNA?\nWhy do we link to the data instead of copying it into our own folder?\nWhat does a container solve that installing the tool yourself does not?",
+    "text": "Today we will look at raw sequencing reads and check whether they are good enough to work with. We will use FastQC, MultiQC and fastp on the cluster, run in containers and submitted with SLURM.\n\nLearning outcomes\nAfter today you can:\n\nexplain how short-read and long-read sequencing work, and choose a platform for a question\nexplain why QC of sequencing data is necessary\ninterpret a FastQC report and its warnings, for DNA and for RNA data\nrun tools in containers and submit them as SLURM jobs\ndecide whether reads need trimming, and check the result\n\n\n\nLecture slides\nBefore today I assume that you have watched the recorded lectures in Canvas, and answered the quiz there. Here are the slides:\n\nHigh-throughput sequencing (HTML format)\n\nDownload the PDF of the slides here.\n\nQuality control of sequencing data (HTML format)\n\nDownload the PDF of the slides here.\n\n\nIn class discussion\nWe will talk about these questions in class. Think about them before you come.\n\nYour sequencing facility sends a report that says all samples passed. Why check quality yourself?\nFastQC marks “per base sequence content” red for RNA-seq data. Is that a problem? Would it be for DNA?\nWhy do we link to the data instead of copying it into our own folder?\nWhat does a container solve that installing the tool yourself does not?",
     "crumbs": [
       "Home",
       "Introduction to NGS",
