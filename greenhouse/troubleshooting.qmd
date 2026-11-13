@@ -1,0 +1,118 @@
+---
+title: "Troubleshooting"
+---
+
+Just as in every other exercise, things can go wrong. Check below for common problems.
+
+::: {.callout-tip}
+## The universal first checks
+Most problems are one of these three. Check them before anything else:
+
+1. **Wiring**: right port? G to G, V to V, S to S? Connector pushed in fully?
+2. **Power**: is the micro:bit showing any sign of life? Is the USB cable connected at both ends?
+3. **The right program**: did the flash actually complete (orange LED stopped flashing), and is it the version you think it is?
+:::
+
+---
+
+## Connecting and flashing
+
+### The MICROBIT drive does not appear on my laptop
+
+- Try a different USB cable: **charge-only cables look identical to data cables but cannot transfer programs.** This is the most common cause.
+- Try a different USB port on the laptop.
+- Unplug, wait five seconds, replug.
+- If the micro:bit shows an error number on its LED matrix, see below.
+
+### Copying the `.hex` file fails, or the micro:bit shows an error number
+
+- An error code (e.g. 529, 528) scrolling on the LED matrix means the flash failed. Delete nothing: just download the `.hex` again from MakeCode and copy it again.
+- Make sure you copied the `.hex` file to the **MICROBIT** drive, not to a folder on your laptop.
+- If the drive is named **MAINTENANCE** instead of MICROBIT, the micro:bit was plugged in with the reset button held. Unplug and replug it normally.
+
+### Flashing is slow and tedious
+
+In Chrome or Edge you can skip the drag-and-drop entirely: click the **three dots next to the Download button → Connect device**, and follow the pairing steps. After that, the Download button flashes the micro:bit directly over USB in a couple of seconds.
+
+---
+
+## The program runs but misbehaves
+
+### Nothing happens at all
+
+- Did the orange LED finish flashing? Wait for it.
+- Are your blocks **inside** `on start` or `forever`? Blocks floating loose on the workspace (greyed out) are not part of the program.
+- Press the **reset button** on the back of the micro:bit to restart the program.
+
+### I can't get the kit components to work in the simulator
+
+The simulator only simulates the micro:bit's **built-in** components. External sensors connected through the Sensorbit do not exist in the simulator: for those, only the actual hardware will work.
+
+### The micro:bit restarts itself when the motor or servo runs
+
+The motor is drawing more current than USB power can supply, which browns out the micro:bit. Power the Sensorbit from an external battery pack instead of relying on USB alone.
+
+---
+
+## The OLED
+
+### The OLED stays black
+
+- Is it plugged into the **IIC** socket on the Sensorbit (not a numbered G/V/S port)?
+- Did you add the `initialize OLED width 128 height 64` block in `on start`? Nothing displays without it.
+- Did you add the smarthome extension to *this* project? Extensions are per-project: a new project needs the extension added again.
+
+### The OLED flickers
+
+Your `forever` loop is clearing and rewriting the display on every pass. Either slow the loop down with a `pause`, or, better, only redraw when the value being shown has actually changed (compare with a variable holding the previous value).
+
+---
+
+## Sensors
+
+### A sensor reads 0, a constant value, or nonsense
+
+- **Check the wiring first**: G to G, V to V, S to S, right port, fully seated. A reversed cable is the most common cause of a "dead" sensor.
+- Check that the pin number in your program matches the port the sensor is physically plugged into.
+
+### The DHT11 gives no reading or wrong readings
+
+- The DHT11 can only be read once every two seconds. Make sure your `forever` loop ends with `pause 2000`.
+
+### Which ports are safe for my mini challenge?
+
+Not every numbered port on the Sensorbit is free to use: several micro:bit pins are shared with built-in hardware, and a sensor on a shared pin gives garbage readings with no error message.
+
+| Ports | Status |
+|-------|--------|
+| **P1, P2, P8, P12, P13–P16** | ✅ Safe for sensors and actuators |
+| P3, P4, P6, P7, P9, P10 | ❌ Shared with the **LED matrix**: nonsense readings whenever the display is in use |
+| P5, P11 | ❌ Wired to **buttons A and B** |
+| P0 | ❌ No GVS port: wired to the Sensorbit's buzzer and headphone jack |
+
+Two more rules:
+
+- **Analog sensors** (the soil moisture sensor, or anything else read with `analog read pin`) must go on **P1 or P2**. The other analog-capable pins are all shared with the LED matrix.
+- **P16** is the conventional home of the Rainbow LED strip: keep it free if your project uses one.
+
+If a sensor worked on a different pin and now reads nonsense, check this table before suspecting the sensor.
+
+### The soil moisture readings drift or differ from before
+
+This sensor is relative, not calibrated: readings depend on soil type, salinity, probe contact, and probe corrosion. Re-check your thresholds whenever conditions change.
+
+### The Rainbow LED shows nothing, or only some LEDs light
+
+- Check the wiring and that the pin in the Neopixel setup block matches the physical port.
+- Check that the **number of LEDs** in the setup block matches your strip: if it is set too low, the remaining LEDs stay dark.
+- Did the `set strip to ...` block run in `on start`? Without it, the show-colour blocks have nothing to control.
+
+---
+
+## Still stuck?
+
+Ask me, but consider these three questions first:
+
+1. What did you expect to happen?
+2. What happened instead?
+3. What have you already checked?
