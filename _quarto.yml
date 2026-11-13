@@ -21,7 +21,7 @@ website:
     contents:
       - text: "Home"
         href: index.qmd
-      - section: "Before the course"
+      - section: "Course server"
         contents:
           - text: "Server accounts"
             href: server_accounts.qmd
@@ -33,6 +33,16 @@ website:
             href: unix/unix.qmd
           - text: "Unix Exercises"
             href: unix/unix_exercises.qmd
+      - section: "Smart Greenhouses"
+        contents:
+          - text: "Introdcution to the module"
+            href: greenhouse/index.qmd
+          - text: "The sensor kit"
+            href: greenhouse/kit.qmd
+          - text: "Greenhouse exercises"
+            href: greenhouse/exercises.qmd
+          - text: "Exercise troubleshooting"
+            href: greenhouse/troubleshooting.qmd
       - section: "Introduction to NGS"
         contents:
           - text: "Introduction to NGS"
