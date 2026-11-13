@@ -1,0 +1,1210 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.11.9">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>The kit: sensors and actuators – Introduction to Bioinformatics</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/scrollable-regions/scrollable-regions.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-5de16f5e46225c21e2daa90d340bf64f.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-5ff308f7e78e9f60b831fd1e947a99f4.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-sidebar docked nav-fixed quarto-light"><a id="quarto-skip-link" class="visually-hidden-focusable" href="#quarto-document-content">Skip to main content</a>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark" aria-label="Site">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Introduction to Bioinformatics</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link active" href="../index.html" aria-current="page"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+            <div id="quarto-search" class="" title="Search"></div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav" aria-label="Toolbar">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="Breadcrumbs"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../greenhouse/index.html">Smart Greenhouses</a></li><li class="breadcrumb-item"><a href="../greenhouse/kit.html">The sensor kit</a></li></ol></nav>
+        <a class="flex-grow-1" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto" aria-label="Section">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+      <a href="../index.html" class="sidebar-logo-link">
+      <img src="../figures/logo/SLUBI_logo.png" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none">
+      <img src="../figures/logo/SLUBI_logo.png" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
+      </a>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Home</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-controls="quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text" id="quarto-sidebar-section-1-label">Course server</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+      </div>
+      <ul id="quarto-sidebar-section-1" aria-labelledby="quarto-sidebar-section-1-label" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../server_accounts.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Server accounts</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../server_access.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Server access</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-controls="quarto-sidebar-section-2" aria-expanded="true">
+ <span class="menu-text" id="quarto-sidebar-section-2-label">Command line</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+      </div>
+      <ul id="quarto-sidebar-section-2" aria-labelledby="quarto-sidebar-section-2-label" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../unix/unix.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction to Unix</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../unix/unix_exercises.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Unix Exercises</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-controls="quarto-sidebar-section-3" aria-expanded="true">
+ <span class="menu-text" id="quarto-sidebar-section-3-label">Smart Greenhouses</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+      </div>
+      <ul id="quarto-sidebar-section-3" aria-labelledby="quarto-sidebar-section-3-label" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../greenhouse/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introdcution to the module</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../greenhouse/kit.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">The sensor kit</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../greenhouse/exercises.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Greenhouse exercises</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../greenhouse/troubleshooting.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exercise troubleshooting</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-controls="quarto-sidebar-section-4" aria-expanded="true">
+ <span class="menu-text" id="quarto-sidebar-section-4-label">Introduction to NGS</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+      </div>
+      <ul id="quarto-sidebar-section-4" aria-labelledby="quarto-sidebar-section-4-label" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../ngs/ngs_intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction to NGS</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../ngs/NGS_data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">The data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../ngs/day1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Day 1: Quality control</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../ngs/qc_exercises.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Day 1: QC exercises</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../ngs/day2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Day 2: Mapping</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../ngs/mapping_exercises.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Day 2: Mapping exercises</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" aria-labelledby="toc-title" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#the-smart-health-kit" id="toc-the-smart-health-kit" class="nav-link active" data-scroll-target="#the-smart-health-kit">The Smart Health Kit</a></li>
+  <li><a href="#the-sensorbit" id="toc-the-sensorbit" class="nav-link" data-scroll-target="#the-sensorbit">The Sensorbit</a>
+  <ul class="collapse">
+  <li><a href="#wiring-g-v-and-s" id="toc-wiring-g-v-and-s" class="nav-link" data-scroll-target="#wiring-g-v-and-s">Wiring: G, V, and S</a></li>
+  </ul></li>
+  <li><a href="#which-port-should-i-use" id="toc-which-port-should-i-use" class="nav-link" data-scroll-target="#which-port-should-i-use">Which port should I use?</a></li>
+  <li><a href="#environmental-sensors" id="toc-environmental-sensors" class="nav-link" data-scroll-target="#environmental-sensors">Environmental sensors</a>
+  <ul class="collapse">
+  <li><a href="#dht11-temperature-and-humidity" id="toc-dht11-temperature-and-humidity" class="nav-link" data-scroll-target="#dht11-temperature-and-humidity">DHT11 — Temperature and humidity</a></li>
+  <li><a href="#soil-moisture-sensor" id="toc-soil-moisture-sensor" class="nav-link" data-scroll-target="#soil-moisture-sensor">Soil moisture sensor</a></li>
+  <li><a href="#mq3-alcohol-sensor" id="toc-mq3-alcohol-sensor" class="nav-link" data-scroll-target="#mq3-alcohol-sensor">MQ3 — Alcohol sensor</a></li>
+  <li><a href="#analog-uv-sensor" id="toc-analog-uv-sensor" class="nav-link" data-scroll-target="#analog-uv-sensor">Analog UV sensor</a></li>
+  </ul></li>
+  <li><a href="#presence-and-interaction-sensors" id="toc-presence-and-interaction-sensors" class="nav-link" data-scroll-target="#presence-and-interaction-sensors">Presence and interaction sensors</a>
+  <ul class="collapse">
+  <li><a href="#pir-sensor-passive-infrared" id="toc-pir-sensor-passive-infrared" class="nav-link" data-scroll-target="#pir-sensor-passive-infrared">PIR sensor — Passive Infrared</a></li>
+  <li><a href="#crash-sensor-brick" id="toc-crash-sensor-brick" class="nav-link" data-scroll-target="#crash-sensor-brick">Crash sensor brick</a></li>
+  </ul></li>
+  <li><a href="#output-components" id="toc-output-components" class="nav-link" data-scroll-target="#output-components">Output components</a>
+  <ul class="collapse">
+  <li><a href="#oled-screen" id="toc-oled-screen" class="nav-link" data-scroll-target="#oled-screen">OLED screen</a></li>
+  <li><a href="#rainbow-led" id="toc-rainbow-led" class="nav-link" data-scroll-target="#rainbow-led">Rainbow LED</a></li>
+  </ul></li>
+  <li><a href="#actuators" id="toc-actuators" class="nav-link" data-scroll-target="#actuators">Actuators</a>
+  <ul class="collapse">
+  <li><a href="#servo-motor" id="toc-servo-motor" class="nav-link" data-scroll-target="#servo-motor">180° Servo motor</a></li>
+  <li><a href="#dc-motor-with-fan" id="toc-dc-motor-with-fan" class="nav-link" data-scroll-target="#dc-motor-with-fan">DC motor with fan</a></li>
+  </ul></li>
+  <li><a href="#choosing-the-right-component-for-your-use-case" id="toc-choosing-the-right-component-for-your-use-case" class="nav-link" data-scroll-target="#choosing-the-right-component-for-your-use-case">Choosing the right component for your use case</a></li>
+  <li><a href="#makecode-add-the-elecfreaks-extension" id="toc-makecode-add-the-elecfreaks-extension" class="nav-link" data-scroll-target="#makecode-add-the-elecfreaks-extension">MakeCode: Add the Elecfreaks extension</a></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary">Summary</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content" tabindex="-1">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="Breadcrumbs"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../greenhouse/index.html">Smart Greenhouses</a></li><li class="breadcrumb-item"><a href="../greenhouse/kit.html">The sensor kit</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">The kit: sensors and actuators</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>Use this page during class to get information about the available sensors for the exercises.</p>
+<section id="the-smart-health-kit" class="level2">
+<h2 class="anchored" data-anchor-id="the-smart-health-kit">The Smart Health Kit</h2>
+<p>The Elecfreaks Smart Health Kit is a collection of sensors and actuators which, together with the BBC micro:bit, enable you to explore health as well as environmental monitoring. Even though it was designed with health applications in mind, several of its sensors are equally relevant to agriculture.</p>
+<p>The kit itself does not include a micro:bit so we got you some to work with.</p>
+<p>The kit contains:</p>
+<ul>
+<li>The Sensorbit — the interface board</li>
+<li>DHT11 — temperature and humidity sensor</li>
+<li>Soil moisture sensor</li>
+<li>MQ3 alcohol sensor</li>
+<li>Analog UV sensor</li>
+<li>PIR sensor</li>
+<li>Crash sensor brick</li>
+<li>OLED screen</li>
+<li>Rainbow LED</li>
+<li>180° servo motor</li>
+<li>DC motor with fan</li>
+</ul>
+<p>Each one is described below.</p>
+<div class="quarto-layout-panel" data-layout-ncol="2">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/Kit_open.jpeg" class="img-fluid figure-img"></p>
+<figcaption>The kit as it arrives — the guide booklet sits on top of the foam tray</figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/kit_components.jpeg" class="img-fluid figure-img"></p>
+<figcaption>All components in the foam tray. Top row (left to right): OLED, crash sensor, Rainbow LED, DHT11, PIR, UV sensor. Bottom row: soil moisture sensor, DC motor, MQ3 alcohol sensor, Sensorbit.</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="the-sensorbit" class="level2">
+<h2 class="anchored" data-anchor-id="the-sensorbit">The Sensorbit</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/sensor_bit.png" class="img-fluid figure-img" style="width:42.0%"></p>
+<figcaption>The Sensorbit breakout board. The micro:bit slots into the top edge connector. The coloured pin header strips (right) give labelled, powered access to every pin.</figcaption>
+</figure>
+</div>
+<p>The Sensorbit is a breakout board that plugs onto the micro:bit’s edge connector. Without it, connecting a sensor to the micro:bit requires crocodile clips or a breadboard to reach the correct pin. The Sensorbit provides clearly labelled ports — P0, P1, P2, and more — with headers that sensors can plug into directly.</p>
+<p>It also provides stable 3.3 V power to the connected sensors, sourced from the micro:bit’s own power supply.</p>
+<p>One important point: when you add sensors that draw significant current — particularly the motor or servo — you may need to power the Sensorbit from an external battery rather than the USB cable alone. USB power is sufficient for most sensors and the OLED, but motors can cause the micro:bit to reset if the electricity demand spikes.</p>
+<section id="wiring-g-v-and-s" class="level3">
+<h3 class="anchored" data-anchor-id="wiring-g-v-and-s">Wiring: G, V, and S</h3>
+<p>Most components in the kit connect to the Sensorbit with a three-wire cable. The three wires are <strong>not</strong> interchangeable:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 14%">
+<col style="width: 17%">
+<col style="width: 14%">
+<col style="width: 54%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Pin</th>
+<th>Name</th>
+<th>Job</th>
+<th>Usual wire colour</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>G</td>
+<td>Ground</td>
+<td>Completes the circuit</td>
+<td>Black</td>
+</tr>
+<tr class="even">
+<td>V</td>
+<td>Voltage</td>
+<td>Supplies 3.3 V power to the sensor</td>
+<td>Red</td>
+</tr>
+<tr class="odd">
+<td>S</td>
+<td>Signal</td>
+<td>Carries the measurement to the micro:bit</td>
+<td>Yellow (or another colour)</td>
+</tr>
+</tbody>
+</table>
+<p>On the Sensorbit, every numbered port (P0, P1, P2, …) is a column of three pins, and the rows are color coded and labelled V, and S (with G being the unlabeled implied option) on the board itself. The sensors carry the same labels next to their pins.</p>
+<p>G connects to G, V connects to V, S connects to S — always. A sensor plugged in the wrong way around usually is not damaged, but it will not work.</p>
+<p>If a sensor seems dead or gives nonsense readings, check the wiring first: right port, right orientation, connector pushed in fully.</p>
+<p>There is one exception: the OLED screen has four pins and plugs into the Sensorbit’s dedicated IIC socket, which is keyed so it only fits one way.</p>
+</section>
+</section>
+<section id="which-port-should-i-use" class="level2">
+<h2 class="anchored" data-anchor-id="which-port-should-i-use">Which port should I use?</h2>
+<p><span style="display:block; height:1.5em"></span></p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Ports</th>
+<th>Use</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>P1, P2</td>
+<td>analog sensors (soil moisture), and any other sensor</td>
+</tr>
+<tr class="even">
+<td>P8, P12, P13–P15</td>
+<td>digital sensors and actuators</td>
+</tr>
+<tr class="odd">
+<td>P16</td>
+<td>the Rainbow LED, by convention</td>
+</tr>
+<tr class="even">
+<td>P3–P7, P9–P11</td>
+<td>avoid: shared with the LED matrix and buttons</td>
+</tr>
+</tbody>
+</table>
+<p>Check the back of the board if you are unsure.</p>
+</section>
+<section id="environmental-sensors" class="level2">
+<h2 class="anchored" data-anchor-id="environmental-sensors">Environmental sensors</h2>
+<p>These sensors measure conditions in the surrounding environment.</p>
+<section id="dht11-temperature-and-humidity" class="level3">
+<h3 class="anchored" data-anchor-id="dht11-temperature-and-humidity">DHT11 — Temperature and humidity</h3>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/DHT11_sensor.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:26.0%"></p>
+</figure>
+</div>
+<p>The DHT11 measures both <strong>air temperature</strong> (0–50°C, ±2°C accuracy) and <strong>relative humidity</strong> (20–90% RH, ±5% accuracy). It communicates using a simple digital protocol over a single data wire.</p>
+<p><strong>Medical use:</strong> Monitoring ward temperature and humidity, for patient comfort, wound healing, and the growth of pathogens. Tracking cold-chain conditions for vaccines and medications.</p>
+<p><strong>Agricultural use:</strong> Monitoring storage conditions for grain, seed, or fresh produce. High humidity in storage promotes fungal growth and the DHT11 can trigger an alert when conditions become dangerous.</p>
+<p><strong>Limitations:</strong></p>
+<ul>
+<li>Can only be read once every two seconds — reading it faster produces errors.</li>
+<li>Accuracy of ±2°C is adequate for environmental monitoring but not for clinical diagnostics.</li>
+<li>Range stops at 50°C, which limits use in very hot outdoor environments.</li>
+</ul>
+<hr>
+</section>
+<section id="soil-moisture-sensor" class="level3">
+<h3 class="anchored" data-anchor-id="soil-moisture-sensor">Soil moisture sensor</h3>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/soil_moisture.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:22.0%"></p>
+</figure>
+</div>
+<p>The soil moisture sensor consists of two metal probes. It passes a small current through the soil between them and measures resistance. Wet soil conducts electricity better than dry soil, so higher current means more moisture. It produces an analog signal, the reading varies continuously with moisture level.</p>
+<p><strong>Medical use:</strong> Limited direct medical application, but useful in agricultural contexts that affect food security and nutrition.</p>
+<p><strong>Agricultural use:</strong> The primary use case. Placed in the root zone of a plant, it can trigger irrigation automatically when the soil dries below a threshold, saving water and preventing crop stress.</p>
+<p><strong>Limitations:</strong></p>
+<ul>
+<li>The probe tips corrode over time when left in soil, causing readings to drift.</li>
+<li>The raw output is a relative value (0–1023 in MakeCode), not a calibrated percentage. You need to test your specific soil type to set meaningful thresholds.</li>
+<li>Sensitive to soil salinity: salty soil conducts electricity independently of moisture, giving false high readings.</li>
+</ul>
+<hr>
+</section>
+<section id="mq3-alcohol-sensor" class="level3">
+<h3 class="anchored" data-anchor-id="mq3-alcohol-sensor">MQ3 — Alcohol sensor</h3>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/mq3_alcohol_sensor.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:30.0%"></p>
+</figure>
+</div>
+<p>The MQ3 detects alcohol vapour in the air. It works by measuring a change in electrical resistance in a metal oxide element when alcohol molecules bind to it. It produces an analog signal.</p>
+<p><strong>Medical use:</strong> Screening for alcohol consumption (breath testing). Detecting alcohol-based hand sanitiser usage at a clinic entrance.</p>
+<p><strong>Agricultural use:</strong> Monitoring fermentation in biogas digesters or alcohol-based crop processing.</p>
+<p><strong>Limitations:</strong></p>
+<ul>
+<li>Requires a <strong>warm-up time of approximately 60 seconds</strong> after power-on before readings are reliable, during warm-up the readings are meaningless.</li>
+<li>Cross-sensitivity: the MQ3 also responds to other volatile compounds, including solvents and cleaning chemicals. It cannot distinguish between ethanol and other alcohols.</li>
+<li>It is not calibrated, the raw output is a relative signal, not a blood-alcohol percentage. In ceonsequence, it is suitable for detecting the <em>presence</em> of alcohol, not measuring a precise concentration.</li>
+<li>The heating element consumes more power than most sensors, which matters in battery-powered designs.</li>
+</ul>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Warning</span>The MQ3 gets warm — that is normal
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The MQ3 contains a small heating element and becomes noticeably warm to the touch during operation. This is the heater doing its job, not a fault. Do not enclose the sensor in anything that traps heat.</p>
+</div>
+</div>
+<hr>
+</section>
+<section id="analog-uv-sensor" class="level3">
+<h3 class="anchored" data-anchor-id="analog-uv-sensor">Analog UV sensor</h3>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/uv_sensor.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:24.0%"></p>
+</figure>
+</div>
+<p>The UV sensor measures <strong>ultraviolet light intensity</strong> and produces an analog signal. It contains a photodiode sensitive to UV wavelengths (approximately 200–400 nm).</p>
+<p><strong>Medical use:</strong> Monitoring UV exposure for patients with photosensitive conditions. Alerting when outdoor UV levels are high enough to require sun protection.</p>
+<p><strong>Agricultural use:</strong> Measuring light quality for plant growth. UV levels influence secondary metabolite production in some crops. Can be used to optimise greenhouse shading or supplementary lighting.</p>
+<p><strong>Limitations:</strong></p>
+<ul>
+<li>The raw output requires calibration to convert to a standard UV index.</li>
+<li>Sensitive to the angle of the sensor relative to the light source — a sensor lying flat may read differently from one tilted toward the sun.</li>
+<li>Does not distinguish between UVA and UVB.</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="presence-and-interaction-sensors" class="level2">
+<h2 class="anchored" data-anchor-id="presence-and-interaction-sensors">Presence and interaction sensors</h2>
+<p>These sensors detect events or physical interactions rather than measuring continuous quantities.</p>
+<section id="pir-sensor-passive-infrared" class="level3">
+<h3 class="anchored" data-anchor-id="pir-sensor-passive-infrared">PIR sensor — Passive Infrared</h3>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/pir_sensor.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:28.0%"></p>
+</figure>
+</div>
+<p>The PIR sensor detects <strong>movement of warm bodies</strong> like people, animals, or anything emitting infrared radiation at body temperature. It produces a digital signal: 1 (motion detected) or 0 (no motion). It is a passive sensor because it does not emit anything, only listens.</p>
+<p><strong>Medical use:</strong> Detecting when a patient enters or leaves a room. Triggering an automated hand sanitiser dispenser. Monitoring patient movement in a ward to detect falls or prolonged inactivity.</p>
+<p><strong>Agricultural use:</strong> Detecting animals entering a protected area. Triggering a deterrent (a sound or light) when livestock or pests approach a crop.</p>
+<p><strong>Limitations:</strong></p>
+<ul>
+<li>Cannot distinguish between different types of warm bodies — a person and a dog produce similar signals.</li>
+<li>Has a detection angle (typically ~120°) and a maximum range (typically ~5–7 m): placement matters.</li>
+<li>Can produce false positives from sudden changes in ambient temperature, such as a breeze through an open window or direct sunlight hitting the sensor.</li>
+</ul>
+<hr>
+</section>
+<section id="crash-sensor-brick" class="level3">
+<h3 class="anchored" data-anchor-id="crash-sensor-brick">Crash sensor brick</h3>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/crash_sensor.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:35.0%"></p>
+</figure>
+</div>
+<p>The crash sensor is a simple <strong>push button with a lever</strong>, designed to detect physical contact or impact. It produces a digital signal: pressed or not pressed.</p>
+<p><strong>Medical use:</strong> Detecting whether a cabinet or drug storage container has been opened. Acting as an emergency call button. Confirming that a patient has performed a physical action (pressed a button to indicate they are present).</p>
+<p><strong>Agricultural use:</strong> Detecting whether a gate or hatch is open or closed. Triggering an action when an animal pushes against a sensor.</p>
+<p><strong>Limitations:</strong></p>
+<ul>
+<li>Requires direct physical contact.</li>
+<li>The lever can be damaged by repeated heavy impact.</li>
+<li>Produces a single on/off signal with no information about force or duration.</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="output-components" class="level2">
+<h2 class="anchored" data-anchor-id="output-components">Output components</h2>
+<p>These components display information or produce effects that a person can see.</p>
+<section id="oled-screen" class="level3">
+<h3 class="anchored" data-anchor-id="oled-screen">OLED screen</h3>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/oled.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:28.0%"></p>
+</figure>
+</div>
+<p>The OLED (Organic Light-Emitting Diode) screen is a small display that can show <strong>text and simple graphics</strong>. It connects to the micro:bit via the I²C protocol — a two-wire communication bus — and requires the Elecfreaks extension in MakeCode to use.</p>
+<p>Unlike the micro:bit’s built-in 5×5 LED matrix, the OLED can display readable text and numbers, making it suitable for showing sensor readings to a user.</p>
+<p><strong>Use cases:</strong> Displaying temperature, humidity, or other sensor readings. Showing status messages (“Alert”, “Normal”, “Warming up”). Building a simple patient-facing display.</p>
+<p><strong>Limitations:</strong></p>
+<ul>
+<li>Small physical size limits how much can be displayed at once.</li>
+<li>Not visible in direct bright sunlight.</li>
+<li>Requires the extension library; it cannot be used with the standard MakeCode blocks alone.</li>
+</ul>
+<hr>
+</section>
+<section id="rainbow-led" class="level3">
+<h3 class="anchored" data-anchor-id="rainbow-led">Rainbow LED</h3>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/rainbow_led.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:26.0%"></p>
+</figure>
+</div>
+<p>The Rainbow LED strip contains multiple individually controllable RGB LEDs. Each LED can be set to any colour by specifying its red, green, and blue components (0–255 each). In MakeCode, these are controlled using the <strong>Neopixel</strong> blocks.</p>
+<p><strong>Use cases:</strong> Colour-coded status indicators (green = normal, yellow = warning, red = alert). Visual feedback during a process. Simple phototherapy prototypes where specific wavelengths are needed.</p>
+<p><strong>Limitations:</strong></p>
+<ul>
+<li>Draws more current than a single LED. Running many LEDs at full brightness simultaneously can strain the micro:bit’s power supply.</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="actuators" class="level2">
+<h2 class="anchored" data-anchor-id="actuators">Actuators</h2>
+<p>These components produce physical actions in response to signals from the micro:bit.</p>
+<section id="servo-motor" class="level3">
+<h3 class="anchored" data-anchor-id="servo-motor">180° Servo motor</h3>
+<p>The servo motor rotates to a <strong>specific angle</strong> between 0° and 180°, controlled by a signal from the micro:bit. Unlike a regular motor which spins continuously, the servo holds its position at the angle you specify.</p>
+<p><strong>Medical use:</strong> Opening and closing a valve in a fluid delivery prototype. Pressing a dispenser pump. Controlling a flap or door (e.g., a contactless waste bin lid).</p>
+<p><strong>Agricultural use:</strong> Operating an irrigation valve. Controlling ventilation in a greenhouse. Triggering a trap or gate.</p>
+<p><strong>Limitations:</strong></p>
+<ul>
+<li>Moves to a position, not a continuous rotation — if you need a spinning motor, use the DC motor instead.</li>
+<li>Can only exert limited force (torque) — not suitable for heavy mechanical loads.</li>
+<li>Draws significant current when under load, which can cause the micro:bit to reset if not powered externally.</li>
+</ul>
+<hr>
+</section>
+<section id="dc-motor-with-fan" class="level3">
+<h3 class="anchored" data-anchor-id="dc-motor-with-fan">DC motor with fan</h3>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="images/motor.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:26.0%"></p>
+</figure>
+</div>
+<p>The DC motor spins continuously in one direction when powered. The kit contains a fan that can be attached to it. It is controlled by an on/off signal (or a variable speed signal) from the micro:bit.</p>
+<p><strong>Medical use:</strong> Ventilation in an enclosed monitoring device. Air circulation in a patient room monitor (in theory anyway, the actual specimen is a bit small for that).</p>
+<p><strong>Agricultural use:</strong> Ventilation in a greenhouse or grain storage. Driving a small pump for irrigation.</p>
+<p><strong>Limitations:</strong></p>
+<ul>
+<li>The fan draws significant current and almost always requires external battery power.</li>
+<li>Speed control requires PWM (pulse-width modulation) output from the micro:bit, which is more advanced than simple on/off control.</li>
+<li>The motor produces electrical noise that can interfere with sensitive analog sensors. Use good circuit design keeps motor and sensor wiring separate.</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="choosing-the-right-component-for-your-use-case" class="level2">
+<h2 class="anchored" data-anchor-id="choosing-the-right-component-for-your-use-case">Choosing the right component for your use case</h2>
+<p>Not every sensor is the right tool for every problem. Good engineering requires evaluating components against requirements.</p>
+<p>Ask these questions about any sensor you are considering:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 40%">
+<col style="width: 60%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Question</th>
+<th>Why it matters</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Does it measure the right thing?</td>
+<td>A soil moisture sensor cannot measure air humidity</td>
+</tr>
+<tr class="even">
+<td>Is the range appropriate?</td>
+<td>The DHT11 stops at 50°C — unsuitable for sterilisation monitoring</td>
+</tr>
+<tr class="odd">
+<td>Is the accuracy good enough?</td>
+<td>±2°C is fine for storage monitoring, not for clinical thermometry</td>
+</tr>
+<tr class="even">
+<td>How fast does it need to update?</td>
+<td>The DHT11’s 2-second limit is fine for ambient monitoring, not for a fever alarm</td>
+</tr>
+<tr class="odd">
+<td>Does it need warm-up time?</td>
+<td>The MQ3 needs 60 seconds — is that acceptable in your design?</td>
+</tr>
+<tr class="even">
+<td>How much power does it draw?</td>
+<td>Motors and servos need external power in sustained use</td>
+</tr>
+<tr class="odd">
+<td>Will it degrade over time?</td>
+<td>The soil moisture sensor corrodes — plan for maintenance</td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+<section id="makecode-add-the-elecfreaks-extension" class="level2">
+<h2 class="anchored" data-anchor-id="makecode-add-the-elecfreaks-extension">MakeCode: Add the Elecfreaks extension</h2>
+<p>The Sensorbit sensors use pin-level communication that the standard MakeCode blocks already support. However, some sensors, for example the OLED screen, require a dedicated software library.</p>
+<p>To add the Elecfreaks extension:</p>
+<ol type="1">
+<li>Open a project in <a href="makecode.microbit.org">MakeCodeand</a></li>
+<li>Click Extensions at the bottom of the toolbox (middle panel)</li>
+<li>In the search box, type <code>smarthome</code></li>
+<li>Select the smarthome package from Elecfreaks</li>
+<li>The new block categories will appear in your toolbox</li>
+</ol>
+<p>Once installed, blocks for the OLED screen and other kit-specific components will appear in the toolbox alongside the standard blocks.</p>
+<hr>
+</section>
+<section id="summary" class="level2">
+<h2 class="anchored" data-anchor-id="summary">Summary</h2>
+<ul>
+<li>The <strong>Sensorbit</strong> connects sensors to the micro:bit and provides labelled, powered ports</li>
+<li><strong>Environmental sensors:</strong> DHT11 (temperature + humidity), soil moisture, MQ3 (alcohol), UV</li>
+<li><strong>Presence sensors:</strong> PIR (motion), crash sensor (contact)</li>
+<li><strong>Output displays:</strong> OLED screen, Rainbow LED</li>
+<li><strong>Actuators:</strong> servo motor (angle), DC motor with fan (continuous rotation)</li>
+<li>Every sensor has a range, accuracy limit, timing constraint, and potential failure mode — evaluate before choosing</li>
+<li>The <strong>Elecfreaks extension</strong> must be added in MakeCode for some components (especially the OLED)</li>
+</ul>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/amrei-bp\.github\.io\/Introduction_Bioinformatics_2026\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+      window.quartoDecorateExternalLinks = function (root) {
+     var links = (root || window.document).querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+          if (!link.classList.contains('no-external-icon')) {
+          }
+        }
+      }
+      };
+      window.quartoDecorateExternalLinks(window.document);
+    // Esc closes the popup (WCAG 1.4.13) and focus leaving both trigger and
+    // popup closes it (WCAG 2.4.11); tippy handles neither for interactive popups.
+    const hideOnEscAndFocusOut = {
+      name: 'hideOnEscAndFocusOut',
+      defaultValue: true,
+      fn(instance) {
+        const dismiss = () => {
+          // A show scheduled by the trigger delay would otherwise reopen it
+          instance.clearDelayTimeouts();
+          instance.hide();
+        };
+        const onKeyDown = (event) => {
+          if (event.key !== 'Escape') {
+            return;
+          }
+          // Keep Esc from also reaching page handlers (e.g. reveal.js overview),
+          // except an open reveal.js slide menu, which Esc should close too.
+          // The menu handles keys only when its keyboard option is on.
+          const menuHandlesEsc = window.Reveal?.getPlugin?.('menu')?.isOpen() &&
+            window.Reveal.getConfig().menu?.keyboard !== false;
+          if (!menuHandlesEsc) {
+            event.stopPropagation();
+          }
+          if (instance.popper.contains(window.document.activeElement)) {
+            // Disabled while refocusing so the focus trigger does not reopen it
+            instance.disable();
+            instance.reference.focus();
+            instance.enable();
+          }
+          dismiss();
+        };
+        const onFocusOut = (event) => {
+          const target = event.relatedTarget;
+          if (target && !instance.reference.contains(target) &&
+              !instance.popper.contains(target)) {
+            dismiss();
+          }
+        };
+        // On the trigger too: a click trigger (code-annotations: select) has no
+        // blur handling. Attached for the instance's lifetime so leaving the
+        // trigger also cancels a show still pending on the trigger delay.
+        instance.reference.addEventListener('focusout', onFocusOut);
+        return {
+          onShow() {
+            window.document.addEventListener('keydown', onKeyDown, true);
+            instance.popper.addEventListener('focusout', onFocusOut);
+          },
+          onHide() {
+            window.document.removeEventListener('keydown', onKeyDown, true);
+            instance.popper.removeEventListener('focusout', onFocusOut);
+          },
+          onDestroy() {
+            instance.reference.removeEventListener('focusout', onFocusOut);
+          },
+        };
+      },
+    };
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+        plugins: [hideOnEscAndFocusOut],
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          // Each band is positioned against its own containing block, which is
+          // not the offsetParent of the lines, so place it from client rects.
+          const placeBand = (band, firstEl, lastEl, codeBlock) => {
+            const container = band.offsetParent;
+            if (container === null) {
+              return;
+            }
+            const containerRect = container.getBoundingClientRect();
+            // Reveal.js scales slides with a transform, so convert client
+            // pixels back to the CSS pixels of the container.
+            const scale = containerRect.height / container.offsetHeight || 1;
+            const firstRect = firstEl.getBoundingClientRect();
+            const lastRect = lastEl.getBoundingClientRect();
+            const top = (firstRect.top - containerRect.top) / scale - container.clientTop + container.scrollTop;
+            const height = (lastRect.bottom - firstRect.top) / scale;
+            band.style.top = top - 2 + "px";
+            band.style.height = height + 4 + "px";
+            if (codeBlock) {
+              // Without the copy button wrapper, the containing block is wider
+              // than the code block, so span the code block explicitly.
+              const blockRect = codeBlock.getBoundingClientRect();
+              band.style.left = (blockRect.left - containerRect.left) / scale - container.clientLeft + container.scrollLeft + "px";
+              band.style.width = blockRect.width / scale + "px";
+            }
+          };
+          if (lineIds.length > 0) {
+            const el = window.document.getElementById(lineIds[0]);
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const parent = el.parentElement.parentElement;
+            // cook up a div (if necessary) and position it
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            placeBand(div, el, lastEl, parent.closest("div.sourceCode") || parent);
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            placeBand(gutterDiv, el, lastEl);
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+  <script type="application/javascript">
+  window.quartoScrollableRegionsLabels = {"code":"Scrollable code","output":"Scrollable output"};
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

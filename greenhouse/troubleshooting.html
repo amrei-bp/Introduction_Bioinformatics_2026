@@ -1,0 +1,959 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.11.9">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Troubleshooting – Introduction to Bioinformatics</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/scrollable-regions/scrollable-regions.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-5de16f5e46225c21e2daa90d340bf64f.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-5ff308f7e78e9f60b831fd1e947a99f4.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-sidebar docked nav-fixed quarto-light"><a id="quarto-skip-link" class="visually-hidden-focusable" href="#quarto-document-content">Skip to main content</a>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark" aria-label="Site">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Introduction to Bioinformatics</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link active" href="../index.html" aria-current="page"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+            <div id="quarto-search" class="" title="Search"></div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav" aria-label="Toolbar">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="Breadcrumbs"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../greenhouse/index.html">Smart Greenhouses</a></li><li class="breadcrumb-item"><a href="../greenhouse/troubleshooting.html">Exercise troubleshooting</a></li></ol></nav>
+        <a class="flex-grow-1" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto" aria-label="Section">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+      <a href="../index.html" class="sidebar-logo-link">
+      <img src="../figures/logo/SLUBI_logo.png" alt="" class="sidebar-logo light-content py-0 d-lg-inline d-none">
+      <img src="../figures/logo/SLUBI_logo.png" alt="" class="sidebar-logo dark-content py-0 d-lg-inline d-none">
+      </a>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Home</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-controls="quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text" id="quarto-sidebar-section-1-label">Course server</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+      </div>
+      <ul id="quarto-sidebar-section-1" aria-labelledby="quarto-sidebar-section-1-label" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../server_accounts.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Server accounts</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../server_access.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Server access</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-controls="quarto-sidebar-section-2" aria-expanded="true">
+ <span class="menu-text" id="quarto-sidebar-section-2-label">Command line</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+      </div>
+      <ul id="quarto-sidebar-section-2" aria-labelledby="quarto-sidebar-section-2-label" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../unix/unix.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction to Unix</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../unix/unix_exercises.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Unix Exercises</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-controls="quarto-sidebar-section-3" aria-expanded="true">
+ <span class="menu-text" id="quarto-sidebar-section-3-label">Smart Greenhouses</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+      </div>
+      <ul id="quarto-sidebar-section-3" aria-labelledby="quarto-sidebar-section-3-label" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../greenhouse/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introdcution to the module</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../greenhouse/kit.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">The sensor kit</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../greenhouse/exercises.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Greenhouse exercises</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../greenhouse/troubleshooting.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Exercise troubleshooting</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <button type="button" class="sidebar-item-text sidebar-item-toggle sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-controls="quarto-sidebar-section-4" aria-expanded="true">
+ <span class="menu-text" id="quarto-sidebar-section-4-label">Introduction to NGS</span><i class="bi bi-chevron-right" aria-hidden="true"></i></button>
+      </div>
+      <ul id="quarto-sidebar-section-4" aria-labelledby="quarto-sidebar-section-4-label" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../ngs/ngs_intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction to NGS</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../ngs/NGS_data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">The data</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../ngs/day1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Day 1: Quality control</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../ngs/qc_exercises.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Day 1: QC exercises</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../ngs/day2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Day 2: Mapping</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../ngs/mapping_exercises.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Day 2: Mapping exercises</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" aria-labelledby="toc-title" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#connecting-and-flashing" id="toc-connecting-and-flashing" class="nav-link active" data-scroll-target="#connecting-and-flashing">Connecting and flashing</a>
+  <ul class="collapse">
+  <li><a href="#the-microbit-drive-does-not-appear-on-my-laptop" id="toc-the-microbit-drive-does-not-appear-on-my-laptop" class="nav-link" data-scroll-target="#the-microbit-drive-does-not-appear-on-my-laptop">The MICROBIT drive does not appear on my laptop</a></li>
+  <li><a href="#copying-the-.hex-file-fails-or-the-microbit-shows-an-error-number" id="toc-copying-the-.hex-file-fails-or-the-microbit-shows-an-error-number" class="nav-link" data-scroll-target="#copying-the-.hex-file-fails-or-the-microbit-shows-an-error-number">Copying the <code>.hex</code> file fails, or the micro:bit shows an error number</a></li>
+  <li><a href="#flashing-is-slow-and-tedious" id="toc-flashing-is-slow-and-tedious" class="nav-link" data-scroll-target="#flashing-is-slow-and-tedious">Flashing is slow and tedious</a></li>
+  </ul></li>
+  <li><a href="#the-program-runs-but-misbehaves" id="toc-the-program-runs-but-misbehaves" class="nav-link" data-scroll-target="#the-program-runs-but-misbehaves">The program runs but misbehaves</a>
+  <ul class="collapse">
+  <li><a href="#nothing-happens-at-all" id="toc-nothing-happens-at-all" class="nav-link" data-scroll-target="#nothing-happens-at-all">Nothing happens at all</a></li>
+  <li><a href="#i-cant-get-the-kit-components-to-work-in-the-simulator" id="toc-i-cant-get-the-kit-components-to-work-in-the-simulator" class="nav-link" data-scroll-target="#i-cant-get-the-kit-components-to-work-in-the-simulator">I can’t get the kit components to work in the simulator</a></li>
+  <li><a href="#the-microbit-restarts-itself-when-the-motor-or-servo-runs" id="toc-the-microbit-restarts-itself-when-the-motor-or-servo-runs" class="nav-link" data-scroll-target="#the-microbit-restarts-itself-when-the-motor-or-servo-runs">The micro:bit restarts itself when the motor or servo runs</a></li>
+  </ul></li>
+  <li><a href="#the-oled" id="toc-the-oled" class="nav-link" data-scroll-target="#the-oled">The OLED</a>
+  <ul class="collapse">
+  <li><a href="#the-oled-stays-black" id="toc-the-oled-stays-black" class="nav-link" data-scroll-target="#the-oled-stays-black">The OLED stays black</a></li>
+  <li><a href="#the-oled-flickers" id="toc-the-oled-flickers" class="nav-link" data-scroll-target="#the-oled-flickers">The OLED flickers</a></li>
+  </ul></li>
+  <li><a href="#sensors" id="toc-sensors" class="nav-link" data-scroll-target="#sensors">Sensors</a>
+  <ul class="collapse">
+  <li><a href="#a-sensor-reads-0-a-constant-value-or-nonsense" id="toc-a-sensor-reads-0-a-constant-value-or-nonsense" class="nav-link" data-scroll-target="#a-sensor-reads-0-a-constant-value-or-nonsense">A sensor reads 0, a constant value, or nonsense</a></li>
+  <li><a href="#the-dht11-gives-no-reading-or-wrong-readings" id="toc-the-dht11-gives-no-reading-or-wrong-readings" class="nav-link" data-scroll-target="#the-dht11-gives-no-reading-or-wrong-readings">The DHT11 gives no reading or wrong readings</a></li>
+  <li><a href="#which-ports-are-safe-for-my-mini-challenge" id="toc-which-ports-are-safe-for-my-mini-challenge" class="nav-link" data-scroll-target="#which-ports-are-safe-for-my-mini-challenge">Which ports are safe for my mini challenge?</a></li>
+  <li><a href="#the-soil-moisture-readings-drift-or-differ-from-before" id="toc-the-soil-moisture-readings-drift-or-differ-from-before" class="nav-link" data-scroll-target="#the-soil-moisture-readings-drift-or-differ-from-before">The soil moisture readings drift or differ from before</a></li>
+  <li><a href="#the-rainbow-led-shows-nothing-or-only-some-leds-light" id="toc-the-rainbow-led-shows-nothing-or-only-some-leds-light" class="nav-link" data-scroll-target="#the-rainbow-led-shows-nothing-or-only-some-leds-light">The Rainbow LED shows nothing, or only some LEDs light</a></li>
+  </ul></li>
+  <li><a href="#still-stuck" id="toc-still-stuck" class="nav-link" data-scroll-target="#still-stuck">Still stuck?</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content" tabindex="-1">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="Breadcrumbs"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../greenhouse/index.html">Smart Greenhouses</a></li><li class="breadcrumb-item"><a href="../greenhouse/troubleshooting.html">Exercise troubleshooting</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title">Troubleshooting</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>Just as in every other exercise, things can go wrong. Check below for common problems.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>The universal first checks
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Most problems are one of these three. Check them before anything else:</p>
+<ol type="1">
+<li><strong>Wiring</strong>: right port? G to G, V to V, S to S? Connector pushed in fully?</li>
+<li><strong>Power</strong>: is the micro:bit showing any sign of life? Is the USB cable connected at both ends?</li>
+<li><strong>The right program</strong>: did the flash actually complete (orange LED stopped flashing), and is it the version you think it is?</li>
+</ol>
+</div>
+</div>
+<hr>
+<section id="connecting-and-flashing" class="level2">
+<h2 class="anchored" data-anchor-id="connecting-and-flashing">Connecting and flashing</h2>
+<section id="the-microbit-drive-does-not-appear-on-my-laptop" class="level3">
+<h3 class="anchored" data-anchor-id="the-microbit-drive-does-not-appear-on-my-laptop">The MICROBIT drive does not appear on my laptop</h3>
+<ul>
+<li>Try a different USB cable: <strong>charge-only cables look identical to data cables but cannot transfer programs.</strong> This is the most common cause.</li>
+<li>Try a different USB port on the laptop.</li>
+<li>Unplug, wait five seconds, replug.</li>
+<li>If the micro:bit shows an error number on its LED matrix, see below.</li>
+</ul>
+</section>
+<section id="copying-the-.hex-file-fails-or-the-microbit-shows-an-error-number" class="level3">
+<h3 class="anchored" data-anchor-id="copying-the-.hex-file-fails-or-the-microbit-shows-an-error-number">Copying the <code>.hex</code> file fails, or the micro:bit shows an error number</h3>
+<ul>
+<li>An error code (e.g.&nbsp;529, 528) scrolling on the LED matrix means the flash failed. Delete nothing: just download the <code>.hex</code> again from MakeCode and copy it again.</li>
+<li>Make sure you copied the <code>.hex</code> file to the <strong>MICROBIT</strong> drive, not to a folder on your laptop.</li>
+<li>If the drive is named <strong>MAINTENANCE</strong> instead of MICROBIT, the micro:bit was plugged in with the reset button held. Unplug and replug it normally.</li>
+</ul>
+</section>
+<section id="flashing-is-slow-and-tedious" class="level3">
+<h3 class="anchored" data-anchor-id="flashing-is-slow-and-tedious">Flashing is slow and tedious</h3>
+<p>In Chrome or Edge you can skip the drag-and-drop entirely: click the <strong>three dots next to the Download button → Connect device</strong>, and follow the pairing steps. After that, the Download button flashes the micro:bit directly over USB in a couple of seconds.</p>
+<hr>
+</section>
+</section>
+<section id="the-program-runs-but-misbehaves" class="level2">
+<h2 class="anchored" data-anchor-id="the-program-runs-but-misbehaves">The program runs but misbehaves</h2>
+<section id="nothing-happens-at-all" class="level3">
+<h3 class="anchored" data-anchor-id="nothing-happens-at-all">Nothing happens at all</h3>
+<ul>
+<li>Did the orange LED finish flashing? Wait for it.</li>
+<li>Are your blocks <strong>inside</strong> <code>on start</code> or <code>forever</code>? Blocks floating loose on the workspace (greyed out) are not part of the program.</li>
+<li>Press the <strong>reset button</strong> on the back of the micro:bit to restart the program.</li>
+</ul>
+</section>
+<section id="i-cant-get-the-kit-components-to-work-in-the-simulator" class="level3">
+<h3 class="anchored" data-anchor-id="i-cant-get-the-kit-components-to-work-in-the-simulator">I can’t get the kit components to work in the simulator</h3>
+<p>The simulator only simulates the micro:bit’s <strong>built-in</strong> components. External sensors connected through the Sensorbit do not exist in the simulator: for those, only the actual hardware will work.</p>
+</section>
+<section id="the-microbit-restarts-itself-when-the-motor-or-servo-runs" class="level3">
+<h3 class="anchored" data-anchor-id="the-microbit-restarts-itself-when-the-motor-or-servo-runs">The micro:bit restarts itself when the motor or servo runs</h3>
+<p>The motor is drawing more current than USB power can supply, which browns out the micro:bit. Power the Sensorbit from an external battery pack instead of relying on USB alone.</p>
+<hr>
+</section>
+</section>
+<section id="the-oled" class="level2">
+<h2 class="anchored" data-anchor-id="the-oled">The OLED</h2>
+<section id="the-oled-stays-black" class="level3">
+<h3 class="anchored" data-anchor-id="the-oled-stays-black">The OLED stays black</h3>
+<ul>
+<li>Is it plugged into the <strong>IIC</strong> socket on the Sensorbit (not a numbered G/V/S port)?</li>
+<li>Did you add the <code>initialize OLED width 128 height 64</code> block in <code>on start</code>? Nothing displays without it.</li>
+<li>Did you add the smarthome extension to <em>this</em> project? Extensions are per-project: a new project needs the extension added again.</li>
+</ul>
+</section>
+<section id="the-oled-flickers" class="level3">
+<h3 class="anchored" data-anchor-id="the-oled-flickers">The OLED flickers</h3>
+<p>Your <code>forever</code> loop is clearing and rewriting the display on every pass. Either slow the loop down with a <code>pause</code>, or, better, only redraw when the value being shown has actually changed (compare with a variable holding the previous value).</p>
+<hr>
+</section>
+</section>
+<section id="sensors" class="level2">
+<h2 class="anchored" data-anchor-id="sensors">Sensors</h2>
+<section id="a-sensor-reads-0-a-constant-value-or-nonsense" class="level3">
+<h3 class="anchored" data-anchor-id="a-sensor-reads-0-a-constant-value-or-nonsense">A sensor reads 0, a constant value, or nonsense</h3>
+<ul>
+<li><strong>Check the wiring first</strong>: G to G, V to V, S to S, right port, fully seated. A reversed cable is the most common cause of a “dead” sensor.</li>
+<li>Check that the pin number in your program matches the port the sensor is physically plugged into.</li>
+</ul>
+</section>
+<section id="the-dht11-gives-no-reading-or-wrong-readings" class="level3">
+<h3 class="anchored" data-anchor-id="the-dht11-gives-no-reading-or-wrong-readings">The DHT11 gives no reading or wrong readings</h3>
+<ul>
+<li>The DHT11 can only be read once every two seconds. Make sure your <code>forever</code> loop ends with <code>pause 2000</code>.</li>
+</ul>
+</section>
+<section id="which-ports-are-safe-for-my-mini-challenge" class="level3">
+<h3 class="anchored" data-anchor-id="which-ports-are-safe-for-my-mini-challenge">Which ports are safe for my mini challenge?</h3>
+<p>Not every numbered port on the Sensorbit is free to use: several micro:bit pins are shared with built-in hardware, and a sensor on a shared pin gives garbage readings with no error message.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 46%">
+<col style="width: 53%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Ports</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>P1, P2, P8, P12, P13–P16</strong></td>
+<td>✅ Safe for sensors and actuators</td>
+</tr>
+<tr class="even">
+<td>P3, P4, P6, P7, P9, P10</td>
+<td>❌ Shared with the <strong>LED matrix</strong>: nonsense readings whenever the display is in use</td>
+</tr>
+<tr class="odd">
+<td>P5, P11</td>
+<td>❌ Wired to <strong>buttons A and B</strong></td>
+</tr>
+<tr class="even">
+<td>P0</td>
+<td>❌ No GVS port: wired to the Sensorbit’s buzzer and headphone jack</td>
+</tr>
+</tbody>
+</table>
+<p>Two more rules:</p>
+<ul>
+<li><strong>Analog sensors</strong> (the soil moisture sensor, or anything else read with <code>analog read pin</code>) must go on <strong>P1 or P2</strong>. The other analog-capable pins are all shared with the LED matrix.</li>
+<li><strong>P16</strong> is the conventional home of the Rainbow LED strip: keep it free if your project uses one.</li>
+</ul>
+<p>If a sensor worked on a different pin and now reads nonsense, check this table before suspecting the sensor.</p>
+</section>
+<section id="the-soil-moisture-readings-drift-or-differ-from-before" class="level3">
+<h3 class="anchored" data-anchor-id="the-soil-moisture-readings-drift-or-differ-from-before">The soil moisture readings drift or differ from before</h3>
+<p>This sensor is relative, not calibrated: readings depend on soil type, salinity, probe contact, and probe corrosion. Re-check your thresholds whenever conditions change.</p>
+</section>
+<section id="the-rainbow-led-shows-nothing-or-only-some-leds-light" class="level3">
+<h3 class="anchored" data-anchor-id="the-rainbow-led-shows-nothing-or-only-some-leds-light">The Rainbow LED shows nothing, or only some LEDs light</h3>
+<ul>
+<li>Check the wiring and that the pin in the Neopixel setup block matches the physical port.</li>
+<li>Check that the <strong>number of LEDs</strong> in the setup block matches your strip: if it is set too low, the remaining LEDs stay dark.</li>
+<li>Did the <code>set strip to ...</code> block run in <code>on start</code>? Without it, the show-colour blocks have nothing to control.</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="still-stuck" class="level2">
+<h2 class="anchored" data-anchor-id="still-stuck">Still stuck?</h2>
+<p>Ask me, but consider these three questions first:</p>
+<ol type="1">
+<li>What did you expect to happen?</li>
+<li>What happened instead?</li>
+<li>What have you already checked?</li>
+</ol>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/amrei-bp\.github\.io\/Introduction_Bioinformatics_2026\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+      window.quartoDecorateExternalLinks = function (root) {
+     var links = (root || window.document).querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+          if (!link.classList.contains('no-external-icon')) {
+          }
+        }
+      }
+      };
+      window.quartoDecorateExternalLinks(window.document);
+    // Esc closes the popup (WCAG 1.4.13) and focus leaving both trigger and
+    // popup closes it (WCAG 2.4.11); tippy handles neither for interactive popups.
+    const hideOnEscAndFocusOut = {
+      name: 'hideOnEscAndFocusOut',
+      defaultValue: true,
+      fn(instance) {
+        const dismiss = () => {
+          // A show scheduled by the trigger delay would otherwise reopen it
+          instance.clearDelayTimeouts();
+          instance.hide();
+        };
+        const onKeyDown = (event) => {
+          if (event.key !== 'Escape') {
+            return;
+          }
+          // Keep Esc from also reaching page handlers (e.g. reveal.js overview),
+          // except an open reveal.js slide menu, which Esc should close too.
+          // The menu handles keys only when its keyboard option is on.
+          const menuHandlesEsc = window.Reveal?.getPlugin?.('menu')?.isOpen() &&
+            window.Reveal.getConfig().menu?.keyboard !== false;
+          if (!menuHandlesEsc) {
+            event.stopPropagation();
+          }
+          if (instance.popper.contains(window.document.activeElement)) {
+            // Disabled while refocusing so the focus trigger does not reopen it
+            instance.disable();
+            instance.reference.focus();
+            instance.enable();
+          }
+          dismiss();
+        };
+        const onFocusOut = (event) => {
+          const target = event.relatedTarget;
+          if (target && !instance.reference.contains(target) &&
+              !instance.popper.contains(target)) {
+            dismiss();
+          }
+        };
+        // On the trigger too: a click trigger (code-annotations: select) has no
+        // blur handling. Attached for the instance's lifetime so leaving the
+        // trigger also cancels a show still pending on the trigger delay.
+        instance.reference.addEventListener('focusout', onFocusOut);
+        return {
+          onShow() {
+            window.document.addEventListener('keydown', onKeyDown, true);
+            instance.popper.addEventListener('focusout', onFocusOut);
+          },
+          onHide() {
+            window.document.removeEventListener('keydown', onKeyDown, true);
+            instance.popper.removeEventListener('focusout', onFocusOut);
+          },
+          onDestroy() {
+            instance.reference.removeEventListener('focusout', onFocusOut);
+          },
+        };
+      },
+    };
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+        plugins: [hideOnEscAndFocusOut],
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          // Each band is positioned against its own containing block, which is
+          // not the offsetParent of the lines, so place it from client rects.
+          const placeBand = (band, firstEl, lastEl, codeBlock) => {
+            const container = band.offsetParent;
+            if (container === null) {
+              return;
+            }
+            const containerRect = container.getBoundingClientRect();
+            // Reveal.js scales slides with a transform, so convert client
+            // pixels back to the CSS pixels of the container.
+            const scale = containerRect.height / container.offsetHeight || 1;
+            const firstRect = firstEl.getBoundingClientRect();
+            const lastRect = lastEl.getBoundingClientRect();
+            const top = (firstRect.top - containerRect.top) / scale - container.clientTop + container.scrollTop;
+            const height = (lastRect.bottom - firstRect.top) / scale;
+            band.style.top = top - 2 + "px";
+            band.style.height = height + 4 + "px";
+            if (codeBlock) {
+              // Without the copy button wrapper, the containing block is wider
+              // than the code block, so span the code block explicitly.
+              const blockRect = codeBlock.getBoundingClientRect();
+              band.style.left = (blockRect.left - containerRect.left) / scale - container.clientLeft + container.scrollLeft + "px";
+              band.style.width = blockRect.width / scale + "px";
+            }
+          };
+          if (lineIds.length > 0) {
+            const el = window.document.getElementById(lineIds[0]);
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const parent = el.parentElement.parentElement;
+            // cook up a div (if necessary) and position it
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            placeBand(div, el, lastEl, parent.closest("div.sourceCode") || parent);
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            placeBand(gutterDiv, el, lastEl);
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+  <script type="application/javascript">
+  window.quartoScrollableRegionsLabels = {"code":"Scrollable code","output":"Scrollable output"};
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

@@ -193,7 +193,7 @@
     "text": "For this course, we will be working on a remote server, HPC2N. You should already have applied for a user account there. If you haven’t, do it now.\nHere, you will access the server for the first time.\nYou will need:",
     "crumbs": [
       "Home",
-      "Before the course",
+      "Course server",
       "Server access"
     ]
   },
@@ -205,7 +205,7 @@
     "text": "Access server via the Terminal\n\nOpen the Terminal on your computer.\nType ssh username@kebnekaise.hpc2n.umu.se, where you substitute “username” with your HPC2N user name.\ntype in your temporary password.\n\n\n\n\n\n\n\nCautionAfter the first log-in: reset password\n\n\n\nIn the welcome mail you got when your HPC2N account was created there was a link to create a first, temporary password. When you have logged in using that, you need to change your password.\nFrom the HPC2N documentation:\nThis is done using the passwd command:\npasswd\nUse a good password that combines letters of different case. Do not use dictionary words. Avoid using the same password that you also use in other places.\n\nIt will first ask for your current password. The first time you login, that will be the temporary password you created with the HPC2N password reset service.\nType in that and press enter.\nThen type in the new password you want, enter, and repeat.\nYou have changed the password.\n\n\n\nYou are now on connected to the login node of the cluster.\n\n\n\n\n\n\nImportantTo do for you\n\n\n\nRead here more about HPC cluster architecture. Read until the header MPI.\n\n\nThis location is the home folder of your account.\n\n\n\n\n\n\nTip\n\n\n\nYou can check the path to your working directory with:\npwd\nand the content with:\nls",
     "crumbs": [
       "Home",
-      "Before the course",
+      "Course server",
       "Server access"
     ]
   },
@@ -217,7 +217,7 @@
     "text": "Server access: on demand\nHPC2N offers a on demand log-in, where you can start a visual interface to interact with the server.\nYou can access the on-demand log-in here.\n\n\n\n\n\n\nImportantTo do for you\n\n\n\n\nClick on “Login to HPC2N OnDemand”.\nSign in to your account with your HPC2N user name and password.\nOn the top, select “Interactive Apps” and “VScode”.\n\n\n\nNow you can set up the interactive session.\n\n\n\n\n\n\nImportantTo do for you\n\n\n\n\nSelect our compute project in the drop-down menu under “Compute Project”.\nSelect the appropriate number of hours.\nType in the path to the course directory in “Working Directory”. You find it in Canvas. It looks like this:\n\n/proj/nobackup/&lt;course-storage-project&gt;\n\nClick Launch.\n\n\n\n\nYour session will start, once it is running you can click the blue “Connect to VS Code” button in the bottom. The VS Code interface will open up in your browser.\n\n\n\n\n\n\nImportantTo do for you\n\n\n\n\nLook around the storage project:\n\nls\n\nCreate a directory with your name (replace &lt;your-name&gt; below with your actual name):\n\nmkdir &lt;your-name&gt;\n\nCheck that the directory was created successfully:\n\nls",
     "crumbs": [
       "Home",
-      "Before the course",
+      "Course server",
       "Server access"
     ]
   },
@@ -692,6 +692,532 @@
     "text": "Questions?\nContact me via Canvas.",
     "crumbs": [
       "Home"
+    ]
+  },
+  {
+    "objectID": "greenhouse/kit.html",
+    "href": "greenhouse/kit.html",
+    "title": "The kit: sensors and actuators",
+    "section": "",
+    "text": "Use this page during class to get information about the available sensors for the exercises.",
+    "crumbs": [
+      "Home",
+      "Smart Greenhouses",
+      "The sensor kit"
+    ]
+  },
+  {
+    "objectID": "greenhouse/kit.html#the-smart-health-kit",
+    "href": "greenhouse/kit.html#the-smart-health-kit",
+    "title": "The kit: sensors and actuators",
+    "section": "The Smart Health Kit",
+    "text": "The Smart Health Kit\nThe Elecfreaks Smart Health Kit is a collection of sensors and actuators which, together with the BBC micro:bit, enable you to explore health as well as environmental monitoring. Even though it was designed with health applications in mind, several of its sensors are equally relevant to agriculture.\nThe kit itself does not include a micro:bit so we got you some to work with.\nThe kit contains:\n\nThe Sensorbit — the interface board\nDHT11 — temperature and humidity sensor\nSoil moisture sensor\nMQ3 alcohol sensor\nAnalog UV sensor\nPIR sensor\nCrash sensor brick\nOLED screen\nRainbow LED\n180° servo motor\nDC motor with fan\n\nEach one is described below.\n\n\n\n\n\n\nThe kit as it arrives — the guide booklet sits on top of the foam tray\n\n\n\n\n\n\n\nAll components in the foam tray. Top row (left to right): OLED, crash sensor, Rainbow LED, DHT11, PIR, UV sensor. Bottom row: soil moisture sensor, DC motor, MQ3 alcohol sensor, Sensorbit.",
+    "crumbs": [
+      "Home",
+      "Smart Greenhouses",
+      "The sensor kit"
+    ]
+  },
+  {
+    "objectID": "greenhouse/kit.html#the-sensorbit",
+    "href": "greenhouse/kit.html#the-sensorbit",
+    "title": "The kit: sensors and actuators",
+    "section": "The Sensorbit",
+    "text": "The Sensorbit\n\n\n\nThe Sensorbit breakout board. The micro:bit slots into the top edge connector. The coloured pin header strips (right) give labelled, powered access to every pin.\n\n\nThe Sensorbit is a breakout board that plugs onto the micro:bit’s edge connector. Without it, connecting a sensor to the micro:bit requires crocodile clips or a breadboard to reach the correct pin. The Sensorbit provides clearly labelled ports — P0, P1, P2, and more — with headers that sensors can plug into directly.\nIt also provides stable 3.3 V power to the connected sensors, sourced from the micro:bit’s own power supply.\nOne important point: when you add sensors that draw significant current — particularly the motor or servo — you may need to power the Sensorbit from an external battery rather than the USB cable alone. USB power is sufficient for most sensors and the OLED, but motors can cause the micro:bit to reset if the electricity demand spikes.\n\nWiring: G, V, and S\nMost components in the kit connect to the Sensorbit with a three-wire cable. The three wires are not interchangeable:\n\n\n\n\n\n\n\n\n\nPin\nName\nJob\nUsual wire colour\n\n\n\n\nG\nGround\nCompletes the circuit\nBlack\n\n\nV\nVoltage\nSupplies 3.3 V power to the sensor\nRed\n\n\nS\nSignal\nCarries the measurement to the micro:bit\nYellow (or another colour)\n\n\n\nOn the Sensorbit, every numbered port (P0, P1, P2, …) is a column of three pins, and the rows are color coded and labelled V, and S (with G being the unlabeled implied option) on the board itself. The sensors carry the same labels next to their pins.\nG connects to G, V connects to V, S connects to S — always. A sensor plugged in the wrong way around usually is not damaged, but it will not work.\nIf a sensor seems dead or gives nonsense readings, check the wiring first: right port, right orientation, connector pushed in fully.\nThere is one exception: the OLED screen has four pins and plugs into the Sensorbit’s dedicated IIC socket, which is keyed so it only fits one way.",
+    "crumbs": [
+      "Home",
+      "Smart Greenhouses",
+      "The sensor kit"
+    ]
+  },
+  {
+    "objectID": "greenhouse/kit.html#which-port-should-i-use",
+    "href": "greenhouse/kit.html#which-port-should-i-use",
+    "title": "The kit: sensors and actuators",
+    "section": "Which port should I use?",
+    "text": "Which port should I use?\n\n\n\n\nPorts\nUse\n\n\n\n\nP1, P2\nanalog sensors (soil moisture), and any other sensor\n\n\nP8, P12, P13–P15\ndigital sensors and actuators\n\n\nP16\nthe Rainbow LED, by convention\n\n\nP3–P7, P9–P11\navoid: shared with the LED matrix and buttons\n\n\n\nCheck the back of the board if you are unsure.",
+    "crumbs": [
+      "Home",
+      "Smart Greenhouses",
+      "The sensor kit"
+    ]
+  },
+  {
+    "objectID": "greenhouse/kit.html#environmental-sensors",
+    "href": "greenhouse/kit.html#environmental-sensors",
+    "title": "The kit: sensors and actuators",
+    "section": "Environmental sensors",
+    "text": "Environmental sensors\nThese sensors measure conditions in the surrounding environment.\n\nDHT11 — Temperature and humidity\n\n\n\n\n\nThe DHT11 measures both air temperature (0–50°C, ±2°C accuracy) and relative humidity (20–90% RH, ±5% accuracy). It communicates using a simple digital protocol over a single data wire.\nMedical use: Monitoring ward temperature and humidity, for patient comfort, wound healing, and the growth of pathogens. Tracking cold-chain conditions for vaccines and medications.\nAgricultural use: Monitoring storage conditions for grain, seed, or fresh produce. High humidity in storage promotes fungal growth and the DHT11 can trigger an alert when conditions become dangerous.\nLimitations:\n\nCan only be read once every two seconds — reading it faster produces errors.\nAccuracy of ±2°C is adequate for environmental monitoring but not for clinical diagnostics.\nRange stops at 50°C, which limits use in very hot outdoor environments.\n\n\n\n\nSoil moisture sensor\n\n\n\n\n\nThe soil moisture sensor consists of two metal probes. It passes a small current through the soil between them and measures resistance. Wet soil conducts electricity better than dry soil, so higher current means more moisture. It produces an analog signal, the reading varies continuously with moisture level.\nMedical use: Limited direct medical application, but useful in agricultural contexts that affect food security and nutrition.\nAgricultural use: The primary use case. Placed in the root zone of a plant, it can trigger irrigation automatically when the soil dries below a threshold, saving water and preventing crop stress.\nLimitations:\n\nThe probe tips corrode over time when left in soil, causing readings to drift.\nThe raw output is a relative value (0–1023 in MakeCode), not a calibrated percentage. You need to test your specific soil type to set meaningful thresholds.\nSensitive to soil salinity: salty soil conducts electricity independently of moisture, giving false high readings.\n\n\n\n\nMQ3 — Alcohol sensor\n\n\n\n\n\nThe MQ3 detects alcohol vapour in the air. It works by measuring a change in electrical resistance in a metal oxide element when alcohol molecules bind to it. It produces an analog signal.\nMedical use: Screening for alcohol consumption (breath testing). Detecting alcohol-based hand sanitiser usage at a clinic entrance.\nAgricultural use: Monitoring fermentation in biogas digesters or alcohol-based crop processing.\nLimitations:\n\nRequires a warm-up time of approximately 60 seconds after power-on before readings are reliable, during warm-up the readings are meaningless.\nCross-sensitivity: the MQ3 also responds to other volatile compounds, including solvents and cleaning chemicals. It cannot distinguish between ethanol and other alcohols.\nIt is not calibrated, the raw output is a relative signal, not a blood-alcohol percentage. In ceonsequence, it is suitable for detecting the presence of alcohol, not measuring a precise concentration.\nThe heating element consumes more power than most sensors, which matters in battery-powered designs.\n\n\n\n\n\n\n\nWarningThe MQ3 gets warm — that is normal\n\n\n\nThe MQ3 contains a small heating element and becomes noticeably warm to the touch during operation. This is the heater doing its job, not a fault. Do not enclose the sensor in anything that traps heat.\n\n\n\n\n\nAnalog UV sensor\n\n\n\n\n\nThe UV sensor measures ultraviolet light intensity and produces an analog signal. It contains a photodiode sensitive to UV wavelengths (approximately 200–400 nm).\nMedical use: Monitoring UV exposure for patients with photosensitive conditions. Alerting when outdoor UV levels are high enough to require sun protection.\nAgricultural use: Measuring light quality for plant growth. UV levels influence secondary metabolite production in some crops. Can be used to optimise greenhouse shading or supplementary lighting.\nLimitations:\n\nThe raw output requires calibration to convert to a standard UV index.\nSensitive to the angle of the sensor relative to the light source — a sensor lying flat may read differently from one tilted toward the sun.\nDoes not distinguish between UVA and UVB.",
+    "crumbs": [
+      "Home",
+      "Smart Greenhouses",
+      "The sensor kit"
+    ]
+  },
+  {
+    "objectID": "greenhouse/kit.html#presence-and-interaction-sensors",
+    "href": "greenhouse/kit.html#presence-and-interaction-sensors",
+    "title": "The kit: sensors and actuators",
+    "section": "Presence and interaction sensors",
+    "text": "Presence and interaction sensors\nThese sensors detect events or physical interactions rather than measuring continuous quantities.\n\nPIR sensor — Passive Infrared\n\n\n\n\n\nThe PIR sensor detects movement of warm bodies like people, animals, or anything emitting infrared radiation at body temperature. It produces a digital signal: 1 (motion detected) or 0 (no motion). It is a passive sensor because it does not emit anything, only listens.\nMedical use: Detecting when a patient enters or leaves a room. Triggering an automated hand sanitiser dispenser. Monitoring patient movement in a ward to detect falls or prolonged inactivity.\nAgricultural use: Detecting animals entering a protected area. Triggering a deterrent (a sound or light) when livestock or pests approach a crop.\nLimitations:\n\nCannot distinguish between different types of warm bodies — a person and a dog produce similar signals.\nHas a detection angle (typically ~120°) and a maximum range (typically ~5–7 m): placement matters.\nCan produce false positives from sudden changes in ambient temperature, such as a breeze through an open window or direct sunlight hitting the sensor.\n\n\n\n\nCrash sensor brick\n\n\n\n\n\nThe crash sensor is a simple push button with a lever, designed to detect physical contact or impact. It produces a digital signal: pressed or not pressed.\nMedical use: Detecting whether a cabinet or drug storage container has been opened. Acting as an emergency call button. Confirming that a patient has performed a physical action (pressed a button to indicate they are present).\nAgricultural use: Detecting whether a gate or hatch is open or closed. Triggering an action when an animal pushes against a sensor.\nLimitations:\n\nRequires direct physical contact.\nThe lever can be damaged by repeated heavy impact.\nProduces a single on/off signal with no information about force or duration.",
+    "crumbs": [
+      "Home",
+      "Smart Greenhouses",
+      "The sensor kit"
+    ]
+  },
+  {
+    "objectID": "greenhouse/kit.html#output-components",
+    "href": "greenhouse/kit.html#output-components",
+    "title": "The kit: sensors and actuators",
+    "section": "Output components",
+    "text": "Output components\nThese components display information or produce effects that a person can see.\n\nOLED screen\n\n\n\n\n\nThe OLED (Organic Light-Emitting Diode) screen is a small display that can show text and simple graphics. It connects to the micro:bit via the I²C protocol — a two-wire communication bus — and requires the Elecfreaks extension in MakeCode to use.\nUnlike the micro:bit’s built-in 5×5 LED matrix, the OLED can display readable text and numbers, making it suitable for showing sensor readings to a user.\nUse cases: Displaying temperature, humidity, or other sensor readings. Showing status messages (“Alert”, “Normal”, “Warming up”). Building a simple patient-facing display.\nLimitations:\n\nSmall physical size limits how much can be displayed at once.\nNot visible in direct bright sunlight.\nRequires the extension library; it cannot be used with the standard MakeCode blocks alone.\n\n\n\n\nRainbow LED\n\n\n\n\n\nThe Rainbow LED strip contains multiple individually controllable RGB LEDs. Each LED can be set to any colour by specifying its red, green, and blue components (0–255 each). In MakeCode, these are controlled using the Neopixel blocks.\nUse cases: Colour-coded status indicators (green = normal, yellow = warning, red = alert). Visual feedback during a process. Simple phototherapy prototypes where specific wavelengths are needed.\nLimitations:\n\nDraws more current than a single LED. Running many LEDs at full brightness simultaneously can strain the micro:bit’s power supply.",
+    "crumbs": [
+      "Home",
+      "Smart Greenhouses",
+      "The sensor kit"
+    ]
+  },
+  {
+    "objectID": "greenhouse/kit.html#actuators",
+    "href": "greenhouse/kit.html#actuators",
+    "title": "The kit: sensors and actuators",
+    "section": "Actuators",
+    "text": "Actuators\nThese components produce physical actions in response to signals from the micro:bit.\n\n180° Servo motor\nThe servo motor rotates to a specific angle between 0° and 180°, controlled by a signal from the micro:bit. Unlike a regular motor which spins continuously, the servo holds its position at the angle you specify.\nMedical use: Opening and closing a valve in a fluid delivery prototype. Pressing a dispenser pump. Controlling a flap or door (e.g., a contactless waste bin lid).\nAgricultural use: Operating an irrigation valve. Controlling ventilation in a greenhouse. Triggering a trap or gate.\nLimitations:\n\nMoves to a position, not a continuous rotation — if you need a spinning motor, use the DC motor instead.\nCan only exert limited force (torque) — not suitable for heavy mechanical loads.\nDraws significant current when under load, which can cause the micro:bit to reset if not powered externally.\n\n\n\n\nDC motor with fan\n\n\n\n\n\nThe DC motor spins continuously in one direction when powered. The kit contains a fan that can be attached to it. It is controlled by an on/off signal (or a variable speed signal) from the micro:bit.\nMedical use: Ventilation in an enclosed monitoring device. Air circulation in a patient room monitor (in theory anyway, the actual specimen is a bit small for that).\nAgricultural use: Ventilation in a greenhouse or grain storage. Driving a small pump for irrigation.\nLimitations:\n\nThe fan draws significant current and almost always requires external battery power.\nSpeed control requires PWM (pulse-width modulation) output from the micro:bit, which is more advanced than simple on/off control.\nThe motor produces electrical noise that can interfere with sensitive analog sensors. Use good circuit design keeps motor and sensor wiring separate.",
+    "crumbs": [
+      "Home",
+      "Smart Greenhouses",
+      "The sensor kit"
+    ]
+  },
+  {
+    "objectID": "greenhouse/kit.html#choosing-the-right-component-for-your-use-case",
+    "href": "greenhouse/kit.html#choosing-the-right-component-for-your-use-case",
+    "title": "The kit: sensors and actuators",
+    "section": "Choosing the right component for your use case",
+    "text": "Choosing the right component for your use case\nNot every sensor is the right tool for every problem. Good engineering requires evaluating components against requirements.\nAsk these questions about any sensor you are considering:\n\n\n\n\n\n\n\nQuestion\nWhy it matters\n\n\n\n\nDoes it measure the right thing?\nA soil moisture sensor cannot measure air humidity\n\n\nIs the range appropriate?\nThe DHT11 stops at 50°C — unsuitable for sterilisation monitoring\n\n\nIs the accuracy good enough?\n±2°C is fine for storage monitoring, not for clinical thermometry\n\n\nHow fast does it need to update?\nThe DHT11’s 2-second limit is fine for ambient monitoring, not for a fever alarm\n\n\nDoes it need warm-up time?\nThe MQ3 needs 60 seconds — is that acceptable in your design?\n\n\nHow much power does it draw?\nMotors and servos need external power in sustained use\n\n\nWill it degrade over time?\nThe soil moisture sensor corrodes — plan for maintenance",
+    "crumbs": [
+      "Home",
+      "Smart Greenhouses",
+      "The sensor kit"
+    ]
+  },
+  {
+    "objectID": "greenhouse/kit.html#makecode-add-the-elecfreaks-extension",
+    "href": "greenhouse/kit.html#makecode-add-the-elecfreaks-extension",
+    "title": "The kit: sensors and actuators",
+    "section": "MakeCode: Add the Elecfreaks extension",
+    "text": "MakeCode: Add the Elecfreaks extension\nThe Sensorbit sensors use pin-level communication that the standard MakeCode blocks already support. However, some sensors, for example the OLED screen, require a dedicated software library.\nTo add the Elecfreaks extension:\n\nOpen a project in MakeCodeand\nClick Extensions at the bottom of the toolbox (middle panel)\nIn the search box, type smarthome\nSelect the smarthome package from Elecfreaks\nThe new block categories will appear in your toolbox\n\nOnce installed, blocks for the OLED screen and other kit-specific components will appear in the toolbox alongside the standard blocks.",
+    "crumbs": [
+      "Home",
+      "Smart Greenhouses",
+      "The sensor kit"
+    ]
+  },
+  {
+    "objectID": "greenhouse/kit.html#summary",
+    "href": "greenhouse/kit.html#summary",
+    "title": "The kit: sensors and actuators",
+    "section": "Summary",
+    "text": "Summary\n\nThe Sensorbit connects sensors to the micro:bit and provides labelled, powered ports\nEnvironmental sensors: DHT11 (temperature + humidity), soil moisture, MQ3 (alcohol), UV\nPresence sensors: PIR (motion), crash sensor (contact)\nOutput displays: OLED screen, Rainbow LED\nActuators: servo motor (angle), DC motor with fan (continuous rotation)\nEvery sensor has a range, accuracy limit, timing constraint, and potential failure mode — evaluate before choosing\nThe Elecfreaks extension must be added in MakeCode for some components (especially the OLED)",
+    "crumbs": [
+      "Home",
+      "Smart Greenhouses",
+      "The sensor kit"
+    ]
+  },
+  {
+    "objectID": "greenhouse/greenhouse_lecture.html#this-lecture",
+    "href": "greenhouse/greenhouse_lecture.html#this-lecture",
+    "title": "Smart greenhouses: microcontrollers, sensors and actuators",
+    "section": "This lecture",
+    "text": "This lecture\n\n\nWhat is a microcontroller?\nSignals: digital, analog and serial\nSensors and actuators for a greenhouse\nThe kit: micro:bit and Sensorbit\nProgramming with MakeCode\nIn class"
+  },
+  {
+    "objectID": "greenhouse/greenhouse_lecture.html#the-routine-in-a-greenhouse",
+    "href": "greenhouse/greenhouse_lecture.html#the-routine-in-a-greenhouse",
+    "title": "Smart greenhouses: microcontrollers, sensors and actuators",
+    "section": "The routine in a greenhouse",
+    "text": "The routine in a greenhouse\n\nThink about what a farmer does every morning in a greenhouse:\n\nThey sense: check the thermometer, feel the soil\nThey decide: is it too warm? too dry?\nThey act: open a vent, water the bed\n\n\nA microcontroller does the same, with electricity instead of judgement. It never sleeps in, and it checks every two seconds."
+  },
+  {
+    "objectID": "greenhouse/greenhouse_lecture.html#sense-decide-act",
+    "href": "greenhouse/greenhouse_lecture.html#sense-decide-act",
+    "title": "Smart greenhouses: microcontrollers, sensors and actuators",
+    "section": "Sense → decide → act",
+    "text": "Sense → decide → act\n\nMicrocontroller system\n\nA sensor measures something and sends a signal to the microcontroller\nThe program reads the signal and decides what to do\nThe microcontroller sends a signal to an actuator, which does something in the world\n\n\nExample: the greenhouse gets too warm. The temperature sensor reads 31 °C, the program checks “above 28 °C?”, and a servo opens the roof vent."
+  },
+  {
+    "objectID": "greenhouse/greenhouse_lecture.html#what-is-a-microcontroller-1",
+    "href": "greenhouse/greenhouse_lecture.html#what-is-a-microcontroller-1",
+    "title": "Smart greenhouses: microcontrollers, sensors and actuators",
+    "section": "What is a microcontroller?",
+    "text": "What is a microcontroller?\n\nA small, self-contained computer on a single chip:\n\na processor: runs the instructions, one step at a time\nmemory: holds the program and temporary data\ninput/output pins: where signals come in from sensors and go out to actuators\n\n\nThey are cheap, low-power and reliable, so they suit places with little staff and unreliable power: irrigation timers, incubators, fridges, insulin pumps."
+  },
+  {
+    "objectID": "greenhouse/greenhouse_lecture.html#the-bbc-microbit-front",
+    "href": "greenhouse/greenhouse_lecture.html#the-bbc-microbit-front",
+    "title": "Smart greenhouses: microcontrollers, sensors and actuators",
+    "section": "The BBC micro:bit: front",
+    "text": "The BBC micro:bit: front\n\n\n\n\n\n\nbuttons A and B\nLED display: 5×5 LEDs, also a light sensor\npins 0, 1, 2: inputs and outputs\n3V pin: power\nGND pin: ground\ntouch logo: touch sensor\nmicrophone LED\n\n\n\nCredit-card sized learning board. The pins along the bottom edge make it extensible: we plug it into the Sensorbit."
+  },
+  {
+    "objectID": "greenhouse/greenhouse_lecture.html#the-bbc-microbit-back",
+    "href": "greenhouse/greenhouse_lecture.html#the-bbc-microbit-back",
+    "title": "Smart greenhouses: microcontrollers, sensors and actuators",
+    "section": "The BBC micro:bit: back",
+    "text": "The BBC micro:bit: back\n\n\n\n\n\n\nradio and Bluetooth antenna\nprocessor, with the temperature sensor\ncompass\naccelerometer: movement and tilt\npins: the edge connector\nmicro USB socket\n\n\n\nbattery socket\nUSB interface chip\nspeaker\nmicrophone\nred power LED\nyellow USB LED: flashes while a program is copied\nreset and power button"
+  },
+  {
+    "objectID": "greenhouse/greenhouse_lecture.html#two-types",
+    "href": "greenhouse/greenhouse_lecture.html#two-types",
+    "title": "Smart greenhouses: microcontrollers, sensors and actuators",
+    "section": "Two types",
+    "text": "Two types\n\n\n\nDigital\n\ntwo states: on/off, 1/0\nlike a light switch\na button press, “motion / no motion”\n\n\nAnalog\n\na continuous scale\nlike a dimmer switch\nsoil moisture, light level\nconverted to a number by an analog-to-digital converter (ADC): on the micro:bit, 0 to 1023"
+  },
+  {
+    "objectID": "greenhouse/greenhouse_lecture.html#a-third-type-serial",
+    "href": "greenhouse/greenhouse_lecture.html#a-third-type-serial",
+    "title": "Smart greenhouses: microcontrollers, sensors and actuators",
+    "section": "A third type: serial",
+    "text": "A third type: serial\n\n\nSome sensors send a fast, timed series of digital pulses that together encode a number: like morse code and not a light switch.\nWe have one in our kit: the DHT11 sends temperature and humidity in one stream of 40 pulses.\nA software library (the Elecfreaks extension) decodes it: you use one block and get a number.\n\n\nAs programmers we need to know the signal type."
+  },
+  {
+    "objectID": "greenhouse/greenhouse_lecture.html#sensors-you-will-encounter-today-12",
+    "href": "greenhouse/greenhouse_lecture.html#sensors-you-will-encounter-today-12",
+    "title": "Smart greenhouses: microcontrollers, sensors and actuators",
+    "section": "Sensors you will encounter today (1/2)",
+    "text": "Sensors you will encounter today (1/2)\n\nMeasuring the environment:\n\n\n\n\n\n\n\n\n\nSensor\nWhat it measures\nSignal type\nExample use\n\n\n\n\nDHT11\nTemperature and humidity\nDigital (serial)\nMonitor storage conditions for vaccines or grain\n\n\nSoil moisture\nWater content in soil\nAnalog\nTrigger irrigation when soil is too dry\n\n\nUV\nUltraviolet light intensity\nAnalog\nMeasure sun exposure; optimise plant growth\n\n\nMQ3 alcohol\nAlcohol vapor in air\nAnalog\nScreen for alcohol in breath; monitor fermentation"
+  },
+  {
+    "objectID": "greenhouse/greenhouse_lecture.html#sensors-you-will-encounter-today-22",
+    "href": "greenhouse/greenhouse_lecture.html#sensors-you-will-encounter-today-22",
+    "title": "Smart greenhouses: microcontrollers, sensors and actuators",
+    "section": "Sensors you will encounter today (2/2)",
+    "text": "Sensors you will encounter today (2/2)\n\nDetecting events:\n\n\n\n\n\n\n\n\n\nSensor\nWhat it measures\nSignal type\nExample use\n\n\n\n\nPIR\nMovement of warm bodies\nDigital\nDetect a patient entering a room; scare animals from crops\n\n\nCrash sensor\nPhysical contact / pressure\nDigital\nDetect if a door or container has been opened\n\n\n\n\nAll components are described in The kit: sensors and actuators. Use this page as a reference during the exercises."
+  },
+  {
+    "objectID": "greenhouse/greenhouse_lecture.html#every-sensor-has-limits",
+    "href": "greenhouse/greenhouse_lecture.html#every-sensor-has-limits",
+    "title": "Smart greenhouses: microcontrollers, sensors and actuators",
+    "section": "Every sensor has limits",
+    "text": "Every sensor has limits\n\nBefore you trust a sensor, ask:\n\n\n\n\n\n\n\nQuestion\nExample\n\n\n\n\nDoes it measure the right thing?\nsoil moisture cannot measure air humidity\n\n\nIs the range right?\nthe DHT11 stops at 50 °C and at 90 % humidity\n\n\nIs it accurate enough?\n±2 °C is fine for a vent, not for a lab instrument\n\n\nIs it fast enough?\none reading every 2 s is fine for a greenhouse\n\n\nWill it degrade?\nsoil probes corrode: plan for maintenance"
+  },
+  {
+    "objectID": "greenhouse/greenhouse_lecture.html#outputs-and-actuators",
+    "href": "greenhouse/greenhouse_lecture.html#outputs-and-actuators",
+    "title": "Smart greenhouses: microcontrollers, sensors and actuators",
+    "section": "Outputs and actuators",
+    "text": "Outputs and actuators\n\n\n\nShowing information\n\nOLED screen: text and numbers, for readings\nRainbow LED: a strip of colour LEDs (Neopixel), for green / amber / red status\n\n\nActing in the world\n\nServo motor: turns to an angle (0–180°) and holds it: a vent flap, a valve\nDC motor with fan: spins: ventilation\n\n\n\nMotors draw a lot of current. On USB power alone the micro:bit may be too weak and you will have to use a battery pack."
+  },
+  {
+    "objectID": "greenhouse/greenhouse_lecture.html#similar-to-r-bash-other-languages",
+    "href": "greenhouse/greenhouse_lecture.html#similar-to-r-bash-other-languages",
+    "title": "Smart greenhouses: microcontrollers, sensors and actuators",
+    "section": "Similar to R, bash, other languages",
+    "text": "Similar to R, bash, other languages\n\nA program is a list of instructions:\n\nRead the temperature ← measure (variable)\nIf it is above 28 °C, open the vent ← decide (if)\nOtherwise, close the vent ← decide (else)\nWait 2 seconds, then start again ← wait, repeat (loop)\n\n\nRemember: the micro:bit does exactly what you write. Make sure to test your program, also for situations you did not plan for."
+  },
+  {
+    "objectID": "greenhouse/greenhouse_lecture.html#makecode",
+    "href": "greenhouse/greenhouse_lecture.html#makecode",
+    "title": "Smart greenhouses: microcontrollers, sensors and actuators",
+    "section": "MakeCode",
+    "text": "MakeCode\n\nmakecode.microbit.org: opens in the browser.\n\nSimulator (left), toolbox (middle), workspace (right)."
+  },
+  {
+    "objectID": "greenhouse/greenhouse_lecture.html#coding-blocks",
+    "href": "greenhouse/greenhouse_lecture.html#coding-blocks",
+    "title": "Smart greenhouses: microcontrollers, sensors and actuators",
+    "section": "coding blocks",
+    "text": "coding blocks\n\nmakecode.microbit.org: opens in the browser.\nThe blocks are color coded and snap together where they fit. You can also switch to program in Python or JavaScript."
+  },
+  {
+    "objectID": "greenhouse/greenhouse_lecture.html#blocks-on-start-and-forever",
+    "href": "greenhouse/greenhouse_lecture.html#blocks-on-start-and-forever",
+    "title": "Smart greenhouses: microcontrollers, sensors and actuators",
+    "section": "Blocks: on start and forever",
+    "text": "Blocks: on start and forever\n\n\n\n\non start runs once, at power-on: used for setup\nforever repeats as long as there is power: used for monitoring\n\n\n\non start:\n    show \"Ready\"\n\nforever:\n    read temperature\n    if temperature &gt; 28:\n        show warning icon\n    else:\n        show temperature\n    wait 2 seconds"
+  },
+  {
+    "objectID": "greenhouse/greenhouse_lecture.html#variables",
+    "href": "greenhouse/greenhouse_lecture.html#variables",
+    "title": "Smart greenhouses: microcontrollers, sensors and actuators",
+    "section": "Variables",
+    "text": "Variables\n\nA variable can take on values that change, such as a sensor reading. You have seen them in R, Python, bash…\n\n\nforever:\n    set `moisture` to [analog read pin P2]\n    show “Soil: “ + `moisture` on the OLED\n\n\n\nmoisture is the variable and holds a number, which is read and changes every loop\n\"Soil: \" is text (a string), which stays the same"
+  },
+  {
+    "objectID": "greenhouse/greenhouse_lecture.html#conditionals",
+    "href": "greenhouse/greenhouse_lecture.html#conditionals",
+    "title": "Smart greenhouses: microcontrollers, sensors and actuators",
+    "section": "Conditionals",
+    "text": "Conditionals\n\n\nif moisture &lt; 300:\n    LEDs red        # dry: water now\nelse if moisture &lt; 600:\n    LEDs orange     # moist\nelse:\n    LEDs green      # wet enough\n\n\n\nConditionals are checked and executed from top to bottom; only the first true branch runs.\nAvailable operators: &gt;, &lt;, =, ≥, ≤"
+  },
+  {
+    "objectID": "greenhouse/greenhouse_lecture.html#loops",
+    "href": "greenhouse/greenhouse_lecture.html#loops",
+    "title": "Smart greenhouses: microcontrollers, sensors and actuators",
+    "section": "Loops",
+    "text": "Loops\n\nA loop repeats a block of instructions. There are different flavours:\n\n\nforever: repeats as long as there is power\nrepeat N times: e.g. blink the LEDs 5 times\nwhile a condition is true: e.g. sound an alarm while the soil is dry\n\n\n\nA loop whose condition never becomes false never stops. Always make sure a loop has a clear exit condition."
+  },
+  {
+    "objectID": "greenhouse/greenhouse_lecture.html#getting-the-program-onto-the-microbit",
+    "href": "greenhouse/greenhouse_lecture.html#getting-the-program-onto-the-microbit",
+    "title": "Smart greenhouses: microcontrollers, sensors and actuators",
+    "section": "Getting the program onto the micro:bit",
+    "text": "Getting the program onto the micro:bit\n\n\nConnect the micro:bit with a USB cable: it shows up as a drive called MICROBIT\nIn MakeCode, click Download and you get a .hex file\nDrag the .hex file onto the MICROBIT drive\nThe orange LED flashes while it writes; when it stops, your program is ready to execute\n\n\n\nYou cannot break the micro:bit with a bad program. Do not be afraid to play around and change it, download and try it again."
+  },
+  {
+    "objectID": "greenhouse/greenhouse_lecture.html#the-exercises",
+    "href": "greenhouse/greenhouse_lecture.html#the-exercises",
+    "title": "Smart greenhouses: microcontrollers, sensors and actuators",
+    "section": "The exercises",
+    "text": "The exercises\n\n\n\n\n\nExercise\nSensor\nOutput\n\n\n\n\n1\nPush the button\nbuilt-in\nLED matrix\n\n\n2\nGreenhouse climate monitor\nDHT11\nOLED + LED matrix\n\n\n3\nIrrigation alarm\nsoil moisture\nOLED + Rainbow LED\n\n\n★\nMini challenge\nyour choice\nyour choice\n\n\n\n\nTeam up in groups of 4–5, every team will get one micro:bit and kit."
+  },
+  {
+    "objectID": "greenhouse/greenhouse_lecture.html#summary",
+    "href": "greenhouse/greenhouse_lecture.html#summary",
+    "title": "Smart greenhouses: microcontrollers, sensors and actuators",
+    "section": "Summary",
+    "text": "Summary\n\n\nA microcontroller has a processor, memory and input/output pins\nEvery system follows sense → decide → act\nSignals are digital, analog or serial; every sensor has limits\nWiring: G to G, V to V, S to S\nMakeCode: on start once, forever repeats; variables, conditionals, loops\nBefore class: take the lecture quiz in Canvas"
+  },
+  {
+    "objectID": "greenhouse/exercises.html",
+    "href": "greenhouse/exercises.html",
+    "title": "Exercises: building a smart greenhouse",
+    "section": "",
+    "text": "You work in your team of 4–5 throughout, with one micro:bit and one Smart Health Kit per team. Take turns at the keyboard: every team member should understand each step before you move on.\nTo look up a sensor or actuator, use The kit: sensors and actuators. When something does not work, see Troubleshooting.",
+    "crumbs": [
+      "Home",
+      "Smart Greenhouses",
+      "Greenhouse exercises"
+    ]
+  },
+  {
+    "objectID": "greenhouse/exercises.html#team-roles",
+    "href": "greenhouse/exercises.html#team-roles",
+    "title": "Exercises: building a smart greenhouse",
+    "section": "Team roles",
+    "text": "Team roles\nAssign roles at the start of each exercise and rotate them.\n\n\n\n\n\n\n\nRole\nWhat they do\n\n\n\n\nDriver\nOperates the keyboard in MakeCode\n\n\nNavigator\nReads the instructions aloud and tells the driver what to do\n\n\nHardware lead\nConnects and handles sensors and cables\n\n\nChecker\nWatches the device output and spots when something is wrong\n\n\nDocumenter\nNotes down observed values, thresholds and quirks for the Canvas lab quiz",
+    "crumbs": [
+      "Home",
+      "Smart Greenhouses",
+      "Greenhouse exercises"
+    ]
+  },
+  {
+    "objectID": "greenhouse/exercises.html#the-exercises",
+    "href": "greenhouse/exercises.html#the-exercises",
+    "title": "Exercises: building a smart greenhouse",
+    "section": "The exercises",
+    "text": "The exercises\n\n\n\n\nExercise\nSensor\nOutput\nIn the greenhouse\n\n\n\n\n1\nPush the button\nbuilt-in (buttons, temperature)\nLED matrix\nyour first complete device\n\n\n2\nGreenhouse climate monitor\nDHT11 (temperature + humidity)\nOLED + LED matrix\nwhen to ventilate\n\n\n3\nIrrigation alarm\nsoil moisture\nOLED + Rainbow LED\nwhen to water\n\n\n★\nMini challenge\nyour choice\nyour choice\nbuild your own device",
+    "crumbs": [
+      "Home",
+      "Smart Greenhouses",
+      "Greenhouse exercises"
+    ]
+  },
+  {
+    "objectID": "greenhouse/exercises.html#setup",
+    "href": "greenhouse/exercises.html#setup",
+    "title": "Exercises: building a smart greenhouse",
+    "section": "Setup",
+    "text": "Setup\nDo not rush this: a broken setup wastes more time than a careful one.\n\nStep 1: Connect the hardware\n\nSlot the micro:bit into the Sensorbit edge connector: the USB port faces up, the LED matrix faces out\nPress it firmly until it seats fully: a loose connection causes intermittent failures\nConnect the micro:bit to your laptop with the USB cable\nThe micro:bit lights up and shows a startup animation: this confirms it has power\n\n\n\n\n\n\n\nImportantRemember the wiring: G to G, V to V, S to S\n\n\n\nEvery sensor in this lab connects with a three-wire cable. The Sensorbit’s pin rows are labelled G (ground), V (3.3 V power) and S (signal), and so are the pins on each sensor. Connect G to G, V to V, S to S, every time. By convention the wires are black (G), red (V), and yellow or another colour (S), but trust the printed labels, not the colours.\n\n\n\n\nStep 2: Open MakeCode\n\nOpen a browser and go to makecode.microbit.org\nClick New Project\nName it lab-session and click Create\nYou see the three-panel interface: simulator (left), toolbox (middle), workspace (right)\n\n\n\nStep 3: Flash a test program\nThis confirms your USB connection works before you add anything else.\n\nIn the toolbox, find the Basic category\nDrag a show string block into the on start block already on the workspace\nType Ready in the text field\nClick the Download button (bottom left of the workspace)\nA .hex file is saved to your computer: drag it onto the MICROBIT drive that appeared in Finder or File Explorer\nThe orange LED on the micro:bit flashes while it writes: wait for it to stop\nReady should scroll across the LED matrix\n\n\n\n\nYour workspace after Step 3: the show string \"Ready\" block sits inside on start.\n\n\n\n\n\n\n\n\nImportant✓ Checkpoint\n\n\n\nReady scrolls across the LED matrix. If it does not, check the Troubleshooting page or ask a teacher before going further.\n\n\n\n\nStep 4: Add the Elecfreaks extension\n\nIn the toolbox, scroll to the bottom and click Extensions\nIn the search box type smarthome and press Enter\nSelect the smarthome package from Elecfreaks\nClose the extensions panel: you now see new categories at the bottom of the toolbox, including SmartHome, OLED and Neopixel\n\n\n\n\n\n\n\nTip\n\n\n\nYou add the extension once per project. When you start a new project later, add it again.",
+    "crumbs": [
+      "Home",
+      "Smart Greenhouses",
+      "Greenhouse exercises"
+    ]
+  },
+  {
+    "objectID": "greenhouse/exercises.html#ex1",
+    "href": "greenhouse/exercises.html#ex1",
+    "title": "Exercises: building a smart greenhouse",
+    "section": "Exercise 1: Push the button",
+    "text": "Exercise 1: Push the button\nBefore wiring anything, you build a complete working device using only what is already on the micro:bit: two buttons, a temperature sensor, an accelerometer and the LED matrix. Within ten minutes, your team has a pocket thermometer.\nWhat you will build\n\nPress button A → a heart icon appears\nPress button B → the current temperature is shown\nShake the micro:bit → the display clears\n\nNo wiring. No extension blocks. Everything is built in.\n\nBuilding the program\nKeep working in your lab-session project from the setup.\nStep 1: React to button A\n\nFrom Input, drag an on button A pressed block onto the workspace. Notice it has the same shape as on start and forever: a container with a smooth top edge and no notch, so it cannot snap inside or underneath another block. It always starts its own stack on the workspace. This is an event block: the blocks you place inside it run only when that event happens.\nFrom Basic, put a show icon block inside it and pick the heart.\n\nStep 2: Show the temperature on button B\n\nFrom Input, drag another on button A pressed block onto the workspace, and change it to button B.\nFrom Basic, put a show number block inside it\nFrom Input, find the temperature (°C) block. Notice its oval shape: oval blocks are reporter blocks. They return a value and must be plugged into a slot, not placed on their own line. Plug it into the show number slot.\n\nStep 3: Clear on shake\n\nFrom Input, drag an on shake block onto the workspace\nFrom Basic, put clear screen inside it\n\nStep 4: Download and test\nYour workspace should now look like this: four separate stacks, each starting with its own container block.\n\n\n\nThe complete Exercise 1 program. The on start block still shows Ready from the setup test. Note how the oval temperature (°C) block sits inside the show number slot.\n\n\nFlash, then press A, press B, shake. All three should respond.\n\n\n\n\n\n\nTip\n\n\n\nThis program has no forever loop at all. Event blocks sit and wait; the micro:bit does nothing until a button is pressed or the board is shaken. Remember this: the next exercise uses the opposite approach.\n\n\n\n\n\n\n\n\nImportant✓ Checkpoint\n\n\n\n\nButton A shows the heart\nButton B shows a temperature\nShaking clears the display (best seen after pressing A)\n\n\n\n\n\n\n\n\n\nNoteJavaScript equivalent\n\n\n\n\n\ninput.onButtonPressed(Button.A, function () {\n    basic.showIcon(IconNames.Heart)\n})\ninput.onButtonPressed(Button.B, function () {\n    basic.showNumber(input.temperature())\n})\ninput.onGesture(Gesture.Shake, function () {\n    basic.clearScreen()\n})\nbasic.showString(\"Ready\")\n\n\n\n\n\nDiscussion: your first sensor limitation\nCompare the temperature your micro:bit shows with a room thermometer, or with another team’s micro:bit.\nQuestion for your team: The built-in sensor measures the temperature of the processor chip, not the air. The chip warms up as it works. What does this mean for the reading? Would this “thermometer” be good enough to decide when to ventilate a greenhouse? Note your observation: the gap between what a sensor actually measures and what you want to know comes back in every exercise.\n\n\nExtension challenge (if you finish early)\nAdd an on button A+B pressed event that scrolls your team’s name across the display.",
+    "crumbs": [
+      "Home",
+      "Smart Greenhouses",
+      "Greenhouse exercises"
+    ]
+  },
+  {
+    "objectID": "greenhouse/exercises.html#ex2",
+    "href": "greenhouse/exercises.html#ex2",
+    "title": "Exercises: building a smart greenhouse",
+    "section": "Exercise 2: Greenhouse climate monitor",
+    "text": "Exercise 2: Greenhouse climate monitor\nA tomato greenhouse should stay between about 18 °C and 28 °C. Above that, the plants are stressed and the roof vents should open. You are building a device that hangs among the plants and shows temperature and humidity continuously, so the grower can check conditions at a glance, and that raises an alarm when it gets too hot.\nWhat you will build\n\nEvery 2 seconds: read temperature and humidity from the DHT11 sensor\nDisplay both values on the OLED screen\nIf the temperature is above your alarm threshold: the LED matrix shows a warning icon\n\n\nHardware\nThis is your first external sensor: one cable, three wires, and the wiring rule from the setup.\n\nConnect the DHT11 sensor to the Sensorbit port labelled P1. G to G, V to V, S to S.\nPlug the OLED screen into the Sensorbit’s IIC socket\n\n\n\n\n\n\n\nTip\n\n\n\nYou will not find a P0 port on the Sensorbit: P0 is wired to the board’s built-in buzzer and headphone jack. The G/V/S ports start at P1.\n\n\n\n\nBuilding the program\nStart a new project (climate-monitor). Add the Elecfreaks extension: extensions are per-project, so you need it again here.\nStep 1: Initialise the OLED in on start\nThe OLED must be initialised once before you can write to it.\n\nIn the OLED category, find the block labelled something like initialize OLED width 128 height 64\nDrag it into the on start block on the workspace\n\nStep 2: Store the DHT11 readings in variables\nThe DHT11 block in the SmartHome category is a reporter block: the same oval shape as the built-in temperature (°C) block you used in Exercise 1. It reads the sensor and returns the measurement in one go. It has two dropdowns: one to select the pin, one to select the measurement (temperature or humidity).\n\nFrom Variables, click Make a Variable and create one called temperature\nCreate a second variable called humidity\nIn the forever block, add a set temperature to block (from Variables). From SmartHome, find the DHT11 sensor [pin] temperature(°C) value block, set the pin to P1, and plug it into the value slot of set temperature to.\nBelow that, add set humidity to and plug in a second DHT11 sensor P1 humidity(0~100) value block: same block, different measurement selected in the dropdown.\n\nStep 3: Display on the OLED\n\nFrom OLED, add a clear OLED display block: this wipes the screen before writing new values\nTo show the temperature: from OLED, add the show string (or show number) OLED block. Use the Text → join block (in Advanced → Text) to combine the label \"Temp: \", the temperature variable and the unit \" C\" into one line.\nRepeat for humidity: \"Hum: \" + humidity + \" %\"\n\n\n\n\n\n\n\nTip\n\n\n\nIf the join block is unfamiliar, a simpler approach is to put temperature on its own line with just show number and humidity on the next. Labels can go on separate lines above each number.\n\n\nStep 4: Add a temperature alarm\nFirst flash the program as it is and read the room temperature on the OLED. The Documenter writes it down.\n\nFrom Logic, add an if / then / else block, placed before the clear OLED display\nSet the condition: temperature &gt; 28 (the upper limit for our tomatoes). To test it in the classroom, use a threshold 2–3 degrees above the room temperature you just read.\nIn the if branch: from Basic, add show icon and pick the warning or exclamation symbol\nIn the else branch: from Basic, add clear screen\n\nStep 5: Wait 2 seconds\nAt the very end of the forever block:\n\nFrom Basic, add pause (ms) set to 2000\n\nThis is essential: the DHT11 can only be read once every two seconds. Without the pause, you get read errors.\n\n\n\n\n\n\nTipTwo patterns, compared\n\n\n\nExercise 1 used events: code that waits for something to happen. This exercise uses polling: a forever loop that reads the sensor again and again and reacts to what it finds. Events only exist for the micro:bit’s built-in inputs; external sensors must be polled. You now know both fundamental patterns of microcontroller programming.\n\n\nStep 6: Download and test\n\n\n\nThe complete climate monitor. The alarm if/else sits before the OLED display blocks, and the pause 2000 comes last. Use your own threshold in the condition.\n\n\nDownload and flash the program. Then:\n\nCheck that the OLED shows values\nBreathe gently on the DHT11: temperature and humidity should increase slightly\nWarm the sensor in your hand: the temperature should rise above your alarm threshold and the warning icon should appear\n\n\n\n\n\n\n\nImportant✓ Checkpoint\n\n\n\n\nThe OLED shows temperature and humidity\nValues change (even slightly) when you breathe on the DHT11\nThe LED matrix shows the warning icon when the temperature exceeds your threshold, and clears when it drops below\n\n\n\n\n\n\n\n\n\nNoteJavaScript equivalent\n\n\n\n\n\nlet humidity = 0\nlet temperature = 0\nOLED.init(128, 64)\nbasic.forever(function () {\n    temperature = smarthome.dht11Sensor(DigitalPin.P1, smarthome.DHT11_state.DHT11_temperature_C)\n    humidity = smarthome.dht11Sensor(DigitalPin.P1, smarthome.DHT11_state.DHT11_humidity)\n    if (temperature &gt; 28) {\n        basic.showIcon(IconNames.No)\n    } else {\n        basic.clearScreen()\n    }\n    OLED.clear()\n    OLED.writeStringNewLine(\"Temp:\" + temperature + \" C\")\n    OLED.writeStringNewLine(\"Hum:\" + humidity + \" %\")\n    basic.pause(2000)\n})\nExact function names depend on the smarthome extension version: if the above does not compile, check the block names shown in the MakeCode toolbox.\n\n\n\n\n\nDiscussion: accuracy and fitness for purpose\nThe DHT11 has an accuracy of ±2 °C and ±5 % humidity, and it measures humidity only up to 90 %. Your alarm fires at 28 °C.\n\nThe true temperature is 27 °C, but the sensor reads 2 °C too high. What does your program see, and what does it do?\nThe true temperature is 29 °C, but the sensor reads 2 °C too low. Does the alarm fire?\n\n\n\n\n\n\n\nTipAnswer\n\n\n\n\n\n\nThe program sees 29 °C and raises the alarm, although it is not too hot: a false alarm.\nThe program sees 27 °C and stays quiet, although it is too hot: a missed alarm.\n\nClose to the threshold, the sensor’s error decides what happens, not the real temperature.\n\n\n\nQuestion for your team: Is this device good enough to control the vents of a greenhouse? What would a more reliable design need? Note your answer: it appears in the Canvas lab quiz.\nQuestion for your team: Is this device good enough to control the vents of a greenhouse? What would a more reliable design need? Note your answer: it appears in the Canvas lab quiz.\n\n\nExtension challenge (if you finish early)\nAdd a humidity alarm. Humidity above about 85 % for many hours favours fungal diseases such as grey mould (Botrytis). Extend your if / else to an if / else if / else that shows a different icon, or writes \"HUMID!\" to the OLED, when humidity is above 85. Breathe on the sensor to test it. What happens close to the sensor’s 90 % limit?",
+    "crumbs": [
+      "Home",
+      "Smart Greenhouses",
+      "Greenhouse exercises"
+    ]
+  },
+  {
+    "objectID": "greenhouse/exercises.html#ex3",
+    "href": "greenhouse/exercises.html#ex3",
+    "title": "Exercises: building a smart greenhouse",
+    "section": "Exercise 3: Irrigation alarm",
+    "text": "Exercise 3: Irrigation alarm\nA greenhouse grower wants to avoid over- and under-watering a seedling bed. Rather than checking by hand every day, a moisture sensor gives a continuous reading. You build a device that colour-codes a Rainbow LED strip to show the soil status at a glance: red (dry), amber (moist), green (wet), so the grower knows immediately whether to water.\nWhat you will build\n\nSoil moisture sensor read continuously\nRaw numeric value shown on the OLED\nRainbow LED strip: red when dry, amber when moist, green when wet enough\nThresholds calibrated by you during the exercise\n\n\nHardware\n\nConnect the soil moisture sensor to the Sensorbit port labelled P2\nConnect the Rainbow LED strip to the Sensorbit port labelled P16\nKeep the OLED in the IIC socket\n\n\n\nBuilding the program\nStart a new project (irrigation-alarm). Add the Elecfreaks extension.\nStep 1: Set up the Rainbow LED strip in on start\nThe Rainbow LED strip is controlled with Neopixel blocks, which came with the Elecfreaks extension.\n\nFrom Variables, create a variable called strip\nFrom Neopixel, drag the block set strip to Neopixel at pin P16 with 8 leds as RGB (GRB format)\nSet strip to this block: this initialises the LED strip\n\nAlso add the OLED initialiser: initialize OLED width 128 height 64.\nStep 2: Read the soil moisture sensor in forever\nThe soil moisture sensor is an analog sensor. No special extension block is needed: you read it directly from a pin, and you get a number on a scale.\n\nCreate a variable called moisture\nFrom Advanced → Pins, drag an analog read pin P2 block and set moisture to it\nFrom OLED, clear the OLED and display the value: label \"Soil: \" joined to moisture\n\n\n\n\nYour program after Steps 1 and 2: on start initialises the LED strip and the OLED; forever reads the sensor and shows the raw value.\n\n\n\n\n\n\n\n\nTip\n\n\n\nThe analog read returns a number between 0 and 1023. Higher value = wetter. Wet soil conducts electricity well, so more current reaches the signal pin and the number is high. Dry soil conducts poorly: in open air the reading sits near 0. Run the program and check your own readings before setting thresholds.\n\n\nStep 3: Discover your thresholds\nBefore adding colour logic, flash and test the raw readings:\n\nHold the sensor probes in the air: note the value\nPress your fingers firmly across both metal probes: this simulates wet, conductive soil. Note the value.\nLightly touch the probes: note the intermediate value\n\nThese three readings give you the range for your thresholds. The Documenter writes them down; you need them for the lab quiz.\n\n\n\nCondition\nRaw value\n\n\n\n\nAir (dry)\n\n\n\nLight contact (moist)\n\n\n\nFirm contact (wet)\n\n\n\nYour dry/moist threshold\n\n\n\nYour moist/wet threshold\n\n\n\n\nStep 4: Colour-coded response\nAdd an if / else if / else block after the moisture read:\nif moisture &lt; [your dry/moist threshold]:\n    strip show colour red\n\nelse if moisture &lt; [your moist/wet threshold]:\n    strip show colour orange\n\nelse:\n    strip show colour green\nNote the direction: low readings mean dry, so the first check catches values below your dry threshold.\nUse your observed values from Step 3 as the thresholds. Use the Neopixel block strip show colour in each branch.\nStep 5: Slow the loop down\nAt the very end of the forever block, add a pause (ms) block (from Basic) set to 2000.\nUnlike the DHT11, the soil moisture sensor doesn’t need this: it can be read as fast as you like. The pause is for the humans: without it, the OLED value updates many times per second and is hard to read.\nStep 6: Download and test\nFlash, then check that all three colours appear as you move between dry, light contact and firm contact.\n\n\n\nThe complete irrigation alarm. The thresholds shown (90 and 450) come from our test hardware: use the values you observed in Step 3.\n\n\n\n\n\n\n\n\nImportant✓ Checkpoint\n\n\n\n\nThe OLED shows a number that changes with contact\nThe Rainbow LED goes red in air, amber with light contact, green with firm contact (or similar: your thresholds may give a different boundary)\nYou have written down your threshold values\n\n\n\n\n\n\n\n\n\nNoteJavaScript equivalent\n\n\n\n\n\nlet moisture = 0\nlet strip = neopixel.create(DigitalPin.P16, 8, NeoPixelMode.RGB)\nOLED.init(128, 64)\nbasic.forever(function () {\n    moisture = pins.analogReadPin(AnalogReadWritePin.P2)\n    if (moisture &lt; 90) {\n        strip.showColor(neopixel.colors(NeoPixelColors.Red))\n    } else if (moisture &lt; 450) {\n        strip.showColor(neopixel.colors(NeoPixelColors.Orange))\n    } else {\n        strip.showColor(neopixel.colors(NeoPixelColors.Green))\n    }\n    OLED.clear()\n    OLED.writeStringNewLine(\"Soil:\" + moisture)\n    basic.pause(2000)\n})\nReplace 90 and 450 with the threshold values you observed on your hardware.\n\n\n\n\n\nDiscussion: calibration and drift\nThe raw reading is a number between 0 and 1023. You just set your thresholds based on a minute of testing with your fingers.\nQuestion for your team: The grower leaves this sensor in the seedling bed for three months. The probe tips corrode. What happens to the readings? Would your thresholds still be valid? And would they be valid in a different potting soil, or after fertilising (salts conduct electricity too)? What would you need to do to make this device reliable for long-term use?\n\n\nExtension challenge\nGraduated display. Instead of showing every LED in the same colour, make the number of lit LEDs match the moisture level: 0 LEDs for bone dry, all 8 for saturated. This gives the grower more detail than three categories. Use the Neopixel block strip set pixel color at [n] to [colour] inside a loop.",
+    "crumbs": [
+      "Home",
+      "Smart Greenhouses",
+      "Greenhouse exercises"
+    ]
+  },
+  {
+    "objectID": "greenhouse/exercises.html#challenge",
+    "href": "greenhouse/exercises.html#challenge",
+    "title": "Exercises: building a smart greenhouse",
+    "section": "★ Mini challenge",
+    "text": "★ Mini challenge\nAim to start this about 40 minutes before the end of the session.\nChoose one scenario and build as much as you can. You do not need to finish: the goal is to sketch the logic, start implementing, and find out where you get stuck.\n\n\n\n\n\n\n\n\n\n\nScenario\nSuggested sensors\nSuggested outputs\n\n\n\n\nA\nPlant health station\nDHT11 + soil moisture\nOLED shows both readings; Rainbow LED summarises the overall status\n\n\nB\nAutomatic vent\nDHT11\nServo turns to “open” above your temperature threshold and back to “closed” below it\n\n\nC\nGreenhouse fan\nDHT11\nFan runs while it is too warm or too humid; OLED shows why\n\n\nD\nSeed storage monitor\nDHT11\nOLED shows the readings; Rainbow LED turns red when it is too humid for stored seed\n\n\n★\nFree choice\nAny from the kit\nAny combination of outputs\n\n\n\n\n\n\n\n\n\nTipUsing the servo or the fan\n\n\n\nThe servo and the fan are not covered in the exercises. Look for their blocks in the SmartHome category, or use Advanced → Pins (servo write pin … to … for the servo). Plug them into a free port: P8, P12 or P13–P15.\nMotors draw a lot of current. If the micro:bit restarts as soon as the motor runs, the USB power is not enough: ask a teacher for a battery pack.\n\n\nFor your chosen scenario:\n\nAgree the behaviour: what is the trigger? What is the response?\nSketch the logic: write pseudocode or draw a simple flowchart on paper before touching the keyboard\nBuild what you can: start with the first sensor working, then add the next part\nNote your sticking point: what is the first thing that didn’t work, and why?",
+    "crumbs": [
+      "Home",
+      "Smart Greenhouses",
+      "Greenhouse exercises"
+    ]
+  },
+  {
+    "objectID": "greenhouse/exercises.html#before-you-leave",
+    "href": "greenhouse/exercises.html#before-you-leave",
+    "title": "Exercises: building a smart greenhouse",
+    "section": "Before you leave",
+    "text": "Before you leave\n\nSave your code. In MakeCode, click the save icon (floppy disk) to download the .hex file for each project. You can also copy the project URL from the browser address bar to reopen it later.\nDisconnect carefully. Unplug the USB cable before removing the micro:bit from the Sensorbit.\nReturn the sensors to the foam tray. Each sensor has its own slot.\n\n\n\n\n\n\n\nTipLab quiz\n\n\n\nTake the lab quiz in Canvas. The questions ask about what you observed: your threshold values, the limitations you noticed, and what you would change. Your Documenter’s notes are the answers.",
+    "crumbs": [
+      "Home",
+      "Smart Greenhouses",
+      "Greenhouse exercises"
+    ]
+  },
+  {
+    "objectID": "greenhouse/index.html",
+    "href": "greenhouse/index.html",
+    "title": "Smart greenhouses",
+    "section": "",
+    "text": "In this module, we will take a break from sequencing data, R, deep learning, and will talk about how simple programming and sensors can help agricultural practice. We will use a small microcontroller, simple sensors and make them communicate with each other using MakeCode.\nHere is what we will do in this module:",
+    "crumbs": [
+      "Home",
+      "Smart Greenhouses",
+      "Introdcution to the module"
+    ]
+  },
+  {
+    "objectID": "greenhouse/index.html#lecture-and-quiz",
+    "href": "greenhouse/index.html#lecture-and-quiz",
+    "title": "Smart greenhouses",
+    "section": "Lecture and quiz",
+    "text": "Lecture and quiz\nWhen we meet in class I expect you to have listened to the module lecture below, and to have answered the discussion quiz on Canvas.\nGreenhouse lecture. The recording is in Canvas.\nDownload the PDF of the slides here.\n\nLearning outcomes.\nAfter this module you can:\n\nexplain what a microcontroller is and describe the sense → decide → act pattern\ntell digital, analog and serial signals apart\nconnect a sensor to the micro:bit (G to G, V to V, S to S) and read its value in MakeCode\nuse events, the forever loop, variables and if / else to make a device react to a sensor\ncalibrate a sensor and describe at least one limitation you observed",
+    "crumbs": [
+      "Home",
+      "Smart Greenhouses",
+      "Introdcution to the module"
+    ]
+  },
+  {
+    "objectID": "greenhouse/index.html#discussion",
+    "href": "greenhouse/index.html#discussion",
+    "title": "Smart greenhouses",
+    "section": "Discussion",
+    "text": "Discussion\nIn class, we will talk about these questions. Think about them before you come.\n\nA greenhouse grower already checks the plants every morning. What could a sensor add, and what would it miss that the grower notices?\nThe DHT11 measures temperature to ±2 °C. For which greenhouse decisions is that good enough, and for which is it not?\nWhy can the micro:bit react to a button press with an event, but has to keep checking (polling) an external sensor?\nSensors in greenhouses and fields produce data over months. What would you need to record so that someone else can still use that data later?",
+    "crumbs": [
+      "Home",
+      "Smart Greenhouses",
+      "Introdcution to the module"
+    ]
+  },
+  {
+    "objectID": "greenhouse/index.html#exercises",
+    "href": "greenhouse/index.html#exercises",
+    "title": "Smart greenhouses",
+    "section": "Exercises",
+    "text": "Exercises\nYou work in teams of 4–5 with one kit per team.\n\nSetup and exercises. Make notes on the exercises, the lab quiz will ask for thresholds and limitations you are noticing.\nThe kit: sensors and actuators, to look up a component\nCheck troubleshooting, for common problems if something does not work",
+    "crumbs": [
+      "Home",
+      "Smart Greenhouses",
+      "Introdcution to the module"
+    ]
+  },
+  {
+    "objectID": "greenhouse/index.html#lab-quiz",
+    "href": "greenhouse/index.html#lab-quiz",
+    "title": "Smart greenhouses",
+    "section": "Lab quiz",
+    "text": "Lab quiz\nWill be waiting for you in Canvas, after the exercises.",
+    "crumbs": [
+      "Home",
+      "Smart Greenhouses",
+      "Introdcution to the module"
+    ]
+  },
+  {
+    "objectID": "greenhouse/troubleshooting.html",
+    "href": "greenhouse/troubleshooting.html",
+    "title": "Troubleshooting",
+    "section": "",
+    "text": "Just as in every other exercise, things can go wrong. Check below for common problems.",
+    "crumbs": [
+      "Home",
+      "Smart Greenhouses",
+      "Exercise troubleshooting"
+    ]
+  },
+  {
+    "objectID": "greenhouse/troubleshooting.html#connecting-and-flashing",
+    "href": "greenhouse/troubleshooting.html#connecting-and-flashing",
+    "title": "Troubleshooting",
+    "section": "Connecting and flashing",
+    "text": "Connecting and flashing\n\nThe MICROBIT drive does not appear on my laptop\n\nTry a different USB cable: charge-only cables look identical to data cables but cannot transfer programs. This is the most common cause.\nTry a different USB port on the laptop.\nUnplug, wait five seconds, replug.\nIf the micro:bit shows an error number on its LED matrix, see below.\n\n\n\nCopying the .hex file fails, or the micro:bit shows an error number\n\nAn error code (e.g. 529, 528) scrolling on the LED matrix means the flash failed. Delete nothing: just download the .hex again from MakeCode and copy it again.\nMake sure you copied the .hex file to the MICROBIT drive, not to a folder on your laptop.\nIf the drive is named MAINTENANCE instead of MICROBIT, the micro:bit was plugged in with the reset button held. Unplug and replug it normally.\n\n\n\nFlashing is slow and tedious\nIn Chrome or Edge you can skip the drag-and-drop entirely: click the three dots next to the Download button → Connect device, and follow the pairing steps. After that, the Download button flashes the micro:bit directly over USB in a couple of seconds.",
+    "crumbs": [
+      "Home",
+      "Smart Greenhouses",
+      "Exercise troubleshooting"
+    ]
+  },
+  {
+    "objectID": "greenhouse/troubleshooting.html#the-program-runs-but-misbehaves",
+    "href": "greenhouse/troubleshooting.html#the-program-runs-but-misbehaves",
+    "title": "Troubleshooting",
+    "section": "The program runs but misbehaves",
+    "text": "The program runs but misbehaves\n\nNothing happens at all\n\nDid the orange LED finish flashing? Wait for it.\nAre your blocks inside on start or forever? Blocks floating loose on the workspace (greyed out) are not part of the program.\nPress the reset button on the back of the micro:bit to restart the program.\n\n\n\nI can’t get the kit components to work in the simulator\nThe simulator only simulates the micro:bit’s built-in components. External sensors connected through the Sensorbit do not exist in the simulator: for those, only the actual hardware will work.\n\n\nThe micro:bit restarts itself when the motor or servo runs\nThe motor is drawing more current than USB power can supply, which browns out the micro:bit. Power the Sensorbit from an external battery pack instead of relying on USB alone.",
+    "crumbs": [
+      "Home",
+      "Smart Greenhouses",
+      "Exercise troubleshooting"
+    ]
+  },
+  {
+    "objectID": "greenhouse/troubleshooting.html#the-oled",
+    "href": "greenhouse/troubleshooting.html#the-oled",
+    "title": "Troubleshooting",
+    "section": "The OLED",
+    "text": "The OLED\n\nThe OLED stays black\n\nIs it plugged into the IIC socket on the Sensorbit (not a numbered G/V/S port)?\nDid you add the initialize OLED width 128 height 64 block in on start? Nothing displays without it.\nDid you add the smarthome extension to this project? Extensions are per-project: a new project needs the extension added again.\n\n\n\nThe OLED flickers\nYour forever loop is clearing and rewriting the display on every pass. Either slow the loop down with a pause, or, better, only redraw when the value being shown has actually changed (compare with a variable holding the previous value).",
+    "crumbs": [
+      "Home",
+      "Smart Greenhouses",
+      "Exercise troubleshooting"
+    ]
+  },
+  {
+    "objectID": "greenhouse/troubleshooting.html#sensors",
+    "href": "greenhouse/troubleshooting.html#sensors",
+    "title": "Troubleshooting",
+    "section": "Sensors",
+    "text": "Sensors\n\nA sensor reads 0, a constant value, or nonsense\n\nCheck the wiring first: G to G, V to V, S to S, right port, fully seated. A reversed cable is the most common cause of a “dead” sensor.\nCheck that the pin number in your program matches the port the sensor is physically plugged into.\n\n\n\nThe DHT11 gives no reading or wrong readings\n\nThe DHT11 can only be read once every two seconds. Make sure your forever loop ends with pause 2000.\n\n\n\nWhich ports are safe for my mini challenge?\nNot every numbered port on the Sensorbit is free to use: several micro:bit pins are shared with built-in hardware, and a sensor on a shared pin gives garbage readings with no error message.\n\n\n\n\n\n\n\nPorts\nStatus\n\n\n\n\nP1, P2, P8, P12, P13–P16\n✅ Safe for sensors and actuators\n\n\nP3, P4, P6, P7, P9, P10\n❌ Shared with the LED matrix: nonsense readings whenever the display is in use\n\n\nP5, P11\n❌ Wired to buttons A and B\n\n\nP0\n❌ No GVS port: wired to the Sensorbit’s buzzer and headphone jack\n\n\n\nTwo more rules:\n\nAnalog sensors (the soil moisture sensor, or anything else read with analog read pin) must go on P1 or P2. The other analog-capable pins are all shared with the LED matrix.\nP16 is the conventional home of the Rainbow LED strip: keep it free if your project uses one.\n\nIf a sensor worked on a different pin and now reads nonsense, check this table before suspecting the sensor.\n\n\nThe soil moisture readings drift or differ from before\nThis sensor is relative, not calibrated: readings depend on soil type, salinity, probe contact, and probe corrosion. Re-check your thresholds whenever conditions change.\n\n\nThe Rainbow LED shows nothing, or only some LEDs light\n\nCheck the wiring and that the pin in the Neopixel setup block matches the physical port.\nCheck that the number of LEDs in the setup block matches your strip: if it is set too low, the remaining LEDs stay dark.\nDid the set strip to ... block run in on start? Without it, the show-colour blocks have nothing to control.",
+    "crumbs": [
+      "Home",
+      "Smart Greenhouses",
+      "Exercise troubleshooting"
+    ]
+  },
+  {
+    "objectID": "greenhouse/troubleshooting.html#still-stuck",
+    "href": "greenhouse/troubleshooting.html#still-stuck",
+    "title": "Troubleshooting",
+    "section": "Still stuck?",
+    "text": "Still stuck?\nAsk me, but consider these three questions first:\n\nWhat did you expect to happen?\nWhat happened instead?\nWhat have you already checked?",
+    "crumbs": [
+      "Home",
+      "Smart Greenhouses",
+      "Exercise troubleshooting"
     ]
   },
   {
@@ -1386,7 +1912,7 @@
     "text": "During some modules of this course we will be working on a High Performance Computing cluster, HPC2N. The cluster is a local resource in Umeå, and to use it you need a user account both at the National Academic Infrastructure for Super­computing in Sweden (NAISS), and at HPC2N.\nThe following procedure takes a few days to get through because of clearance delays, so please start straight away.",
     "crumbs": [
       "Home",
-      "Before the course",
+      "Course server",
       "Server accounts"
     ]
   },
@@ -1398,7 +1924,7 @@
     "text": "Create a user account at SUPR/NAISS\n\n\n\n\n\n\nImportantTo do for you\n\n\n\nFill out & submit the account request form. Open this and all the following links in a different tab, they do NOT properly open in Canvas. \nRead carefully and follow the provided instructions.\n\n\n\n\n\n\n\n\nTip\n\n\n\n\nUse “Register with Federated Identity” if you are enrolled in a Swedish university.\nIf you are not enrolled in a Swedish university or if the previous option doesn’t work for you, use instead “Register without Federated Identity”.\n\n\n\n\nAccept NAISS user agreement\nJust after creating the SUPR account, on the page you are taken to, there will be a section titled “User Agreement” at the very top. Just under it is the button named “Accept NAISS User Agreement”.\n\n\n\n\n\n\nImportantTo do for you\n\n\n\nClick it.\n\n\nAlternately, if you do this at a later point. Login to SUPR. At the very top it will say “NAISS User Agreement Pending”.\n\n\n\n\n\n\nTip\n\n\n\n\nUse With SWAMID if you are enrolled in a Swedish university - this option is much faster!\nIf you are not enrolled in a Swedish university use instead Alternative: Offline via Paper Form. Here you will have to print out, sign and send in the form. This may take up to a week. Contact me if you are applying from outside of Sweden. \n\n\n\nWhen you have a SUPR account you can join our course project on HPC2N:",
     "crumbs": [
       "Home",
-      "Before the course",
+      "Course server",
       "Server accounts"
     ]
   },
@@ -1410,7 +1936,7 @@
     "text": "Join the course project at HPC2N\n\n\n\n\n\n\nImportantTo do for you\n\n\n\nLog in to SUPR.\n\nClick “Projects” in the left side column.\nUnder “Requesting Membership in Projects”, put in the course project ID. You find it in Canvas. Click “Search for Project”.\nClick “Request” on the project.\nWe will then get an e-mail notification about your request. Once we have accepted your membership, you in turn will get an e-mail, telling you that the membership has been accepted. Then, go to SUPR again to apply for an account at HPC2N.",
     "crumbs": [
       "Home",
-      "Before the course",
+      "Course server",
       "Server accounts"
     ]
   },
@@ -1422,7 +1948,7 @@
     "text": "Create a user account at HPC2N\nNote: you must be a member of a project before you do this!\n\n\n\n\n\n\nImportantTo do for you\n\n\n\n\nLogin to SUPR.\nClick “Accounts” in the left side column.\nYou can request an account at HPC2N now. Look under the heading “Account Requests”.\nClick “Request account”.\nYour information will then be sent to HPC2N, and you will be taken back to a webpage where you can choose your username.\nUser accounts are usually created once a week. You will get an email from HPC2N when your account has been created.",
     "crumbs": [
       "Home",
-      "Before the course",
+      "Course server",
       "Server accounts"
     ]
   },
@@ -1434,7 +1960,7 @@
     "text": "Questions?\nContact me via canvas!",
     "crumbs": [
       "Home",
-      "Before the course",
+      "Course server",
       "Server accounts"
     ]
   },

@@ -2,62 +2,82 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://amrei-bp.github.io/Introduction_Bioinformatics_2026/unix/unix_lecture.html</loc>
-    <lastmod>2026-11-10T14:24:00.539Z</lastmod>
+    <lastmod>2026-11-13T13:01:30.235Z</lastmod>
   </url>
   <url>
     <loc>https://amrei-bp.github.io/Introduction_Bioinformatics_2026/unix/unix.html</loc>
-    <lastmod>2026-11-10T14:24:00.538Z</lastmod>
+    <lastmod>2026-11-13T13:01:30.234Z</lastmod>
   </url>
   <url>
     <loc>https://amrei-bp.github.io/Introduction_Bioinformatics_2026/server_access.html</loc>
-    <lastmod>2026-11-10T14:24:00.537Z</lastmod>
+    <lastmod>2026-11-13T13:01:30.233Z</lastmod>
   </url>
   <url>
     <loc>https://amrei-bp.github.io/Introduction_Bioinformatics_2026/ngs/qc_lecture.html</loc>
-    <lastmod>2026-11-10T14:24:00.517Z</lastmod>
+    <lastmod>2026-11-13T13:01:30.219Z</lastmod>
   </url>
   <url>
     <loc>https://amrei-bp.github.io/Introduction_Bioinformatics_2026/ngs/ngs_intro.html</loc>
-    <lastmod>2026-11-10T14:24:00.504Z</lastmod>
+    <lastmod>2026-11-13T13:01:30.210Z</lastmod>
   </url>
   <url>
     <loc>https://amrei-bp.github.io/Introduction_Bioinformatics_2026/ngs/mapping_exercises.html</loc>
-    <lastmod>2026-11-10T14:24:00.501Z</lastmod>
+    <lastmod>2026-11-13T13:01:30.208Z</lastmod>
   </url>
   <url>
     <loc>https://amrei-bp.github.io/Introduction_Bioinformatics_2026/ngs/day1.html</loc>
-    <lastmod>2026-11-10T14:24:00.469Z</lastmod>
+    <lastmod>2026-11-13T13:01:30.188Z</lastmod>
   </url>
   <url>
     <loc>https://amrei-bp.github.io/Introduction_Bioinformatics_2026/index.html</loc>
-    <lastmod>2026-11-10T14:24:00.468Z</lastmod>
+    <lastmod>2026-11-13T13:01:30.188Z</lastmod>
+  </url>
+  <url>
+    <loc>https://amrei-bp.github.io/Introduction_Bioinformatics_2026/greenhouse/kit.html</loc>
+    <lastmod>2026-11-13T13:01:30.188Z</lastmod>
+  </url>
+  <url>
+    <loc>https://amrei-bp.github.io/Introduction_Bioinformatics_2026/greenhouse/greenhouse_lecture.html</loc>
+    <lastmod>2026-11-13T13:01:30.172Z</lastmod>
+  </url>
+  <url>
+    <loc>https://amrei-bp.github.io/Introduction_Bioinformatics_2026/greenhouse/exercises.html</loc>
+    <lastmod>2026-11-13T13:01:30.170Z</lastmod>
+  </url>
+  <url>
+    <loc>https://amrei-bp.github.io/Introduction_Bioinformatics_2026/greenhouse/index.html</loc>
+    <lastmod>2026-11-13T13:01:30.187Z</lastmod>
+  </url>
+  <url>
+    <loc>https://amrei-bp.github.io/Introduction_Bioinformatics_2026/greenhouse/troubleshooting.html</loc>
+    <lastmod>2026-11-13T13:01:30.188Z</lastmod>
   </url>
   <url>
     <loc>https://amrei-bp.github.io/Introduction_Bioinformatics_2026/ngs/NGS_data.html</loc>
-    <lastmod>2026-11-10T14:24:00.468Z</lastmod>
+    <lastmod>2026-11-13T13:01:30.188Z</lastmod>
   </url>
   <url>
     <loc>https://amrei-bp.github.io/Introduction_Bioinformatics_2026/ngs/day2.html</loc>
-    <lastmod>2026-11-10T14:24:00.469Z</lastmod>
+    <lastmod>2026-11-13T13:01:30.188Z</lastmod>
   </url>
   <url>
     <loc>https://amrei-bp.github.io/Introduction_Bioinformatics_2026/ngs/mapping_lecture.html</loc>
-    <lastmod>2026-11-10T14:24:00.504Z</lastmod>
+    <lastmod>2026-11-13T13:01:30.210Z</lastmod>
   </url>
   <url>
     <loc>https://amrei-bp.github.io/Introduction_Bioinformatics_2026/ngs/qc_exercises.html</loc>
-    <lastmod>2026-11-10T14:24:00.504Z</lastmod>
+    <lastmod>2026-11-13T13:01:30.210Z</lastmod>
   </url>
   <url>
     <loc>https://amrei-bp.github.io/Introduction_Bioinformatics_2026/ngs/sequencing_lecture.html</loc>
-    <lastmod>2026-11-10T14:24:00.537Z</lastmod>
+    <lastmod>2026-11-13T13:01:30.233Z</lastmod>
   </url>
   <url>
     <loc>https://amrei-bp.github.io/Introduction_Bioinformatics_2026/server_accounts.html</loc>
-    <lastmod>2026-11-10T14:24:00.537Z</lastmod>
+    <lastmod>2026-11-13T13:01:30.233Z</lastmod>
   </url>
   <url>
     <loc>https://amrei-bp.github.io/Introduction_Bioinformatics_2026/unix/unix_exercises.html</loc>
-    <lastmod>2026-11-10T14:24:00.538Z</lastmod>
+    <lastmod>2026-11-13T13:01:30.234Z</lastmod>
   </url>
 </urlset>
