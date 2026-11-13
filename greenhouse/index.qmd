@@ -1,0 +1,50 @@
+---
+title: "Smart greenhouses"
+---
+
+In this module, we will take a break from sequencing data, R, deep learning, and will talk about how simple programming and sensors can help agricultural practice. We will use a small microcontroller, simple sensors and make them communicate with each other using MakeCode. 
+
+Here is what we will do in this module: 
+
+## Lecture and quiz
+
+When we meet in class I expect you to have listened to the module lecture below, and to have answered the discussion quiz on Canvas. 
+
+[Greenhouse lecture](greenhouse_lecture.qmd){target="_blank"}. The recording is in Canvas.
+
+Download the [PDF](greenhouse_lecture.pdf){download="greenhouse_lecture.pdf"} of the slides here.
+
+
+### Learning outcomes.
+
+After this module you can:
+
+- explain what a microcontroller is and describe the sense → decide → act pattern
+- tell digital, analog and serial signals apart
+- connect a sensor to the micro:bit (G to G, V to V, S to S) and read its value in MakeCode
+- use events, the `forever` loop, variables and `if / else` to make a device react to a sensor
+- calibrate a sensor and describe at least one limitation you observed
+
+
+## Discussion
+
+In class, we will talk about these questions. Think about them before you come.
+
+1. A greenhouse grower already checks the plants every morning. What could a sensor add, and what would it miss that the grower notices?
+2. The DHT11 measures temperature to ±2 °C. For which greenhouse decisions is that good enough, and for which is it not?
+3. Why can the micro:bit react to a button press with an event, but has to keep checking (polling) an external sensor?
+4. Sensors in greenhouses and fields produce data over months. What would you need to record so that someone else can still use that data later?
+
+## Exercises
+
+You work in teams of 4–5 with one kit per team.
+
+1. [Setup and exercises](exercises.qmd). Make notes on the exercises, the lab quiz will ask for thresholds and limitations you are noticing. 
+2. [The kit: sensors and actuators](kit.qmd), to look up a component
+3. Check [troubleshooting](troubleshooting.qmd), for common problems if something does not work
+
+## Lab quiz
+
+Will be waiting for you in Canvas, after the exercises.
+
+---
