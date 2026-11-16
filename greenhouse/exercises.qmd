@@ -91,7 +91,6 @@ Before wiring anything, you build a complete working device using only what is a
 - Press **button B** → the current temperature is shown
 - **Shake** the micro:bit → the display clears
 
-No wiring. No extension blocks. Everything is built in.
 
 ### Building the program
 
@@ -122,7 +121,7 @@ Your workspace should now look like this: four separate stacks, each starting wi
 Flash, then press A, press B, shake. All three should respond.
 
 ::: {.callout-tip}
-This program has **no `forever` loop at all**. Event blocks sit and wait; the micro:bit does nothing until a button is pressed or the board is shaken. Remember this: the next exercise uses the opposite approach.
+This program has **no `forever` loop at all**. Event blocks sit and wait; the micro:bit does nothing until a button is pressed or the board is shaken.
 :::
 
 ::: {.callout-important}
@@ -153,7 +152,7 @@ basic.showString("Ready")
 
 Compare the temperature your micro:bit shows with a room thermometer, or with another team's micro:bit.
 
-**Question for your team:** The built-in sensor measures the temperature of the **processor chip**, not the air. The chip warms up as it works. What does this mean for the reading? Would this "thermometer" be good enough to decide when to ventilate a greenhouse? Note your observation: the gap between what a sensor *actually measures* and what you *want to know* comes back in every exercise.
+**Question for your team:** The built-in sensor measures the temperature of the **processor chip**, not the air. The chip warms up as it works. What does this mean for the reading? Would this "thermometer" be good enough to decide when to ventilate a greenhouse? Note your observation: the difference between what a sensor *actually measures* and what you *want to know* will be a reoccuring theme.
 
 ### Extension challenge (if you finish early)
 
@@ -171,7 +170,7 @@ A tomato greenhouse should stay between about 18 °C and 28 °C. Above that, the
 
 ### Hardware
 
-This is your first **external** sensor: one cable, three wires, and the wiring rule from the [setup](#setup).
+This is your first **external** sensor: remember the wiring rule from the [setup](#setup).
 
 1. Connect the **DHT11** sensor to the Sensorbit port labelled **P1**. G to G, V to V, S to S.
 2. Plug the **OLED screen** into the Sensorbit's **IIC** socket
@@ -288,8 +287,6 @@ The DHT11 has an accuracy of **±2 °C** and **±5 %** humidity, and it measures
 
 Close to the threshold, the sensor's error decides what happens, not the real temperature.
 :::
-
-**Question for your team:** Is this device good enough to control the vents of a greenhouse? What would a more reliable design need? Note your answer: it appears in the Canvas lab quiz.
 
 **Question for your team:** Is this device good enough to control the vents of a greenhouse? What would a more reliable design need? Note your answer: it appears in the Canvas lab quiz.
 
@@ -456,18 +453,18 @@ Motors draw a lot of current. If the micro:bit restarts as soon as the motor run
 
 For your chosen scenario:
 
-1. **Agree the behaviour:** what is the trigger? What is the response?
+1. **Agree on the behaviour:** what is the trigger? What is the response?
 2. **Sketch the logic:** write pseudocode or draw a simple flowchart on paper before touching the keyboard
 3. **Build what you can:** start with the first sensor working, then add the next part
 4. **Note your sticking point:** what is the first thing that didn't work, and why?
 
 ## Before you leave
 
-1. **Save your code.** In MakeCode, click the save icon (floppy disk) to download the `.hex` file for each project. You can also copy the project URL from the browser address bar to reopen it later.
+1. If you want to: **Save your code.** In MakeCode, click the save icon (floppy disk) to download the `.hex` file for each project. You can also copy the project URL from the browser address bar to reopen it later.
 2. **Disconnect carefully.** Unplug the USB cable before removing the micro:bit from the Sensorbit.
 3. **Return the sensors to the foam tray.** Each sensor has its own slot.
 
 ::: {.callout-tip}
 ## Lab quiz
-Take the **lab quiz in Canvas**. The questions ask about what you observed: your threshold values, the limitations you noticed, and what you would change. Your Documenter's notes are the answers.
+Take the **lab quiz in Canvas**. The questions ask about what you observed: your threshold values, the limitations you noticed, and what you would change. 
 :::
