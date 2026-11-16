@@ -34,7 +34,7 @@ Do not rush this: a broken setup wastes more time than a careful one.
 
 ### Step 1: Connect the hardware
 
-1. Slot the micro:bit into the Sensorbit edge connector: the USB port faces **up**, the LED matrix faces **out**
+1. Slot the micro:bit into the Sensorbit edge connector: the USB port is **on top**, the LED matrix faces **out** towards you. 
 2. Press it firmly until it seats fully: a loose connection causes intermittent failures
 3. Connect the micro:bit to your laptop with the USB cable
 4. The micro:bit lights up and shows a startup animation: this confirms it has power
